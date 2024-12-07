@@ -1926,7 +1926,7 @@
                 <div class="mb-8">
                     <h3 class="text-sm">Daftar/Masuk ke Akun:</h3>
                     <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
-                        <a href="https://perpustakaan.jakarta.go.id/supports/contact-us/Email"
+                        <a href="{{ route('register') }}"
                             class="col-span-full border rounded-lg">
                             <div
                                 class="rounded-lg flex items-center justify-center space-x-1.5 text-center p-3 bg-gray-50 hover:bg-gray-100">
@@ -1939,7 +1939,7 @@
                                 <span class="bold-text">DAFTAR</span>
                             </div>
                         </a>
-                        <a href="https://perpustakaan.jakarta.go.id/supports/contact-us/WhatsApp"
+                        <a href="{{ route('login') }}"
                             class="col-span-full border rounded-lg">
                             <div
                                 class="rounded-lg flex items-center justify-center space-x-1.5 text-center p-3 bg-gray-50 hover:bg-gray-100">
