@@ -37,7 +37,7 @@
                                     </div>
                                 </a>
 
-                                <a href="https://perpustakaan.jakarta.go.id/book">
+                                <a href="{{ route('bukuClient.index') }}">
                                     <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
                                         <div class="flex items-center gap-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -424,7 +424,7 @@
                         <span>Beranda</span>
                     </a>
 
-                    <a href="https://perpustakaan.jakarta.go.id/book"
+                    <a href="{{ route('bukuClient.index') }}"
                         class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
