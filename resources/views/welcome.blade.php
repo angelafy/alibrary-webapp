@@ -1,172 +1,1960 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <style>
-            /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Figtree, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.absolute{position:absolute}.relative{position:relative}.-left-20{left:-5rem}.top-0{top:0px}.-bottom-16{bottom:-4rem}.-left-16{left:-4rem}.-mx-3{margin-left:-0.75rem;margin-right:-0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-video{aspect-ratio:16 / 9}.size-12{width:3rem;height:3rem}.size-5{width:1.25rem;height:1.25rem}.size-6{width:1.5rem;height:1.5rem}.h-12{height:3rem}.h-40{height:10rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-full{width:100%}.w-\[calc\(100\%\+8rem\)\]{width:calc(100% + 8rem)}.w-auto{width:auto}.max-w-\[877px\]{max-width:877px}.max-w-2xl{max-width:42rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-sm{border-radius:0.125rem}.bg-\[\#FF2D20\]\/10{background-color:rgb(255 45 32 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-transparent{--tw-gradient-from:transparent var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 0 0 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-white{--tw-gradient-to:rgb(255 255 255 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.stroke-\[\#FF2D20\]{stroke:#FF2D20}.object-cover{object-fit:cover}.object-top{object-position:top}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pt-3{padding-top:0.75rem}.text-center{text-align:center}.font-sans{font-family:Figtree, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-sm\/relaxed{font-size:0.875rem;line-height:1.625}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-semibold{font-weight:600}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-\[0px_14px_34px_0px_rgba\(0\2c 0\2c 0\2c 0\.08\)\]{--tw-shadow:0px 14px 34px 0px rgba(0,0,0,0.08);--tw-shadow-colored:0px 14px 34px 0px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-transparent{--tw-ring-color:transparent}.ring-white\/\[0\.05\]{--tw-ring-color:rgb(255 255 255 / 0.05)}.drop-shadow-\[0px_4px_34px_rgba\(0\2c 0\2c 0\2c 0\.06\)\]{--tw-drop-shadow:drop-shadow(0px 4px 34px rgba(0,0,0,0.06));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-\[0px_4px_34px_rgba\(0\2c 0\2c 0\2c 0\.25\)\]{--tw-drop-shadow:drop-shadow(0px 4px 34px rgba(0,0,0,0.25));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-\[\#FF2D20\] *::selection{--tw-bg-opacity:1;background-color:rgb(255 45 32 / var(--tw-bg-opacity))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.selection\:bg-\[\#FF2D20\]::selection{--tw-bg-opacity:1;background-color:rgb(255 45 32 / var(--tw-bg-opacity))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity))}.hover\:text-black\/70:hover{color:rgb(0 0 0 / 0.7)}.hover\:ring-black\/20:hover{--tw-ring-color:rgb(0 0 0 / 0.2)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus-visible\:ring-1:focus-visible{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus-visible\:ring-\[\#FF2D20\]:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 45 32 / var(--tw-ring-opacity))}@media (min-width: 640px){.sm\:size-16{width:4rem;height:4rem}.sm\:size-6{width:1.5rem;height:1.5rem}.sm\:pt-5{padding-top:1.25rem}}@media (min-width: 768px){.md\:row-span-3{grid-row:span 3 / span 3}}@media (min-width: 1024px){.lg\:col-start-2{grid-column-start:2}.lg\:h-16{height:4rem}.lg\:max-w-7xl{max-width:80rem}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:flex-col{flex-direction:column}.lg\:items-end{align-items:flex-end}.lg\:justify-center{justify-content:center}.lg\:gap-8{gap:2rem}.lg\:p-10{padding:2.5rem}.lg\:pb-10{padding-bottom:2.5rem}.lg\:pt-0{padding-top:0px}.lg\:text-\[\#FF2D20\]{--tw-text-opacity:1;color:rgb(255 45 32 / var(--tw-text-opacity))}}@media (prefers-color-scheme: dark){.dark\:block{display:block}.dark\:hidden{display:none}.dark\:bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity))}.dark\:bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity))}.dark\:via-zinc-900{--tw-gradient-to:rgb(24 24 27 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #18181b var(--tw-gradient-via-position), var(--tw-gradient-to)}.dark\:to-zinc-900{--tw-gradient-to:#18181b var(--tw-gradient-to-position)}.dark\:text-white\/50{color:rgb(255 255 255 / 0.5)}.dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:text-white\/70{color:rgb(255 255 255 / 0.7)}.dark\:ring-zinc-800{--tw-ring-opacity:1;--tw-ring-color:rgb(39 39 42 / var(--tw-ring-opacity))}.dark\:hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:hover\:text-white\/70:hover{color:rgb(255 255 255 / 0.7)}.dark\:hover\:text-white\/80:hover{color:rgb(255 255 255 / 0.8)}.dark\:hover\:ring-zinc-700:hover{--tw-ring-opacity:1;--tw-ring-color:rgb(63 63 70 / var(--tw-ring-opacity))}.dark\:focus-visible\:ring-\[\#FF2D20\]:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 45 32 / var(--tw-ring-opacity))}.dark\:focus-visible\:ring-white:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(255 255 255 / var(--tw-ring-opacity))}}
-        </style>
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
-            <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            <svg class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M61.8548 14.6253C61.8778 14.7102 61.8895 14.7978 61.8897 14.8858V28.5615C61.8898 28.737 61.8434 28.9095 61.7554 29.0614C61.6675 29.2132 61.5409 29.3392 61.3887 29.4265L49.9104 36.0351V49.1337C49.9104 49.4902 49.7209 49.8192 49.4118 49.9987L25.4519 63.7916C25.3971 63.8227 25.3372 63.8427 25.2774 63.8639C25.255 63.8714 25.2338 63.8851 25.2101 63.8913C25.0426 63.9354 24.8666 63.9354 24.6991 63.8913C24.6716 63.8838 24.6467 63.8689 24.6205 63.8589C24.5657 63.8389 24.5084 63.8215 24.456 63.7916L0.501061 49.9987C0.348882 49.9113 0.222437 49.7853 0.134469 49.6334C0.0465019 49.4816 0.000120578 49.3092 0 49.1337L0 8.10652C0 8.01678 0.0124642 7.92953 0.0348998 7.84477C0.0423783 7.8161 0.0598282 7.78993 0.0697995 7.76126C0.0884958 7.70891 0.105946 7.65531 0.133367 7.6067C0.152063 7.5743 0.179485 7.54812 0.20192 7.51821C0.230588 7.47832 0.256763 7.43719 0.290416 7.40229C0.319084 7.37362 0.356476 7.35243 0.388883 7.32751C0.425029 7.29759 0.457436 7.26518 0.498568 7.2415L12.4779 0.345059C12.6296 0.257786 12.8015 0.211853 12.9765 0.211853C13.1515 0.211853 13.3234 0.257786 13.475 0.345059L25.4531 7.2415H25.4556C25.4955 7.26643 25.5292 7.29759 25.5653 7.32626C25.5977 7.35119 25.6339 7.37362 25.6625 7.40104C25.6974 7.43719 25.7224 7.47832 25.7523 7.51821C25.7735 7.54812 25.8021 7.5743 25.8196 7.6067C25.8483 7.65656 25.8645 7.70891 25.8844 7.76126C25.8944 7.78993 25.9118 7.8161 25.9193 7.84602C25.9423 7.93096 25.954 8.01853 25.9542 8.10652V33.7317L35.9355 27.9844V14.8846C35.9355 14.7973 35.948 14.7088 35.9704 14.6253C35.9792 14.5954 35.9954 14.5692 36.0053 14.5405C36.0253 14.4882 36.0427 14.4346 36.0702 14.386C36.0888 14.3536 36.1163 14.3274 36.1375 14.2975C36.1674 14.2576 36.1923 14.2165 36.2272 14.1816C36.2559 14.1529 36.292 14.1317 36.3244 14.1068C36.3618 14.0769 36.3942 14.0445 36.4341 14.0208L48.4147 7.12434C48.5663 7.03694 48.7383 6.99094 48.9133 6.99094C49.0883 6.99094 49.2602 7.03694 49.4118 7.12434L61.3899 14.0208C61.4323 14.0457 61.4647 14.0769 61.5021 14.1055C61.5333 14.1305 61.5694 14.1529 61.5981 14.1803C61.633 14.2165 61.6579 14.2576 61.6878 14.2975C61.7103 14.3274 61.7377 14.3536 61.7551 14.386C61.7838 14.4346 61.8 14.4882 61.8199 14.5405C61.8312 14.5692 61.8474 14.5954 61.8548 14.6253ZM59.893 27.9844V16.6121L55.7013 19.0252L49.9104 22.3593V33.7317L59.8942 27.9844H59.893ZM47.9149 48.5566V37.1768L42.2187 40.4299L25.953 49.7133V61.2003L47.9149 48.5566ZM1.99677 9.83281V48.5566L23.9562 61.199V49.7145L12.4841 43.2219L12.4804 43.2194L12.4754 43.2169C12.4368 43.1945 12.4044 43.1621 12.3682 43.1347C12.3371 43.1097 12.3009 43.0898 12.2735 43.0624L12.271 43.0586C12.2386 43.0275 12.2162 42.9888 12.1887 42.9539C12.1638 42.9203 12.1339 42.8916 12.114 42.8567L12.1127 42.853C12.0903 42.8156 12.0766 42.7707 12.0604 42.7283C12.0442 42.6909 12.023 42.656 12.013 42.6161C12.0005 42.5688 11.998 42.5177 11.9931 42.4691C11.9881 42.4317 11.9781 42.3943 11.9781 42.3569V15.5801L6.18848 12.2446L1.99677 9.83281ZM12.9777 2.36177L2.99764 8.10652L12.9752 13.8513L22.9541 8.10527L12.9752 2.36177H12.9777ZM18.1678 38.2138L23.9574 34.8809V9.83281L19.7657 12.2459L13.9749 15.5801V40.6281L18.1678 38.2138ZM48.9133 9.14105L38.9344 14.8858L48.9133 20.6305L58.8909 14.8846L48.9133 9.14105ZM47.9149 22.3593L42.124 19.0252L37.9323 16.6121V27.9844L43.7219 31.3174L47.9149 33.7317V22.3593ZM24.9533 47.987L39.59 39.631L46.9065 35.4555L36.9352 29.7145L25.4544 36.3242L14.9907 42.3482L24.9533 47.987Z" fill="currentColor"/></svg>
-                        </div>
-                        @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
-                                @auth
-                                    <a
-                                        href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Dashboard
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Log in
-                                    </a>
-
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif
-                    </header>
-
-                    <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                            <a
-                                href="https://laravel.com/docs"
-                                id="docs-card"
-                                class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-                                    <img
-                                        src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                        alt="Laravel documentation screenshot"
-                                        class="aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
-                                        onerror="
-                                            document.getElementById('screenshot-container').classList.add('!hidden');
-                                            document.getElementById('docs-card').classList.add('!row-span-1');
-                                            document.getElementById('docs-card-content').classList.add('!flex-row');
-                                            document.getElementById('background').classList.add('!hidden');
-                                        "
-                                    />
-                                    <img
-                                        src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                        alt="Laravel documentation screenshot"
-                                        class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
-                                    />
-                                    <div
-                                        class="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"
-                                    ></div>
+<x-client-app>
+    <style>
+        .bold-text {
+      font-weight: bold;
+    }
+    </style>
+    <body class="font-mulish antialiased overflow-x-hidden text-sm md:text-base">
+        <div class="flex min-h-screen relative">
+            <header class="w-full z-50 fixed lg:hidden">
+                <section id="bottom-navigation" class="lg:hidden fixed inset-x-0 bottom-0 z-10 bg-white border-t-2">
+                    <div x-data="{ searchChoiceCard: false }" x-cloak="" @click.outside="searchChoiceCard = false">
+                        <div class="text-xs rounded-t bg-gray-100 p-4 shadow" x-show="searchChoiceCard">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="font-medium text-sm">
+                                    Fitur Lainnya
                                 </div>
+                                <svg @click="searchChoiceCard = false" xmlns="http://www.w3.org/2000/svg"
+                                    class="cursor-pointer h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </div>
 
-                                <div class="relative flex items-center gap-6 lg:items-end">
-                                    <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
-                                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                            <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="#FF2D20" d="M23 4a1 1 0 0 0-1.447-.894L12.224 7.77a.5.5 0 0 1-.448 0L2.447 3.106A1 1 0 0 0 1 4v13.382a1.99 1.99 0 0 0 1.105 1.79l9.448 4.728c.14.065.293.1.447.1.154-.005.306-.04.447-.105l9.453-4.724a1.99 1.99 0 0 0 1.1-1.789V4ZM3 6.023a.25.25 0 0 1 .362-.223l7.5 3.75a.251.251 0 0 1 .138.223v11.2a.25.25 0 0 1-.362.224l-7.5-3.75a.25.25 0 0 1-.138-.22V6.023Zm18 11.2a.25.25 0 0 1-.138.224l-7.5 3.75a.249.249 0 0 1-.329-.099.249.249 0 0 1-.033-.12V9.772a.251.251 0 0 1 .138-.224l7.5-3.75a.25.25 0 0 1 .362.224v11.2Z"/><path fill="#FF2D20" d="m3.55 1.893 8 4.048a1.008 1.008 0 0 0 .9 0l8-4.048a1 1 0 0 0-.9-1.785l-7.322 3.706a.506.506 0 0 1-.452 0L4.454.108a1 1 0 0 0-.9 1.785H3.55Z"/></svg>
+                            <div class="grid grid-cols-2 items-center justify-between gap-2">
+                                <a href="https://kios-perpustakaan.jakarta.go.id/?nik=">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Reservasi Event</span>
                                         </div>
+                                    </div>
+                                </a>
 
-                                        <div class="pt-3 sm:pt-5 lg:pt-0">
-                                            <h2 class="text-xl font-semibold text-black dark:text-white">Documentation</h2>
+                                <a href="https://perpustakaan.jakarta.go.id/book">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Daftar Koleksi</span>
+                                        </div>
+                                    </div>
+                                </a>
 
-                                            <p class="mt-4 text-sm/relaxed">
-                                                Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
-                                            </p>
+                                <a href="https://perpustakaan.jakarta.go.id/digital-book">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Katalog Sastra</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="https://perpustakaan.jakarta.go.id/e-resources">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                                aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">E-Resources</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="https://perpustakaan.jakarta.go.id/event?type=Bacajakarta">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Event</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="https://perpustakaan.jakarta.go.id/library/search">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Cari Perpustakaan</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="https://perpustakaan.jakarta.go.id/catalog-requests/create">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Usul Buku</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Agenda Literasi</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="">
+                                    <div class="border rounded bg-white p-2 hover:bg-primary-600 hover:text-white">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path
+                                                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z">
+                                                </path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0">
+                                                </path>
+                                            </svg>
+                                            <span class="text-xs">Jadwal Pusling</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="tabs" class="flex justify-between py-1">
+                            <a href="https://perpustakaan.jakarta.go.id"
+                                class="font-medium text-primary-400 w-full hover:text-primary-400 justify-center inline-block text-center pt-2 pb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mb-1 h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                    </path>
+                                </svg>
+                                <span class="tab tab-home block text-xs">Beranda</span>
+                            </a>
+                            <a href="https://perpustakaan.jakarta.go.id/cart"
+                                class="text-gray-600 w-full hover:text-primary-400 justify-center inline-block text-center pt-2 pb-1">
+                                <div class="relative inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="inline-block mb-1 h-6 w-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <span class="tab tab-loan block text-xs">Keranjang</span>
+                            </a>
+                            <div @click="searchChoiceCard = !searchChoiceCard" onclick="return false"
+                                class="w-full hover:text-primary-400 justify-center inline-block text-center pt-2 pb-1 text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mb-1 h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                <span class="tab tab-explore block text-xs">Jelajahi</span>
+                            </div>
+                            <a href="https://perpustakaan.jakarta.go.id/transaction"
+                                class="text-gray-600 w-full hover:text-primary-400 justify-center inline-block text-center pt-2 pb-1">
+                                <div class="relative inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mb-1 h-6 w-6"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <span class="tab tab-cart block text-xs">Transaksi</span>
+                            </a>
+                            <a href="https://perpustakaan.jakarta.go.id/account"
+                                class="text-gray-600 w-full hover:text-primary-400 justify-center inline-block text-center pt-2 pb-1">
+                                <div class="relative inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mb-1 h-6 w-6"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <span class="tab tab-account block text-xs">Akun</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </header>
+
+
+
+
+            <aside
+                class="scroll-container hidden lg:block w-1/6 border-r fixed left-0 top-0 h-screen py-6 overflow-y-auto z-10">
+                <a href="https://perpustakaan.jakarta.go.id">
+                    <svg class="hidden lg:flex flex-shrink-0 h-4 lg:h-7 w-auto pl-4 lg:pl-6" width="441"
+                        height="81" viewBox="0 0 441 81" fill="none" xmlns="https://">
+                        <g clip-path="url(#clip0_97_5787)">
+                            <path opacity="0.4"
+                                d="M150.988 78.0022V76.4596H152.034C152.287 76.4221 152.526 76.3221 152.731 76.1686C152.909 75.9956 153.031 75.7723 153.079 75.5283C153.19 75.139 153.258 74.7389 153.283 74.3349L154.27 62.9839H156.013L154.996 74.626C154.971 75.2443 154.843 75.8541 154.619 76.4305C154.467 76.8422 154.193 77.1976 153.834 77.4492C153.448 77.6684 153.025 77.8162 152.586 77.8858C152.056 77.954 151.522 77.9928 150.988 78.0022Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M159.962 76.8089C159.584 76.8464 159.202 76.7978 158.845 76.6668C158.488 76.5357 158.165 76.3257 157.9 76.0522C157.666 75.7227 157.498 75.3498 157.409 74.9551C157.319 74.5604 157.308 74.1517 157.378 73.7529C157.4 73.1853 157.57 72.6334 157.871 72.1521C158.138 71.7384 158.523 71.4141 158.975 71.2207C159.54 70.9926 160.138 70.855 160.746 70.8132L163.651 70.5222V69.7072C163.718 69.4798 163.727 69.239 163.675 69.0074C163.624 68.7757 163.515 68.561 163.358 68.3833C163.201 68.2057 163.002 68.0711 162.779 67.9921C162.555 67.9131 162.316 67.8923 162.082 67.9318H160.892H159.498H158.307V66.6802C158.689 66.5861 159.077 66.5181 159.469 66.4765L160.921 66.3019C161.375 66.2747 161.831 66.2747 162.286 66.3019C162.921 66.2713 163.556 66.3806 164.144 66.6221C164.59 66.8391 164.941 67.2117 165.132 67.6699C165.318 68.252 165.377 68.8673 165.306 69.4744L164.87 74.4514C164.863 74.5696 164.886 74.6877 164.937 74.7946C164.988 74.9015 165.065 74.9937 165.161 75.0626C165.383 75.1921 165.631 75.2716 165.887 75.2954L165.713 76.6052H164.928H164.26C164.077 76.5509 163.901 76.4726 163.738 76.3723L163.302 76.0231C162.98 76.1512 162.65 76.2582 162.315 76.3432C161.909 76.4876 161.491 76.5948 161.066 76.6634C160.703 76.7429 160.334 76.7916 159.962 76.8089ZM160.369 75.441C160.726 75.4698 161.086 75.4698 161.443 75.441L162.518 75.2081L163.36 74.9462L163.622 71.8319L160.863 72.0938C160.387 72.1061 159.932 72.2925 159.585 72.6178C159.283 72.9438 159.108 73.367 159.091 73.8111C159.04 74.2457 159.132 74.6851 159.352 75.0626C159.481 75.1999 159.64 75.3056 159.816 75.3712C159.993 75.4368 160.182 75.4607 160.369 75.441Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M167.774 76.6342L168.994 62.4017H170.679L169.953 70.6968H171.318L174.222 66.7093H176.139L172.624 71.308L175.529 76.6634H173.641L171.318 72.1229H169.778L169.401 76.5469L167.774 76.6342Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M179.449 76.8089C179.071 76.8486 178.688 76.801 178.331 76.6698C177.973 76.5387 177.651 76.3274 177.387 76.0522C177.152 75.7227 176.985 75.3498 176.896 74.9551C176.806 74.5603 176.795 74.1517 176.864 73.7529C176.887 73.1853 177.057 72.6334 177.358 72.1521C177.625 71.7384 178.009 71.4141 178.462 71.2207C179.027 70.9926 179.625 70.855 180.233 70.8132L183.137 70.5222V69.7072C183.191 69.4699 183.191 69.2233 183.135 68.9863C183.08 68.7492 182.971 68.5279 182.818 68.3393C182.652 68.1933 182.459 68.082 182.249 68.012C182.04 67.942 181.818 67.9148 181.598 67.9318H180.407H179.013H177.823V66.6802C178.205 66.5861 178.593 66.5181 178.984 66.4765L180.437 66.3019C180.891 66.2747 181.347 66.2747 181.801 66.3019C182.437 66.2713 183.071 66.3806 183.66 66.6221C184.106 66.8391 184.457 67.2117 184.648 67.6699C184.834 68.252 184.893 68.8673 184.822 69.4744L184.386 74.4514C184.379 74.5695 184.402 74.6877 184.453 74.7946C184.503 74.9015 184.58 74.9937 184.677 75.0626C184.897 75.1957 185.146 75.2755 185.403 75.2954L185.228 76.6052H184.415H183.776C183.593 76.5509 183.417 76.4726 183.254 76.3723L182.934 76.1104C182.612 76.2385 182.282 76.3455 181.947 76.4305C181.541 76.5749 181.123 76.6821 180.698 76.7507C180.284 76.8095 179.866 76.829 179.449 76.8089ZM179.856 75.441H180.93L182.005 75.2081L182.847 74.9462L183.108 71.8319L180.204 72.0938C179.729 72.1061 179.274 72.2925 178.926 72.6177C178.625 72.9438 178.45 73.367 178.433 73.8111C178.381 74.2456 178.473 74.6851 178.694 75.0626C178.837 75.2224 179.02 75.3416 179.224 75.408C179.428 75.4744 179.646 75.4858 179.856 75.441Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M187.232 76.6343L188.104 66.6803H189.788V67.9901L190.776 67.437C191.188 67.2147 191.615 67.0202 192.053 66.8549C192.502 66.675 192.97 66.548 193.447 66.4766V68.1647C192.986 68.2537 192.53 68.3703 192.082 68.5139C191.646 68.6513 191.22 68.8166 190.805 69.0087L189.788 69.4453L189.178 76.6343H187.232Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M197.455 76.8379C196.895 76.8594 196.339 76.7498 195.829 76.5178C195.629 76.3978 195.456 76.2376 195.321 76.0472C195.186 75.8568 195.092 75.6404 195.045 75.4118C194.935 74.6785 194.935 73.933 195.045 73.1998L195.48 68.1354H194.115V66.6802H195.48L195.742 63.7697H197.455L197.194 66.6802H200.098V68.1354H197.194L196.787 72.7341C196.748 73.2573 196.748 73.7826 196.787 74.3058C196.786 74.4514 196.814 74.5958 196.869 74.7306C196.923 74.8655 197.004 74.9881 197.107 75.0916C197.357 75.2779 197.668 75.3612 197.978 75.3245H198.501H199.139H199.691V76.7506H198.617L197.455 76.8379Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M203.264 76.8089C202.885 76.8464 202.503 76.7978 202.146 76.6668C201.789 76.5357 201.466 76.3257 201.202 76.0522C200.967 75.7227 200.8 75.3498 200.71 74.9551C200.62 74.5604 200.61 74.1517 200.679 73.7529C200.715 73.1876 200.884 72.639 201.173 72.1521C201.445 71.7314 201.84 71.4059 202.305 71.2207C202.862 70.9955 203.449 70.858 204.048 70.8132L206.952 70.5222V69.7072C207 69.4696 206.996 69.2244 206.941 68.9883C206.886 68.7523 206.781 68.5309 206.632 68.3393C206.285 68.0454 205.837 67.8992 205.384 67.9318H204.193H202.799H201.608V66.6802C201.991 66.5883 202.379 66.5203 202.77 66.4765L204.222 66.3019C204.677 66.2747 205.132 66.2747 205.587 66.3019C206.223 66.2684 206.858 66.3778 207.446 66.6221C207.891 66.8391 208.242 67.2117 208.433 67.6699C208.634 68.2488 208.694 68.8676 208.607 69.4744L208.201 74.4514C208.187 74.5672 208.204 74.6846 208.25 74.7918C208.296 74.899 208.369 74.9924 208.462 75.0626C208.684 75.1921 208.932 75.2716 209.188 75.2954L209.014 76.6052H208.491H207.823C207.639 76.5509 207.464 76.4726 207.3 76.3723L206.894 76.0231C206.57 76.1469 206.241 76.2537 205.906 76.3432C205.49 76.484 205.062 76.5911 204.629 76.6634C204.18 76.7592 203.722 76.8079 203.264 76.8089ZM203.699 75.441H204.774L205.819 75.2081L206.661 74.9462L206.952 71.8319L204.048 72.0938C203.573 72.1113 203.12 72.2969 202.77 72.6178C202.48 72.9513 202.307 73.3702 202.276 73.8111C202.225 74.2457 202.317 74.6851 202.538 75.0626C202.69 75.2273 202.883 75.349 203.097 75.4154C203.311 75.4818 203.539 75.4906 203.757 75.441H203.699Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M215.693 76.6342L216.913 62.9257H221.937C222.785 62.8886 223.63 63.048 224.406 63.3914C225.014 63.7188 225.495 64.2415 225.771 64.8757C226.049 65.6888 226.139 66.5549 226.032 67.4079C225.97 68.3029 225.723 69.1752 225.306 69.9691C224.937 70.6442 224.383 71.1995 223.709 71.5699C222.901 71.9509 222.017 72.1401 221.124 72.1229H217.784L217.378 76.6342H215.693ZM217.988 70.6095H221.24C221.639 70.6387 222.039 70.5781 222.411 70.432C222.782 70.2859 223.117 70.0582 223.389 69.7654C223.919 69.0927 224.215 68.2647 224.232 67.4079C224.368 66.6232 224.213 65.8156 223.796 65.1376C223.535 64.8792 223.219 64.6825 222.873 64.5616C222.526 64.4408 222.157 64.399 221.792 64.4391H218.51L217.988 70.6095Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M230.127 76.8089C229.46 76.8671 228.793 76.6923 228.24 76.3141C228.008 76.1076 227.82 75.8573 227.685 75.5776C227.551 75.2979 227.473 74.9942 227.456 74.6842C227.342 73.7174 227.342 72.7405 227.456 71.7737L227.92 66.5638H229.576L229.14 71.7446C229.086 72.4129 229.086 73.0845 229.14 73.7529C229.149 74.1673 229.315 74.5628 229.605 74.8589C229.956 75.1197 230.389 75.2438 230.824 75.2081C231.346 75.2088 231.865 75.1303 232.364 74.9753C232.764 74.856 233.153 74.7001 233.525 74.5096L234.222 66.5638H235.907L235.036 76.5178H233.351V75.8193C232.902 76.0848 232.425 76.2995 231.928 76.4596C231.348 76.6642 230.742 76.782 230.127 76.8089Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M241.018 76.8089H239.943H238.694H237.591L238.84 62.6055H240.524L240.117 67.3496C240.541 67.169 240.978 67.0229 241.424 66.913C241.936 66.7775 242.463 66.7091 242.993 66.7093C243.733 66.6603 244.47 66.8325 245.113 67.2041C245.645 67.5987 246.009 68.1812 246.129 68.834C246.256 69.8 246.256 70.7785 246.129 71.7445C246.066 72.8229 245.831 73.8842 245.432 74.8879C245.108 75.6102 244.544 76.1968 243.835 76.5469C242.925 76.8313 241.965 76.9206 241.018 76.8089ZM241.018 75.3245C241.7 75.3595 242.38 75.2192 242.993 74.917C243.453 74.63 243.793 74.1853 243.951 73.6655C244.158 72.963 244.294 72.2414 244.358 71.5117C244.435 70.8445 244.435 70.1706 244.358 69.5034C244.326 69.0598 244.129 68.6443 243.806 68.3392C243.44 68.0873 243 67.9645 242.557 67.99C242.068 67.9923 241.581 68.0509 241.105 68.1646L239.914 68.5138L239.304 75.2081H240.263L241.018 75.3245Z"
+                                fill="white"></path>
+                            <path opacity="0.4" d="M248.278 76.6342L249.527 62.4017H251.212L249.963 76.6342H248.278Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M252.838 76.6342L253.709 66.6802H255.365L254.522 76.6342H252.838ZM253.883 64.5846L254.058 62.751H255.713V64.5846H253.883Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M260.97 76.8088C260.125 76.8545 259.283 76.6737 258.53 76.2849C258.237 76.0985 257.987 75.8514 257.797 75.5603C257.606 75.2692 257.48 74.9407 257.427 74.5968C257.256 73.5756 257.256 72.5329 257.427 71.5117C257.502 70.5134 257.728 69.5322 258.095 68.6011C258.394 67.9154 258.916 67.3512 259.576 67.0003C260.342 66.6594 261.177 66.5 262.015 66.5347H262.857H263.874L264.774 66.6802L264.571 68.0773H263.787H262.945H262.248C261.647 68.0508 261.049 68.1706 260.505 68.4265C260.08 68.6804 259.753 69.0699 259.576 69.5325C259.337 70.1968 259.2 70.8935 259.169 71.599C259.081 72.3434 259.081 73.0957 259.169 73.8401C259.189 74.0786 259.262 74.3096 259.383 74.5161C259.503 74.7226 259.668 74.8994 259.866 75.0334C260.403 75.3141 261.004 75.4448 261.609 75.4118H262.306H263.206H264.019V76.7797L263.09 76.9252H262.044L260.97 76.8088Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M270.553 76.6342L271.744 62.9257H273.486L272.412 75.0626H278.22V76.6342H270.553Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M279.818 76.6342L280.689 66.6802H282.344L281.473 76.6342H279.818ZM280.863 64.5846L281.038 62.751H282.693V64.5846H280.863Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M287.659 76.8089H286.584H285.336H284.232L285.481 62.6055H287.165L286.759 67.3496C287.182 67.169 287.619 67.0229 288.065 66.913C288.577 66.7775 289.104 66.7091 289.634 66.7093C290.374 66.6603 291.112 66.8325 291.754 67.2041C292.018 67.3968 292.241 67.6401 292.41 67.9199C292.58 68.1997 292.692 68.5104 292.741 68.834C292.886 69.7988 292.886 70.7797 292.741 71.7445C292.678 72.8229 292.443 73.8842 292.044 74.8879C291.717 75.6179 291.14 76.2065 290.418 76.5469C289.527 76.83 288.587 76.9193 287.659 76.8089ZM287.659 75.3245C288.341 75.3595 289.021 75.2193 289.634 74.917C290.094 74.63 290.435 74.1853 290.592 73.6655C290.799 72.963 290.935 72.2414 290.999 71.5117C291.076 70.8445 291.076 70.1706 290.999 69.5034C290.954 69.0632 290.759 68.652 290.447 68.3392C290.081 68.0873 289.641 67.9645 289.198 67.99C288.709 67.9923 288.222 68.0509 287.746 68.1646L286.555 68.5138L285.945 75.2081H286.904L287.659 75.3245Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M294.745 76.6343L295.616 66.6803H297.272V67.9901L298.259 67.437C298.684 67.2202 299.121 67.0259 299.566 66.8549C300.006 66.6787 300.464 66.5518 300.931 66.4766V68.1647L299.566 68.5139C299.132 68.6563 298.705 68.8215 298.288 69.0087C297.882 69.1542 297.562 69.3289 297.301 69.4453L296.662 76.6343H294.745Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M303.835 76.8089C303.457 76.8464 303.075 76.7978 302.718 76.6668C302.361 76.5357 302.038 76.3257 301.773 76.0522C301.539 75.7227 301.372 75.3498 301.282 74.9551C301.192 74.5604 301.181 74.1517 301.251 73.7529C301.287 73.1876 301.456 72.639 301.744 72.1521C302.016 71.7314 302.412 71.4059 302.877 71.2207C303.433 70.9955 304.021 70.858 304.619 70.8132L307.524 70.5222V69.7072C307.591 69.4798 307.6 69.239 307.548 69.0074C307.497 68.7757 307.388 68.561 307.231 68.3833C307.074 68.2057 306.875 68.0711 306.652 67.9921C306.428 67.9131 306.189 67.8923 305.955 67.9318H304.765H303.4H302.18V66.6802C302.572 66.586 302.97 66.518 303.371 66.4765L304.794 66.3019C305.248 66.2747 305.704 66.2747 306.159 66.3019C306.794 66.2654 307.43 66.3749 308.017 66.6221C308.47 66.8297 308.824 67.2054 309.005 67.6699C309.22 68.2455 309.28 68.868 309.179 69.4744L308.772 74.4514C308.759 74.5672 308.776 74.6846 308.822 74.7918C308.868 74.899 308.941 74.9924 309.034 75.0626C309.265 75.1962 309.523 75.2758 309.789 75.2954L309.615 76.6052H308.801H308.133C307.95 76.5509 307.774 76.4726 307.611 76.3723L307.204 76.0231C306.881 76.1469 306.551 76.2537 306.217 76.3432C305.809 76.4807 305.392 76.5877 304.968 76.6634C304.595 76.7422 304.216 76.7909 303.835 76.8089ZM304.271 75.441H305.345L306.42 75.2081L307.233 74.9462L307.524 71.8319L304.619 72.0938C304.145 72.1113 303.692 72.2969 303.342 72.6178C303.051 72.948 302.886 73.3708 302.877 73.8111C302.803 74.2427 302.885 74.6866 303.109 75.0626C303.256 75.2178 303.439 75.3338 303.642 75.3999C303.845 75.466 304.061 75.4801 304.271 75.441Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M311.647 76.6343L312.519 66.6803H314.174V67.9901L315.161 67.437C315.587 67.2202 316.023 67.0259 316.468 66.8549C316.908 66.6787 317.366 66.5518 317.833 66.4766V68.1647L316.468 68.5139C316.034 68.6563 315.608 68.8215 315.191 69.0087C314.784 69.1542 314.464 69.3289 314.203 69.4453L313.564 76.6343H311.647Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M320.273 81L321.928 76.6342H320.36L318.501 66.6802H320.215L321.812 75.1789H322.335L325.413 66.6802H327.127L321.87 81H320.273Z"
+                                fill="white"></path>
+                            <path opacity="0.4"
+                                d="M150.988 78.0022V76.4596H152.034C152.287 76.4221 152.526 76.3221 152.731 76.1686C152.909 75.9957 153.031 75.7723 153.079 75.5283C153.19 75.139 153.258 74.7389 153.283 74.3349L154.27 62.9839H156.013L154.996 74.626C154.971 75.2443 154.843 75.8541 154.618 76.4305C154.467 76.8422 154.193 77.1977 153.834 77.4492C153.448 77.6684 153.025 77.8162 152.586 77.8858C152.056 77.954 151.522 77.9929 150.988 78.0022Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M159.962 76.8089C159.584 76.8464 159.202 76.7978 158.845 76.6667C158.488 76.5357 158.165 76.3256 157.9 76.0521C157.666 75.7227 157.498 75.3498 157.409 74.9551C157.319 74.5603 157.308 74.1517 157.378 73.7528C157.4 73.1853 157.57 72.6334 157.871 72.1521C158.138 71.7384 158.523 71.4141 158.975 71.2207C159.54 70.9926 160.138 70.855 160.746 70.8132L163.651 70.5222V69.7072C163.718 69.4798 163.727 69.239 163.675 69.0073C163.624 68.7757 163.515 68.561 163.358 68.3833C163.201 68.2057 163.002 68.0711 162.779 67.9921C162.555 67.9131 162.316 67.8923 162.082 67.9318H160.892H159.498H158.307V66.6802C158.689 66.5861 159.077 66.5181 159.469 66.4765L160.921 66.3019C161.375 66.2747 161.831 66.2747 162.286 66.3019C162.921 66.2713 163.556 66.3806 164.144 66.6221C164.59 66.8391 164.941 67.2117 165.132 67.6699C165.318 68.252 165.377 68.8673 165.306 69.4744L164.87 74.4513C164.863 74.5695 164.886 74.6877 164.937 74.7946C164.988 74.9015 165.065 74.9937 165.161 75.0626C165.383 75.1921 165.631 75.2715 165.887 75.2954L165.713 76.6052H164.928H164.26C164.077 76.5509 163.901 76.4726 163.738 76.3723L163.302 76.0231C162.98 76.1512 162.65 76.2581 162.315 76.3432C161.909 76.4876 161.491 76.5947 161.066 76.6634C160.703 76.7428 160.334 76.7915 159.962 76.8089ZM160.369 75.441C160.726 75.4698 161.086 75.4698 161.443 75.441L162.518 75.2081L163.36 74.9462L163.622 71.8319L160.863 72.0938C160.387 72.1061 159.932 72.2924 159.585 72.6177C159.283 72.9438 159.108 73.367 159.091 73.8111C159.04 74.2456 159.132 74.6851 159.352 75.0626C159.481 75.1999 159.64 75.3056 159.816 75.3712C159.993 75.4368 160.182 75.4607 160.369 75.441Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M167.774 76.6342L168.994 62.4017H170.679L169.953 70.6968H171.318L174.222 66.7093H176.139L172.624 71.308L175.529 76.6633H173.641L171.318 72.1229H169.778L169.401 76.5469L167.774 76.6342Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M179.449 76.8089C179.071 76.8486 178.688 76.801 178.331 76.6698C177.973 76.5387 177.651 76.3274 177.387 76.0522C177.152 75.7227 176.985 75.3498 176.896 74.9551C176.806 74.5603 176.795 74.1517 176.864 73.7529C176.887 73.1853 177.057 72.6334 177.358 72.1521C177.625 71.7384 178.009 71.4141 178.462 71.2207C179.027 70.9926 179.625 70.855 180.233 70.8132L183.137 70.5222V69.7072C183.191 69.4699 183.191 69.2233 183.135 68.9863C183.08 68.7492 182.971 68.5279 182.818 68.3393C182.652 68.1933 182.459 68.082 182.249 68.012C182.04 67.942 181.818 67.9148 181.598 67.9318H180.407H179.013H177.823V66.6802C178.205 66.5861 178.593 66.5181 178.984 66.4765L180.437 66.3019C180.891 66.2747 181.347 66.2747 181.801 66.3019C182.437 66.2713 183.071 66.3806 183.66 66.6221C184.106 66.8391 184.457 67.2117 184.648 67.6699C184.834 68.252 184.893 68.8673 184.822 69.4744L184.386 74.4514C184.379 74.5695 184.402 74.6877 184.453 74.7946C184.503 74.9015 184.58 74.9937 184.677 75.0626C184.897 75.1957 185.146 75.2755 185.403 75.2954L185.228 76.6052H184.415H183.776C183.593 76.5509 183.417 76.4726 183.254 76.3723L182.934 76.1104C182.612 76.2385 182.282 76.3455 181.947 76.4305C181.541 76.5749 181.123 76.6821 180.698 76.7507C180.284 76.8095 179.866 76.829 179.449 76.8089ZM179.856 75.441H180.93L182.005 75.2081L182.847 74.9462L183.108 71.8319L180.204 72.0938C179.729 72.1061 179.274 72.2925 178.926 72.6177C178.625 72.9438 178.45 73.367 178.433 73.8111C178.381 74.2456 178.473 74.6851 178.694 75.0626C178.837 75.2224 179.02 75.3416 179.224 75.408C179.428 75.4744 179.646 75.4858 179.856 75.441Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M187.232 76.6343L188.104 66.6803H189.788V67.99L190.775 67.437C191.188 67.2147 191.615 67.0202 192.053 66.8549C192.502 66.675 192.97 66.548 193.447 66.4766V68.1647C192.986 68.2537 192.53 68.3703 192.082 68.5139C191.646 68.6513 191.219 68.8166 190.805 69.0087L189.788 69.4453L189.178 76.6343H187.232Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M197.455 76.8379C196.895 76.8594 196.339 76.7498 195.829 76.5178C195.629 76.3978 195.456 76.2376 195.321 76.0472C195.186 75.8568 195.092 75.6404 195.045 75.4118C194.935 74.6785 194.935 73.933 195.045 73.1998L195.48 68.1354H194.115V66.6802H195.48L195.742 63.7697H197.455L197.194 66.6802H200.098V68.1354H197.194L196.787 72.7341C196.748 73.2573 196.748 73.7826 196.787 74.3058C196.786 74.4514 196.814 74.5958 196.869 74.7306C196.923 74.8655 197.004 74.9881 197.107 75.0916C197.357 75.2779 197.668 75.3612 197.978 75.3245H198.501H199.139H199.691V76.7506H198.617L197.455 76.8379Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M203.264 76.8089C202.885 76.8464 202.503 76.7978 202.146 76.6667C201.789 76.5357 201.466 76.3256 201.202 76.0521C200.967 75.7227 200.8 75.3498 200.71 74.9551C200.62 74.5603 200.61 74.1517 200.679 73.7528C200.715 73.1876 200.884 72.639 201.173 72.1521C201.445 71.7313 201.84 71.4059 202.305 71.2207C202.862 70.9955 203.449 70.858 204.048 70.8132L206.952 70.5222V69.7072C207 69.4696 206.996 69.2244 206.941 68.9883C206.886 68.7523 206.781 68.5309 206.632 68.3393C206.285 68.0454 205.837 67.8992 205.384 67.9318H204.193H202.799H201.608V66.6802C201.991 66.5883 202.379 66.5203 202.77 66.4765L204.222 66.3019C204.677 66.2747 205.132 66.2747 205.587 66.3019C206.223 66.2684 206.858 66.3778 207.446 66.6221C207.891 66.8391 208.242 67.2117 208.433 67.6699C208.634 68.2488 208.694 68.8675 208.607 69.4744L208.201 74.4513C208.187 74.5672 208.204 74.6846 208.25 74.7918C208.296 74.899 208.369 74.9923 208.462 75.0626C208.684 75.1921 208.932 75.2715 209.188 75.2954L209.014 76.6052H208.491H207.823C207.639 76.5509 207.464 76.4726 207.3 76.3723L206.894 76.0231C206.57 76.1468 206.241 76.2537 205.906 76.3432C205.49 76.484 205.062 76.5911 204.629 76.6634C204.18 76.7591 203.722 76.8079 203.264 76.8089ZM203.699 75.441H204.774L205.819 75.2081L206.661 74.9462L206.952 71.8319L204.048 72.0938C203.573 72.1112 203.12 72.2969 202.77 72.6177C202.48 72.9513 202.307 73.3702 202.276 73.8111C202.225 74.2456 202.317 74.6851 202.538 75.0626C202.69 75.2273 202.883 75.349 203.097 75.4154C203.311 75.4818 203.539 75.4906 203.757 75.441H203.699Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M215.693 76.6342L216.913 62.9257H221.937C222.785 62.8886 223.63 63.048 224.406 63.3914C225.014 63.7188 225.495 64.2415 225.771 64.8757C226.049 65.6888 226.139 66.5549 226.032 67.4078C225.97 68.3029 225.723 69.1751 225.306 69.9691C224.937 70.6442 224.382 71.1995 223.709 71.5699C222.901 71.9509 222.017 72.1401 221.124 72.1229H217.784L217.378 76.6342H215.693ZM217.988 70.6094H221.24C221.639 70.6387 222.039 70.578 222.411 70.432C222.782 70.2859 223.117 70.0582 223.389 69.7654C223.919 69.0926 224.215 68.2647 224.232 67.4078C224.368 66.6232 224.213 65.8156 223.796 65.1376C223.535 64.8792 223.219 64.6825 222.873 64.5616C222.526 64.4408 222.157 64.399 221.792 64.4391H218.51L217.988 70.6094Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M230.127 76.8089C229.46 76.8671 228.793 76.6923 228.239 76.3141C228.008 76.1076 227.82 75.8573 227.685 75.5776C227.55 75.2979 227.472 74.9942 227.455 74.6842C227.341 73.7174 227.341 72.7405 227.455 71.7737L227.92 66.5638H229.575L229.14 71.7446C229.086 72.4129 229.086 73.0845 229.14 73.7528C229.148 74.1673 229.315 74.5628 229.604 74.8589C229.955 75.1197 230.389 75.2438 230.824 75.2081C231.346 75.2088 231.865 75.1303 232.363 74.9753C232.764 74.856 233.153 74.7001 233.525 74.5096L234.222 66.5638H235.906L235.035 76.5178H233.351V75.8193C232.901 76.0848 232.424 76.2995 231.928 76.4596C231.348 76.6642 230.741 76.7819 230.127 76.8089Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M241.018 76.8089H239.943H238.694H237.591L238.84 62.6055H240.524L240.117 67.3496C240.541 67.169 240.978 67.0229 241.424 66.913C241.936 66.7775 242.463 66.7091 242.993 66.7093C243.733 66.6603 244.47 66.8325 245.113 67.2041C245.645 67.5987 246.009 68.1812 246.129 68.834C246.256 69.8 246.256 70.7785 246.129 71.7445C246.066 72.8229 245.831 73.8842 245.432 74.8879C245.108 75.6102 244.544 76.1968 243.835 76.5469C242.925 76.8313 241.965 76.9206 241.018 76.8089ZM241.018 75.3245C241.7 75.3595 242.38 75.2193 242.993 74.917C243.453 74.63 243.793 74.1853 243.951 73.6655C244.158 72.963 244.294 72.2414 244.358 71.5117C244.435 70.8445 244.435 70.1706 244.358 69.5034C244.326 69.0598 244.129 68.6443 243.806 68.3392C243.44 68.0873 243 67.9645 242.557 67.99C242.068 67.9923 241.581 68.0509 241.105 68.1646L239.914 68.5138L239.304 75.2081H240.263L241.018 75.3245Z"
+                                fill="black"></path>
+                            <path opacity="0.4" d="M248.278 76.6342L249.527 62.4017H251.212L249.963 76.6342H248.278Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M252.838 76.6342L253.709 66.6802H255.364L254.522 76.6342H252.838ZM253.883 64.5846L254.058 62.751H255.713V64.5846H253.883Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M260.97 76.8088C260.125 76.8545 259.283 76.6737 258.53 76.2849C258.237 76.0985 257.987 75.8514 257.797 75.5603C257.606 75.2692 257.48 74.9407 257.427 74.5968C257.256 73.5756 257.256 72.5329 257.427 71.5117C257.502 70.5134 257.728 69.5322 258.095 68.6011C258.394 67.9154 258.916 67.3512 259.576 67.0003C260.342 66.6594 261.177 66.5 262.015 66.5347H262.857H263.874L264.774 66.6802L264.571 68.0773H263.787H262.945H262.248C261.647 68.0508 261.049 68.1706 260.505 68.4265C260.08 68.6804 259.753 69.0699 259.576 69.5325C259.337 70.1968 259.2 70.8935 259.169 71.599C259.081 72.3434 259.081 73.0957 259.169 73.8401C259.189 74.0786 259.262 74.3096 259.383 74.5161C259.503 74.7226 259.668 74.8994 259.866 75.0334C260.403 75.3141 261.004 75.4448 261.609 75.4118H262.306H263.206H264.019V76.7797L263.09 76.9252H262.044L260.97 76.8088Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M270.553 76.6342L271.744 62.9257H273.486L272.412 75.0626H278.22V76.6342H270.553Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M279.818 76.6342L280.689 66.6802H282.345L281.473 76.6342H279.818ZM280.863 64.5846L281.038 62.751H282.693V64.5846H280.863Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M287.659 76.8089H286.584H285.336H284.232L285.481 62.6055H287.165L286.759 67.3496C287.182 67.169 287.619 67.0229 288.065 66.913C288.577 66.7775 289.104 66.7091 289.634 66.7093C290.374 66.6603 291.112 66.8325 291.754 67.2041C292.018 67.3968 292.241 67.6401 292.41 67.9199C292.58 68.1997 292.692 68.5104 292.741 68.834C292.886 69.7988 292.886 70.7797 292.741 71.7445C292.678 72.8229 292.443 73.8842 292.044 74.8879C291.717 75.6179 291.14 76.2065 290.418 76.5469C289.527 76.83 288.587 76.9193 287.659 76.8089ZM287.659 75.3245C288.341 75.3595 289.021 75.2193 289.634 74.917C290.094 74.63 290.435 74.1853 290.592 73.6655C290.799 72.963 290.935 72.2414 290.999 71.5117C291.076 70.8445 291.076 70.1706 290.999 69.5034C290.954 69.0632 290.759 68.652 290.447 68.3392C290.081 68.0873 289.641 67.9645 289.198 67.99C288.709 67.9923 288.222 68.0509 287.746 68.1646L286.555 68.5138L285.945 75.2081H286.904L287.659 75.3245Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M294.745 76.6343L295.616 66.6803H297.272V67.99L298.259 67.437C298.684 67.2202 299.121 67.0259 299.566 66.8549C300.006 66.6787 300.464 66.5518 300.931 66.4766V68.1647L299.566 68.5139C299.132 68.6563 298.705 68.8215 298.288 69.0087C297.882 69.1542 297.562 69.3289 297.301 69.4453L296.662 76.6343H294.745Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M303.835 76.8089C303.457 76.8464 303.075 76.7978 302.718 76.6667C302.361 76.5357 302.038 76.3256 301.773 76.0521C301.539 75.7227 301.372 75.3498 301.282 74.9551C301.192 74.5603 301.181 74.1517 301.251 73.7528C301.287 73.1876 301.456 72.639 301.744 72.1521C302.016 71.7313 302.412 71.4059 302.877 71.2207C303.433 70.9955 304.021 70.858 304.619 70.8132L307.524 70.5222V69.7072C307.591 69.4798 307.6 69.239 307.548 69.0073C307.497 68.7757 307.388 68.561 307.231 68.3833C307.074 68.2057 306.875 68.0711 306.652 67.9921C306.428 67.9131 306.189 67.8923 305.955 67.9318H304.765H303.4H302.18V66.6802C302.572 66.586 302.97 66.518 303.371 66.4765L304.794 66.3019C305.248 66.2747 305.704 66.2747 306.159 66.3019C306.794 66.2654 307.43 66.3749 308.017 66.6221C308.47 66.8297 308.824 67.2054 309.005 67.6699C309.22 68.2455 309.28 68.868 309.179 69.4744L308.772 74.4513C308.759 74.5672 308.776 74.6846 308.822 74.7918C308.868 74.899 308.941 74.9923 309.034 75.0626C309.265 75.1962 309.523 75.2758 309.789 75.2954L309.615 76.6052H308.801H308.134C307.95 76.5509 307.774 76.4726 307.611 76.3723L307.204 76.0231C306.881 76.1468 306.551 76.2537 306.217 76.3432C305.809 76.4807 305.392 76.5877 304.968 76.6634C304.595 76.7422 304.216 76.7909 303.835 76.8089ZM304.271 75.441H305.345L306.42 75.2081L307.233 74.9462L307.524 71.8319L304.619 72.0938C304.145 72.1112 303.692 72.2969 303.342 72.6177C303.051 72.948 302.886 73.3708 302.877 73.8111C302.803 74.2427 302.885 74.6866 303.109 75.0626C303.256 75.2178 303.439 75.3338 303.642 75.3999C303.845 75.466 304.061 75.4801 304.271 75.441Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M311.647 76.6343L312.519 66.6803H314.174V67.99L315.161 67.437C315.587 67.2202 316.023 67.0259 316.468 66.8549C316.908 66.6787 317.366 66.5518 317.833 66.4766V68.1647L316.468 68.5139C316.034 68.6563 315.608 68.8215 315.191 69.0087C314.784 69.1542 314.464 69.3289 314.203 69.4453L313.564 76.6343H311.647Z"
+                                fill="black"></path>
+                            <path opacity="0.4"
+                                d="M320.273 81L321.928 76.6342H320.36L318.501 66.6802H320.215L321.812 75.1789H322.335L325.413 66.6802H327.127L321.87 81H320.273Z"
+                                fill="black"></path>
+                            <path
+                                d="M153.254 49.2461V28.1447H160.979C162.316 28.1011 163.647 28.3598 164.871 28.9015C165.865 29.3734 166.665 30.1755 167.136 31.1717C167.683 32.3963 167.942 33.7309 167.891 35.0718C167.928 36.4304 167.67 37.7809 167.136 39.0301C166.672 40.0744 165.875 40.9344 164.871 41.475C163.663 42.0752 162.326 42.3652 160.979 42.319H155.926V49.2461H153.254ZM155.926 39.9906H160.95C161.55 40.0437 162.154 39.9556 162.713 39.7332C163.273 39.5109 163.773 39.1605 164.174 38.71C164.874 37.6317 165.21 36.3562 165.132 35.0718C165.24 33.8302 164.9 32.591 164.174 31.5792C163.743 31.1799 163.234 30.8753 162.678 30.6848C162.123 30.4944 161.535 30.4223 160.95 30.4732H155.926V39.9906Z"
+                                fill="black"></path>
+                            <path
+                                d="M176.952 49.5663C175.669 49.6467 174.392 49.3318 173.292 48.6641C172.365 48.0385 171.679 47.1143 171.346 46.0446C170.905 44.6427 170.699 43.1773 170.737 41.7079C170.687 40.1162 170.964 38.5313 171.55 37.0511C171.999 35.97 172.783 35.0621 173.786 34.4607C174.854 33.912 176.042 33.6417 177.242 33.6748C178.096 33.6059 178.956 33.7208 179.762 34.012C180.569 34.3031 181.303 34.7638 181.918 35.3629C183.096 36.9085 183.655 38.8392 183.486 40.7765V42.6684H173.408C173.325 43.8786 173.609 45.0858 174.222 46.1319C174.582 46.5393 175.032 46.8567 175.536 47.0589C176.04 47.261 176.585 47.3423 177.126 47.2961H179.014H181.076H182.818V49.3043L181.017 49.5372L178.839 49.741L176.952 49.5663ZM173.408 40.631H180.872C180.988 39.3128 180.694 37.991 180.03 36.8473C179.669 36.4462 179.216 36.1387 178.71 35.9512C178.204 35.7636 177.661 35.7016 177.126 35.7704C176.588 35.7274 176.047 35.8071 175.544 36.0037C175.041 36.2003 174.589 36.5087 174.222 36.9055C173.521 38.0124 173.233 39.3319 173.408 40.631Z"
+                                fill="black"></path>
+                            <path
+                                d="M187.668 49.2461V33.9658H190.253V35.9741C190.63 35.7122 191.124 35.4211 191.676 35.101C192.228 34.7808 192.896 34.4897 193.593 34.1987C194.269 33.9375 194.969 33.7426 195.684 33.6166V36.2361C194.986 36.3795 194.297 36.5641 193.622 36.789C192.967 36.9865 192.326 37.2296 191.705 37.5167L190.253 38.2152V49.2461H187.668Z"
+                                fill="black"></path>
+                            <path
+                                d="M199.053 55.9694V33.9658H201.608V35.0427L202.828 34.4024C203.339 34.193 203.863 34.018 204.396 33.8785C204.937 33.7409 205.494 33.6725 206.052 33.6748C206.862 33.6068 207.676 33.7414 208.421 34.0665C209.166 34.3916 209.819 34.8971 210.321 35.5375C211.343 37.2978 211.809 39.3275 211.657 41.3586C211.716 42.9884 211.48 44.6155 210.96 46.1609C210.598 47.2592 209.828 48.1761 208.811 48.7222C207.615 49.2918 206.3 49.5615 204.977 49.5081C204.349 49.5502 203.718 49.5502 203.09 49.5081C202.451 49.5081 201.957 49.3625 201.608 49.3043V56.0567L199.053 55.9694ZM204.861 47.2378C205.741 47.2802 206.615 47.0787 207.388 46.6557C208.037 46.197 208.493 45.5121 208.666 44.7348C208.953 43.6334 209.08 42.4963 209.043 41.3586C209.165 39.897 208.863 38.4313 208.172 37.1383C207.897 36.7404 207.527 36.4176 207.096 36.199C206.665 35.9805 206.186 35.8732 205.703 35.8868C205.212 35.8848 204.723 35.9534 204.251 36.0905L202.828 36.498L201.696 37.0219V47.005L203.09 47.1505C203.647 47.2375 204.21 47.2861 204.774 47.2961L204.861 47.2378Z"
+                                fill="black"></path>
+                            <path
+                                d="M220.689 49.5663C219.658 49.615 218.64 49.3292 217.785 48.7513C217.028 48.1257 216.523 47.247 216.361 46.2774C216.078 44.8499 215.952 43.3957 215.984 41.9407V33.9658H218.54V41.9116C218.515 42.9536 218.583 43.9958 218.743 45.0258C218.796 45.6763 219.098 46.281 219.585 46.7139C220.158 47.1003 220.842 47.2846 221.531 47.2378C222.328 47.2447 223.122 47.1269 223.883 46.8886C224.474 46.6939 225.047 46.4505 225.597 46.1609V33.9658H228.182V49.2461H225.597V48.2274C224.914 48.5902 224.205 48.9015 223.477 49.1588C222.578 49.455 221.635 49.5929 220.689 49.5663Z"
+                                fill="black"></path>
+                            <path
+                                d="M237.881 49.5663H236.139L234.135 49.3335L232.392 49.0715V46.8595L234.135 47.0632C234.774 47.0632 235.384 47.2379 235.994 47.267H237.504C238.167 47.2708 238.83 47.2025 239.479 47.0632C239.953 46.9426 240.379 46.6784 240.698 46.3065C240.99 45.8685 241.132 45.3479 241.105 44.8221C241.128 44.4186 241.016 44.0188 240.785 43.687C240.465 43.3643 240.064 43.1332 239.624 43.0176C238.815 42.787 237.99 42.6215 237.155 42.5228C236.165 42.394 235.192 42.1598 234.251 41.8243C233.574 41.592 232.985 41.1547 232.567 40.5728C232.277 39.8431 232.187 39.0495 232.305 38.2734C232.25 37.2988 232.526 36.3341 233.089 35.5375C233.622 34.8622 234.354 34.3732 235.18 34.1405C236.042 33.8568 236.945 33.7191 237.852 33.733H239.769C240.466 33.733 241.134 33.733 241.802 33.9658L243.457 34.1987V36.4107L241.744 36.1779L239.769 36.0032H238.056C237.526 35.9915 236.997 36.0602 236.487 36.207C236.054 36.3016 235.659 36.5247 235.355 36.8473C235.07 37.2225 234.926 37.6861 234.948 38.157C234.938 38.5319 235.05 38.8999 235.268 39.2048C235.574 39.5246 235.968 39.7472 236.4 39.8451C237.192 40.0769 237.997 40.2615 238.811 40.3981C239.806 40.5308 240.781 40.7849 241.715 41.1549C242.391 41.3894 242.972 41.8391 243.37 42.4355C243.756 43.1586 243.937 43.974 243.893 44.793C243.974 45.5039 243.869 46.2236 243.589 46.8817C243.309 47.5398 242.863 48.1139 242.296 48.5476C240.958 49.3199 239.421 49.6746 237.881 49.5663Z"
+                                fill="black"></path>
+                            <path
+                                d="M253.07 49.5954C252.202 49.6219 251.338 49.4528 250.544 49.1006C249.888 48.7355 249.399 48.1306 249.179 47.4125C248.876 46.3037 248.739 45.1561 248.772 44.0071V36.2069H246.826V33.9658H248.917V29.3672H251.502V33.9658H256.178V36.2069H251.502V43.2504C251.444 44.0643 251.444 44.8814 251.502 45.6953C251.536 46.1613 251.743 46.5976 252.083 46.9177C252.496 47.1846 252.986 47.3074 253.477 47.2669H254.261H255.219H256.091L256.265 49.4207L254.638 49.6536C254.029 49.5372 253.506 49.5954 253.07 49.5954Z"
+                                fill="black"></path>
+                            <path
+                                d="M262.945 49.5663C262.349 49.6062 261.752 49.5206 261.192 49.3151C260.632 49.1096 260.121 48.7886 259.692 48.373C258.877 47.3886 258.471 46.1274 258.559 44.8513C258.519 43.992 258.709 43.1376 259.111 42.3773C259.464 41.7321 260.028 41.2284 260.708 40.9511C261.541 40.5752 262.439 40.3675 263.351 40.3399L267.94 39.8743V38.6227C267.973 38.242 267.931 37.8584 267.817 37.4938C267.702 37.1293 267.517 36.7909 267.272 36.498C266.711 36.0585 266.008 35.841 265.297 35.8868H263.467L261.347 36.0615L259.518 36.2361V34.286C259.982 34.286 260.592 34.0823 261.289 33.9659L263.496 33.7039H265.587C266.58 33.655 267.571 33.8239 268.492 34.1987C269.222 34.5331 269.817 35.1083 270.176 35.8286C270.579 36.7433 270.758 37.7411 270.699 38.7392V46.3647C270.697 46.5521 270.745 46.7366 270.837 46.9C270.928 47.0633 271.061 47.1999 271.221 47.2961C271.573 47.5124 271.972 47.6421 272.383 47.6745V49.7118C271.967 49.7438 271.55 49.7438 271.134 49.7118C270.781 49.669 270.432 49.601 270.089 49.5081C269.8 49.4249 269.526 49.2973 269.276 49.1297C269.016 48.9816 268.772 48.806 268.55 48.6059L267.098 49.1297C266.517 49.3044 265.878 49.4499 265.21 49.5954C264.456 49.6588 263.697 49.6491 262.945 49.5663ZM263.409 47.4125C263.96 47.4676 264.514 47.4676 265.065 47.4125C265.613 47.33 266.157 47.2134 266.691 47.0633L267.94 46.6849V41.7661L263.7 42.1445C262.996 42.1685 262.325 42.4478 261.812 42.9303C261.389 43.4545 261.181 44.1207 261.231 44.793C261.183 45.4786 261.378 46.1591 261.783 46.714C261.981 46.9492 262.231 47.1348 262.514 47.256C262.796 47.3773 263.103 47.4309 263.409 47.4125Z"
+                                fill="black"></path>
+                            <path
+                                d="M275.868 49.2462V27.359H278.424V40.1362H280.718L284.813 34.0241H287.717L282.838 41.184L287.862 49.3917H284.958L280.66 42.4938H278.308V49.2753L275.868 49.2462Z"
+                                fill="black"></path>
+                            <path
+                                d="M294.484 49.5663C293.884 49.6104 293.281 49.5269 292.716 49.3212C292.15 49.1156 291.634 48.7924 291.202 48.373C290.387 47.3886 289.981 46.1274 290.069 44.8513C290.029 43.992 290.22 43.1376 290.621 42.3773C290.974 41.7321 291.538 41.2284 292.219 40.9511C293.052 40.5788 293.949 40.3712 294.861 40.3399L299.45 39.8743V38.6227C299.483 38.242 299.441 37.8584 299.327 37.4938C299.212 37.1293 299.027 36.7909 298.782 36.498C298.221 36.0585 297.518 35.841 296.807 35.8868H294.978L292.857 36.0615L291.028 36.2361V34.286C291.493 34.286 292.102 34.0823 292.799 33.9659L295.007 33.7039H297.098C298.09 33.655 299.081 33.8239 300.002 34.1987C300.733 34.5331 301.327 35.1083 301.686 35.8286C302.089 36.7433 302.268 37.7411 302.209 38.7392V46.3647C302.213 46.5511 302.263 46.7335 302.354 46.8959C302.445 47.0584 302.575 47.1958 302.732 47.2961C303.084 47.5124 303.482 47.6421 303.893 47.6745V49.7118C303.478 49.7438 303.06 49.7438 302.645 49.7118C302.292 49.669 301.942 49.601 301.599 49.5081C301.31 49.4249 301.036 49.2973 300.786 49.1297C300.526 48.9816 300.282 48.806 300.06 48.6059L298.608 49.1297C298.027 49.3044 297.388 49.4499 296.72 49.5954C295.975 49.6578 295.227 49.6481 294.484 49.5663ZM294.919 47.4125C295.47 47.4688 296.024 47.4688 296.575 47.4125C297.124 47.33 297.667 47.2134 298.201 47.0633L299.45 46.6849V41.7661L295.21 42.1445C294.506 42.1685 293.836 42.4478 293.322 42.9303C292.899 43.4545 292.691 44.1207 292.741 44.793C292.693 45.4786 292.889 46.1591 293.293 46.714C293.491 46.9492 293.742 47.1348 294.024 47.256C294.306 47.3773 294.613 47.4309 294.919 47.4125Z"
+                                fill="black"></path>
+                            <path
+                                d="M310.718 49.5663C310.119 49.6068 309.517 49.5215 308.952 49.316C308.387 49.1106 307.871 48.7894 307.436 48.373C306.834 47.5078 306.464 46.5016 306.362 45.4514C306.26 44.4013 306.43 43.3425 306.856 42.3773C307.228 41.7372 307.799 41.2365 308.482 40.9512C309.314 40.5752 310.212 40.3675 311.125 40.3399L315.684 39.8743V38.6227C315.73 38.2414 315.694 37.8547 315.579 37.4883C315.463 37.122 315.272 36.7844 315.016 36.4981C314.471 36.0501 313.774 35.8311 313.071 35.8868H311.241C310.515 35.8868 309.818 35.8868 309.121 36.0615L307.291 36.2361V34.286L309.092 33.9659L311.27 33.7039H313.361C314.353 33.6596 315.343 33.8283 316.265 34.1987C316.994 34.5263 317.581 35.1045 317.921 35.8286C318.352 36.7349 318.542 37.7375 318.472 38.7392V46.3647C318.471 46.5522 318.519 46.7366 318.61 46.9C318.702 47.0633 318.835 47.1999 318.995 47.2961C319.345 47.5167 319.744 47.6466 320.157 47.6745V49.7118C319.741 49.7418 319.324 49.7418 318.908 49.7118L317.892 49.5081C317.596 49.4175 317.313 49.2904 317.049 49.1297L316.352 48.6059L314.9 49.1297L313.013 49.5954C312.249 49.657 311.48 49.6472 310.718 49.5663ZM311.183 47.4125C311.733 47.4676 312.288 47.4676 312.838 47.4125C313.378 47.3301 313.911 47.2134 314.436 47.0633L315.684 46.6849V41.7661L311.444 42.1445C310.741 42.1685 310.07 42.4478 309.557 42.9303C309.155 43.4657 308.95 44.1237 308.976 44.7931C308.936 45.4821 309.142 46.163 309.557 46.714C309.744 46.9389 309.98 47.1185 310.247 47.2395C310.513 47.3604 310.803 47.4195 311.096 47.4125H311.183Z"
+                                fill="black"></path>
+                            <path
+                                d="M323.38 49.2461V33.9658H325.936V35.0136C326.355 34.7765 326.792 34.5721 327.243 34.4024C327.783 34.1931 328.336 34.0181 328.898 33.8785C329.44 33.7427 329.996 33.6743 330.554 33.6748C331.676 33.5994 332.796 33.8522 333.777 34.4024C334.584 34.9815 335.144 35.844 335.346 36.8181C335.671 38.2497 335.817 39.7162 335.781 41.1839V49.2461H333.167V41.1839C333.19 40.1516 333.122 39.1193 332.964 38.0988C332.863 37.4505 332.545 36.8556 332.064 36.4107C331.464 36.0136 330.748 35.8292 330.031 35.8868C329.523 35.8889 329.016 35.9475 328.521 36.0614C327.998 36.0614 327.533 36.3233 327.069 36.4689L325.936 36.9637V49.1588L323.38 49.2461Z"
+                                fill="black"></path>
+                            <path
+                                d="M346.498 51.3708V49.0132C347.049 49.0659 347.603 49.0659 348.153 49.0132C348.522 48.9824 348.87 48.8286 349.141 48.5766C349.406 48.3079 349.579 47.9612 349.635 47.5871C349.69 46.9771 349.69 46.3634 349.635 45.7534V28.2903H352.306V46.3355C352.327 47.2675 352.22 48.198 351.987 49.1006C351.79 49.7182 351.404 50.2579 350.883 50.6431C350.327 51.0181 349.69 51.2574 349.025 51.3417C348.184 51.4126 347.34 51.4224 346.498 51.3708Z"
+                                fill="black"></path>
+                            <path
+                                d="M361.135 49.5664C360.54 49.6063 359.943 49.5207 359.382 49.3151C358.822 49.1096 358.311 48.7887 357.882 48.373C357.067 47.3886 356.662 46.1275 356.75 44.8513C356.709 43.992 356.9 43.1376 357.301 42.3774C357.654 41.7321 358.219 41.2285 358.899 40.9512C359.731 40.5753 360.629 40.3676 361.542 40.34L366.13 39.8743V38.6228C366.163 38.242 366.122 37.8584 366.007 37.4938C365.892 37.1293 365.707 36.7909 365.462 36.4981C364.901 36.0585 364.198 35.841 363.487 35.8869H361.658C360.961 35.8869 360.235 35.8869 359.538 36.0615L357.708 36.2361V34.2861C358.173 34.2861 358.783 34.0823 359.48 33.9659L361.687 33.704H363.778C364.77 33.6578 365.761 33.8266 366.682 34.1988C367.413 34.5331 368.007 35.1084 368.366 35.8287C368.769 36.7434 368.948 37.7412 368.889 38.7392V46.3648C368.888 46.5522 368.935 46.7367 369.027 46.9C369.119 47.0634 369.251 47.1999 369.412 47.2962C369.764 47.5125 370.162 47.6421 370.574 47.6745V49.7119C370.158 49.7438 369.74 49.7438 369.325 49.7119C368.972 49.6691 368.622 49.601 368.279 49.5081C367.99 49.425 367.716 49.2973 367.466 49.1298C367.206 48.9817 366.963 48.806 366.74 48.6059L365.288 49.1298C364.707 49.3044 364.068 49.4499 363.4 49.5955C362.646 49.6588 361.887 49.6491 361.135 49.5664ZM361.6 47.4126C362.15 47.4676 362.705 47.4676 363.255 47.4126C363.804 47.33 364.347 47.2134 364.881 47.0633L366.13 46.6849V41.7661L361.89 42.1445C361.187 42.1685 360.516 42.4478 360.002 42.9303C359.579 43.4545 359.371 44.1207 359.421 44.7931C359.373 45.4786 359.569 46.1591 359.973 46.714C360.171 46.9492 360.422 47.1348 360.704 47.2561C360.986 47.3773 361.293 47.4309 361.6 47.4126Z"
+                                fill="black"></path>
+                            <path
+                                d="M373.914 49.2462V27.359H376.469V40.1362H378.764L382.858 34.0241H385.763L381.029 41.184L386.053 49.3917H383.149L378.851 42.4938H376.498V49.2753L373.914 49.2462Z"
+                                fill="black"></path>
+                            <path
+                                d="M392.645 49.5663C392.05 49.6062 391.453 49.5206 390.893 49.3151C390.332 49.1096 389.821 48.7886 389.393 48.373C388.577 47.3886 388.172 46.1274 388.26 44.8513C388.219 43.992 388.41 43.1376 388.812 42.3773C389.165 41.7321 389.729 41.2284 390.409 40.9511C391.242 40.5788 392.14 40.3712 393.052 40.3399L397.64 39.8743V38.6227C397.674 38.242 397.632 37.8584 397.517 37.4938C397.403 37.1293 397.218 36.7909 396.972 36.498C396.411 36.0585 395.708 35.841 394.998 35.8868H393.168L391.048 36.0615L389.218 36.2361V34.286C389.683 34.286 390.293 34.0823 390.99 33.9659L393.197 33.7039H395.288C396.28 33.655 397.272 33.8239 398.192 34.1987C398.923 34.5331 399.518 35.1083 399.877 35.8286C400.279 36.7433 400.459 37.7411 400.399 38.7392V46.3647C400.398 46.5521 400.446 46.7366 400.537 46.9C400.629 47.0633 400.762 47.1999 400.922 47.2961C401.274 47.5124 401.672 47.6421 402.084 47.6745V49.7118C401.668 49.7438 401.251 49.7438 400.835 49.7118C400.482 49.669 400.133 49.601 399.79 49.5081C399.501 49.4249 399.226 49.2973 398.976 49.1297C398.716 48.9816 398.473 48.806 398.25 48.6059L396.798 49.1297C396.217 49.3044 395.578 49.4499 394.91 49.5954C394.156 49.6588 393.398 49.6491 392.645 49.5663ZM393.11 47.4125C393.66 47.4676 394.215 47.4676 394.765 47.4125C395.314 47.33 395.857 47.2134 396.392 47.0633L397.64 46.6849V41.7661L393.4 42.1445C392.697 42.1685 392.026 42.4478 391.513 42.9303C391.089 43.4545 390.882 44.1207 390.932 44.793C390.884 45.4786 391.079 46.1591 391.484 46.714C391.682 46.9492 391.932 47.1348 392.214 47.256C392.497 47.3773 392.803 47.4309 393.11 47.4125Z"
+                                fill="black"></path>
+                            <path
+                                d="M405.424 49.2461V33.9658H407.98V35.9741C408.357 35.7122 408.851 35.4211 409.432 35.101L411.319 34.1987C411.996 33.9375 412.696 33.7426 413.41 33.6166V36.2361C412.714 36.3831 412.025 36.5677 411.348 36.789C410.695 36.9914 410.055 37.2344 409.432 37.5167L407.98 38.2152V49.2461H405.424Z"
+                                fill="black"></path>
+                            <path
+                                d="M421.832 49.5954C420.954 49.6263 420.08 49.4571 419.277 49.1006C418.632 48.7298 418.154 48.1257 417.941 47.4125C417.61 46.309 417.463 45.1585 417.505 44.0071V36.2069H415.414V33.9658H417.505V29.3672H420.119V33.9658H424.766V36.2069H420.119V43.2504C420.063 44.0644 420.063 44.8813 420.119 45.6953C420.165 46.1578 420.371 46.5899 420.7 46.9177C421.115 47.1807 421.604 47.3031 422.094 47.2669H422.878H423.865H424.707L424.882 49.4207L423.284 49.6536C422.762 49.5372 422.239 49.5954 421.832 49.5954Z"
+                                fill="black"></path>
+                            <path
+                                d="M431.707 49.5663C431.107 49.6068 430.505 49.5215 429.94 49.316C429.375 49.1106 428.859 48.7894 428.425 48.373C427.62 47.3843 427.225 46.1236 427.321 44.8513C427.287 43.9958 427.466 43.1452 427.844 42.3773C428.21 41.7316 428.783 41.2289 429.47 40.9512C430.292 40.5753 431.181 40.3675 432.084 40.3399L436.673 39.8743V38.6227C436.748 38.2578 436.734 37.8799 436.631 37.5217C436.529 37.1634 436.341 36.8356 436.083 36.5664C435.826 36.2972 435.507 36.0947 435.155 35.9763C434.802 35.8579 434.426 35.8272 434.059 35.8868H432.2C431.503 35.8868 430.806 35.8868 430.109 36.0615L428.251 36.2361V34.286L430.022 33.9659L432.229 33.7039H434.32C435.313 33.6596 436.303 33.8283 437.225 34.1987C437.953 34.5263 438.54 35.1045 438.88 35.8286C439.283 36.7434 439.462 37.7411 439.403 38.7392V46.3647C439.412 46.55 439.463 46.7307 439.554 46.8923C439.645 47.054 439.772 47.1923 439.925 47.2961C440.279 47.5086 440.676 47.6379 441.087 47.6745V49.7118C440.671 49.7428 440.254 49.7428 439.838 49.7118L438.793 49.5081C438.507 49.4176 438.233 49.2904 437.98 49.1297C437.729 48.9812 437.495 48.8055 437.283 48.6059L435.802 49.1297C435.221 49.3044 434.582 49.4499 433.914 49.5954C433.179 49.656 432.44 49.6462 431.707 49.5663ZM432.171 47.4125C432.712 47.4688 433.257 47.4688 433.798 47.4125C434.346 47.33 434.89 47.2134 435.424 47.0633L436.673 46.6849V41.7661L432.433 42.1445C432.088 42.1247 431.743 42.1811 431.423 42.3098C431.103 42.4384 430.815 42.6361 430.579 42.8889C430.343 43.1416 430.166 43.4433 430.06 43.7724C429.954 44.1014 429.921 44.4499 429.964 44.7931C429.916 45.4786 430.111 46.1591 430.516 46.714C430.719 46.9515 430.974 47.1383 431.261 47.2595C431.549 47.3808 431.86 47.4332 432.171 47.4125Z"
+                                fill="black"></path>
+                            <path
+                                d="M55.6734 0V10.3615H27.8804V20.8103H-0.0288086L-0.0288086 78.1071H100.543L107.745 47.4998H118.752V78.1071H133.564V0.058223L55.6734 0ZM27.7352 51.4581H14.1146V36.0906H27.7352V51.4581ZM100.34 25.7873H73.2437V15.5131H100.311L100.34 25.7873Z"
+                                fill="#1B1B1B"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_97_5787">
+                                <rect width="441" height="81" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+
+                <div class="mt-6 flex flex-col gap-y-1 text-gray-500 fill-gray-500 text-sm">
+
+                    <a href="https://perpustakaan.jakarta.go.id"
+                        class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6  border-l-4 border-l-primary-600 text-primary-600 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
+
+                    <a href="https://perpustakaan.jakarta.go.id/book"
+                        class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                        <span>Daftar Koleksi Buku</span>
+                        {{-- <span
+                            class="hidden xl:flex items-center justify-center px-2 py-1 text-xs font-medium leading-none text-white bg-primary-600 rounded-full animate-pulse">Baru</span> --}}
+                    </a>
+
+                    <a href="https://perpustakaan.jakarta.go.id/transaction"
+                        class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                        <span>History Peminjaman</span>
+                    </a>
+
+                    <a href="https://perpustakaan.jakarta.go.id/mobile-library"
+                        class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0">
+                            </path>
+                        </svg>
+                        <span>Jadwal Pengembalian</span>
+                    </a>
+
+                    <a href="https://perpustakaan.jakarta.go.id/activity"
+                    class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z">
+                        </path>
+                    </svg>
+                    <span>Aktivitas</span>
+                </a>
+
+                    <a href="https://perpustakaan.jakarta.go.id/account"
+                        class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        <span>Tentang Akun</span>
+                    </a>
+                </div>
+            </aside>
+
+            <main class="w-full lg:w-4/6 mx-auto p-4 mb-16 lg:mb-0">
+                <div x-data="mobileAppDownloadInfo()" x-cloak="" x-show="mobileAppDownloadInfo"
+                    class="flex mb-6 py-2 lg:py-2.5 px-2 lg:px-4 rounded-lg border border-orange-300 bg-orange-50 items-center justify-between text-xs lg:text-sm text-orange-700">
+                    <div class="flex items-center space-x-1.5">
+                        <svg fill="none" stroke="currentColor" class="w-4 h-4" stroke-width="1.5"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z">
+                            </path>
+                        </svg>
+                        <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-1">
+                                <span class="">JAKLITERA sudah ada versi mobile lho!</span>
+                                <span @click="openMobileAppDownloadLink = true"
+                                    class="cursor-pointer hover:text-orange-500 underline font-bold">Unduh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cursor-pointer hover:bg-red-100 rounded-lg p-1" @click="closeMobileAppDownloadInfo">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+
+                    <div class="fixed z-50 inset-0" aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                        x-show="openMobileAppDownloadLink">
+                        <div class="min-h-screen flex items-center justify-center p-4 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                                aria-hidden="true"></div>
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                aria-hidden="true">​</span>
+                            <div @click.outside="openMobileAppDownloadLink = false"
+                                style="max-height: 36rem!important;"
+                                class="overflow-y-auto inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle w-full lg:max-w-lg">
+                                <div class="bg-gray-50 p-4 lg:p-6">
+                                    <div class="flex items-center justify-between">
+                                        <h1 class="font-bold text-primary-600 text-lg">
+                                            Unduh JAKLITERA Mobile
+                                        </h1>
+
+                                        <div @click="openMobileAppDownloadLink = false"
+                                            class="cursor-pointer text-gray-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
                                         </div>
                                     </div>
 
-                                    <svg class="size-6 shrink-0 stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                                </div>
-                            </a>
+                                    <div class="mt-2 mb-6 text-primary-600">
+                                        Dapatkan akses ke koleksi literatur terbaik dengan JAKLITERA. Unduh aplikasinya
+                                        di
+                                        Android dan iOS, dan mulai petualangan membaca Anda hari ini!
+                                    </div>
 
-                            <a
-                                href="https://laracasts.com"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g fill="#FF2D20"><path d="M24 8.25a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v12a2.5 2.5 0 0 0 2.5 2.5h19a2.5 2.5 0 0 0 2.5-2.5v-12Zm-7.765 5.868a1.221 1.221 0 0 1 0 2.264l-6.626 2.776A1.153 1.153 0 0 1 8 18.123v-5.746a1.151 1.151 0 0 1 1.609-1.035l6.626 2.776ZM19.564 1.677a.25.25 0 0 0-.177-.427H15.6a.106.106 0 0 0-.072.03l-4.54 4.543a.25.25 0 0 0 .177.427h3.783c.027 0 .054-.01.073-.03l4.543-4.543ZM22.071 1.318a.047.047 0 0 0-.045.013l-4.492 4.492a.249.249 0 0 0 .038.385.25.25 0 0 0 .14.042h5.784a.5.5 0 0 0 .5-.5v-2a2.5 2.5 0 0 0-1.925-2.432ZM13.014 1.677a.25.25 0 0 0-.178-.427H9.101a.106.106 0 0 0-.073.03l-4.54 4.543a.25.25 0 0 0 .177.427H8.4a.106.106 0 0 0 .073-.03l4.54-4.543ZM6.513 1.677a.25.25 0 0 0-.177-.427H2.5A2.5 2.5 0 0 0 0 3.75v2a.5.5 0 0 0 .5.5h1.4a.106.106 0 0 0 .073-.03l4.54-4.543Z"/></g></svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Laracasts</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
-
-                            <a
-                                href="https://laravel-news.com"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g fill="#FF2D20"><path d="M8.75 4.5H5.5c-.69 0-1.25.56-1.25 1.25v4.75c0 .69.56 1.25 1.25 1.25h3.25c.69 0 1.25-.56 1.25-1.25V5.75c0-.69-.56-1.25-1.25-1.25Z"/><path d="M24 10a3 3 0 0 0-3-3h-2V2.5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2V20a3.5 3.5 0 0 0 3.5 3.5h17A3.5 3.5 0 0 0 24 20V10ZM3.5 21.5A1.5 1.5 0 0 1 2 20V3a.5.5 0 0 1 .5-.5h14a.5.5 0 0 1 .5.5v17c0 .295.037.588.11.874a.5.5 0 0 1-.484.625L3.5 21.5ZM22 20a1.5 1.5 0 1 1-3 0V9.5a.5.5 0 0 1 .5-.5H21a1 1 0 0 1 1 1v10Z"/><path d="M12.751 6.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 7.3v-.5a.75.75 0 0 1 .751-.753ZM12.751 10.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 11.3v-.5a.75.75 0 0 1 .751-.753ZM4.751 14.047h10a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-10A.75.75 0 0 1 4 15.3v-.5a.75.75 0 0 1 .751-.753ZM4.75 18.047h7.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-7.5A.75.75 0 0 1 4 19.3v-.5a.75.75 0 0 1 .75-.753Z"/></g></svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Laravel News</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#FF2D20]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
-
-                            <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16">
-                                    <svg class="size-5 sm:size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <g fill="#FF2D20">
-                                            <path
-                                                d="M16.597 12.635a.247.247 0 0 0-.08-.237 2.234 2.234 0 0 1-.769-1.68c.001-.195.03-.39.084-.578a.25.25 0 0 0-.09-.267 8.8 8.8 0 0 0-4.826-1.66.25.25 0 0 0-.268.181 2.5 2.5 0 0 1-2.4 1.824.045.045 0 0 0-.045.037 12.255 12.255 0 0 0-.093 3.86.251.251 0 0 0 .208.214c2.22.366 4.367 1.08 6.362 2.118a.252.252 0 0 0 .32-.079 10.09 10.09 0 0 0 1.597-3.733ZM13.616 17.968a.25.25 0 0 0-.063-.407A19.697 19.697 0 0 0 8.91 15.98a.25.25 0 0 0-.287.325c.151.455.334.898.548 1.328.437.827.981 1.594 1.619 2.28a.249.249 0 0 0 .32.044 29.13 29.13 0 0 0 2.506-1.99ZM6.303 14.105a.25.25 0 0 0 .265-.274 13.048 13.048 0 0 1 .205-4.045.062.062 0 0 0-.022-.07 2.5 2.5 0 0 1-.777-.982.25.25 0 0 0-.271-.149 11 11 0 0 0-5.6 2.815.255.255 0 0 0-.075.163c-.008.135-.02.27-.02.406.002.8.084 1.598.246 2.381a.25.25 0 0 0 .303.193 19.924 19.924 0 0 1 5.746-.438ZM9.228 20.914a.25.25 0 0 0 .1-.393 11.53 11.53 0 0 1-1.5-2.22 12.238 12.238 0 0 1-.91-2.465.248.248 0 0 0-.22-.187 18.876 18.876 0 0 0-5.69.33.249.249 0 0 0-.179.336c.838 2.142 2.272 4 4.132 5.353a.254.254 0 0 0 .15.048c1.41-.01 2.807-.282 4.117-.802ZM18.93 12.957l-.005-.008a.25.25 0 0 0-.268-.082 2.21 2.21 0 0 1-.41.081.25.25 0 0 0-.217.2c-.582 2.66-2.127 5.35-5.75 7.843a.248.248 0 0 0-.09.299.25.25 0 0 0 .065.091 28.703 28.703 0 0 0 2.662 2.12.246.246 0 0 0 .209.037c2.579-.701 4.85-2.242 6.456-4.378a.25.25 0 0 0 .048-.189 13.51 13.51 0 0 0-2.7-6.014ZM5.702 7.058a.254.254 0 0 0 .2-.165A2.488 2.488 0 0 1 7.98 5.245a.093.093 0 0 0 .078-.062 19.734 19.734 0 0 1 3.055-4.74.25.25 0 0 0-.21-.41 12.009 12.009 0 0 0-10.4 8.558.25.25 0 0 0 .373.281 12.912 12.912 0 0 1 4.826-1.814ZM10.773 22.052a.25.25 0 0 0-.28-.046c-.758.356-1.55.635-2.365.833a.25.25 0 0 0-.022.48c1.252.43 2.568.65 3.893.65.1 0 .2 0 .3-.008a.25.25 0 0 0 .147-.444c-.526-.424-1.1-.917-1.673-1.465ZM18.744 8.436a.249.249 0 0 0 .15.228 2.246 2.246 0 0 1 1.352 2.054c0 .337-.08.67-.23.972a.25.25 0 0 0 .042.28l.007.009a15.016 15.016 0 0 1 2.52 4.6.25.25 0 0 0 .37.132.25.25 0 0 0 .096-.114c.623-1.464.944-3.039.945-4.63a12.005 12.005 0 0 0-5.78-10.258.25.25 0 0 0-.373.274c.547 2.109.85 4.274.901 6.453ZM9.61 5.38a.25.25 0 0 0 .08.31c.34.24.616.561.8.935a.25.25 0 0 0 .3.127.631.631 0 0 1 .206-.034c2.054.078 4.036.772 5.69 1.991a.251.251 0 0 0 .267.024c.046-.024.093-.047.141-.067a.25.25 0 0 0 .151-.23A29.98 29.98 0 0 0 15.957.764a.25.25 0 0 0-.16-.164 11.924 11.924 0 0 0-2.21-.518.252.252 0 0 0-.215.076A22.456 22.456 0 0 0 9.61 5.38Z"
-                                            />
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black dark:text-white">Vibrant Ecosystem</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]">Forge</a>, <a href="https://vapor.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Vapor</a>, <a href="https://nova.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Nova</a>, <a href="https://envoyer.io" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Envoyer</a>, and <a href="https://herd.laravel.com" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Herd</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Echo</a>, <a href="https://laravel.com/docs/horizon" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Telescope</a>, and more.
-                                    </p>
+                                    <div class="flex items-center gap-2">
+                                        <a href="https://play.google.com/store/apps/details?id=id.dispusipjakarta.jaklitera"
+                                            target="_blank">
+                                            <img src="images/GetItOnGooglePlay_Badge_Web_color_Indonesian.png"
+                                                class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
+                                                alt="">
+                                        </a>
+                                        <a href="https://apps.apple.com/id/app/jaklitera/id6504686405"
+                                            target="_blank">
+                                            <img src="images/Download_on_the_App_Store_Badge_ID_RGB_blk_100317.svg"
+                                                class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
+                                                alt="">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </main>
-
-                    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </footer>
+                    </div>
                 </div>
-            </div>
+
+                <div class="fixed left-0 lg:left-5 bottom-0 lg:bottom-1 z-50">
+                </div>
+                <div class="min-h-screen">
+
+                    <section class="mb-4">
+                        <div class="flex items-center gap-4 justify-between">
+                            <div>
+                                <h3 class="font-bold text-base lg:text-xl">Rekomendasi Buku</h3>
+                                <p class="hidden lg:block text-xs lg:text-sm text-gray-600">Temukan inspirasi baca
+                                    kamu!</p>
+                            </div>
+
+                            <ul class="flex text-xs text-gray-600 items-center space-x-4">
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-orange-50 text-orange-500 hover:bg-orange-100 cursor-pointer">
+                                    Direkomendasikan
+                                </li>
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a
+                                        href="https://perpustakaan.jakarta.go.id/book?subjects=Inspirasi&amp;subject_filter=Inspirasi">Inspirasi</a>
+                                </li>
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a
+                                        href="https://perpustakaan.jakarta.go.id/book?subjects=Fiksi&amp;subject_filter=Fiksi">Fiksi</a>
+                                </li>
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a
+                                        href="https://perpustakaan.jakarta.go.id/book?subjects=Administrasi&amp;subject_filter=Administrasi">Administrasi</a>
+                                </li>
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a
+                                        href="https://perpustakaan.jakarta.go.id/book?subjects=Ensiklopedia&amp;subject_filter=Ensiklopedia">Ensiklopedia</a>
+                                </li>
+                                <li
+                                    class="hidden lg:flex px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a
+                                        href="https://perpustakaan.jakarta.go.id/book?subjects=Humor&amp;subject_filter=Humor">Humor</a>
+                                </li>
+                                <li
+                                    class="block lg:hidden px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
+                                    <a href="https://perpustakaan.jakarta.go.id/book">Lainnya</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="swiper book-recommendation-swiper z-0">
+                            <div class="swiper-wrapper py-4 lg:py-6">
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849908">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238670.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Kingdom of ash :  a throne of glass novel">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+
+
+
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Kingdom of ash : a throne of glass novel</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Sarah J.
+                                                        Maas (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000850832">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/241721.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Pasta kacang merah">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Jepang / Kehidupan
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Pasta kacang merah</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Sukegawa,
+                                                        Durian (Pengarang) ; Asri Pratiwi Wulandari (penerjemah) ; Ruth
+                                                        Priscilia Angelina (editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849842">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238453.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Weyward">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Weyward</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Emilia
+                                                        Hart (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849942">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238795.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Happy place">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Happy place</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Emily
+                                                        Henry (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000834657">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/187326.jpeg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The architecture of love.">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Indonesia / Novel
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The architecture of love.</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Ika
+                                                        Natassa (Pengarang) ; Rain Chudori (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849926">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238731.jpeg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Cold, cold bones">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Cold, cold bones</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Kathy
+                                                        Reichs (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849929">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238745.png"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Confessions of a forty-something f##k up">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Confessions of a forty-something f##k up</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Alexandra
+                                                        Potter (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000844578">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/221181.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Why has nobody told me this before? :  everyday tools for life's ups &amp; down">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Mentality
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Why has nobody told me this before? : everyday tools for life's
+                                                        ups &amp; down</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Smith,
+                                                        Julie (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849912">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238684.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Circe">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Circe</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Madeline
+                                                        Miller (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849927">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238735.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="To kill a troubadour">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        To kill a troubadour</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Martin
+                                                        Walker (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000844470">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/220836.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Killing commendatore">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Japanese Literatures / Life
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Killing commendatore</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Murakami,
+                                                        Haruki (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000842219">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/212936.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Lelaki - lelaki tanpa perempuan">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Kesusastraan Jepang / Roman
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Lelaki - lelaki tanpa perempuan</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Murakami,
+                                                        Haruki (Pengarang) ; Ribeka Ota (penerjemah) ; Ining Isaiyas
+                                                        (penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000843895">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/218866.png"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Novelist as a vocation">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Japanese Literature / Novel
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Novelist as a vocation</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Murakami,
+                                                        Haruki (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849938">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238780.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The midnight library">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The midnight library</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Matt Haig
+                                                        (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849932">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/238760.jpeg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Time shelter">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Asing
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Time shelter</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Georgi
+                                                        Gospodinov (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000848083">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/232499.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="7 prajurit bapak">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Novel Indonesia
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        7 prajurit bapak</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Wulan
+                                                        Nuramalia (Pengarang) ; Fenisa Zahra (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000821064">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/146874.png"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Perempuan yang menangis kepada bulan hitam">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        FIKSI INDONESIA / Adat Istiadat
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Perempuan yang menangis kepada bulan hitam</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Dian
+                                                        Purnomo (Pengarang) ; Ruth Priscilia Angelina (editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000843020">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/215923.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Seribu wajah ayah">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Indonesia / Ayah
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Seribu wajah ayah</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Nurun Ala
+                                                        (Pengarang) ; Indah Sipahutar (editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000815362">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/139492.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The nightingale :  Best seller #1 New York times">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Inggris / Fantasi
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The nightingale : Best seller #1 New York times</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Hannah,
+                                                        Kristin (Pengarang) ; Airien Kusumawardhani (alih bahasa) ;
+                                                        Grace Situngkir (editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849289">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/236595.jpeg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Namaku alam">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Indonesia / Kehidupan
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Namaku alam</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Leila S.
+                                                        Chudori (Pengarang) ; Endah Sulwesi (penyunting) ; Christina M.
+                                                        Udiani (penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000843197">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/216588.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Teka-teki rumah aneh">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Kesusastraan Jepang / Arsitektur Rumah
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Teka-teki rumah aneh</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Uketsu
+                                                        (Pengarang) ; Eri Pramestiningtyas (penerjemah) ; Tan, Juliana
+                                                        (penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849276">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/236550.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Dona dona">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Jepang / Keluarga
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Dona dona</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
+                                                        Kawaguchi, Toshikazu (Pengarang) ; Pegy Permatasari (alih
+                                                        bahasa)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849214">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/236332.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Kresek Hitam">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Novel / Islam
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Kresek Hitam</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Honey Dee
+                                                        (Pengarang) ; Dion Rahman (Editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847781">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/231618.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Yellowface">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Novel Amerika
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Yellowface</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Kuang,
+                                                        Rebecca F. (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000849258">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/236495.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Kucing penyelamat buku">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi / Sastra Jepang
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Kucing penyelamat buku</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
+                                                        Natsukawa, Sosuke (Pengarang) ; Lulu Wijaya (alih bahasa) ;
+                                                        Tanti Lesmana (editor)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000845872">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/225598.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Almost adulting :  self-help approach to deal with quarter-life crisis">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Perkembangan Diri / Psikologi
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Almost adulting : self-help approach to deal with quarter-life
+                                                        crisis</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Nadhira
+                                                        Afifa (Pengarang) ; Nadire Yasmine (penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000842901">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/215431.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="How to win friends and influence people :  in the digital age">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Motivasi
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        How to win friends and influence people : in the digital age
+                                                    </h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Carnegie,
+                                                        Dale (Pengarang) ; Nengah Krisnarini (penerjemah)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="swiper-slide h-full">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/186291.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Belantara = the dark forest">
+                                            <div class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi China
+                                                    </div>
+                                                    <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Belantara = the dark forest</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Liu Cixin
+                                                        ; Oni Surayaman, (penerjemah) ; Andya Primanda</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="swiper-slide h-full">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/229674.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="As long as the lemon trees grow">
+                                            <div class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Inggris
+                                                    </div>
+                                                    <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        As long as the lemon trees grow</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Katouh,
+                                                        Zoulfa (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847344">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230428.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Mindreader :  ilmu baru untuk menguraikan apa yang sebenarnya dipikirkan orang, apa yang sebenarnya mereka inginkan, dan siapa mereka sebenarnya">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Pikiran Manusia
+                                                    </div>
+                                                    <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Mindreader : ilmu baru untuk menguraikan apa yang sebenarnya
+                                                        dipikirkan orang, apa yang sebenarnya mereka inginkan, dan siapa
+                                                        mereka sebenarnya</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
+                                                        Lieberman, David J (Pengarang) ; Zia Anshor (Penerjemah)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847345">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230431.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Heidi">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+
+
+
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Fiksi Inggris
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Heidi</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Spyri,
+                                                        Johanna (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847339">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230415.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Design :  the definitive visual history">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+
+
+
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Desain / Seni / Sejarah Art Design
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Design : the definitive visual history</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Black,
+                                                        Alexandra (Pengarang) ; Grant, R. G. (Pengarang) ; Kay, Ann
+                                                        (Pengarang) ; Wilkinson, Philip (Pengarang) ; Zaczek, Iain
+                                                        (Pengarang) ; Fischel, Anna (Penyunting) ; Kennedy, Sammy
+                                                        (Penyunting) ; Neilson, Stuart (Penyunting) ; Dorling Kindersley
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000835377">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/189733.png"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="You are a badass at making money">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+
+
+
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        pengembangan diri
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        You are a badass at making money</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Sincero,
+                                                        Jen (Pengarang) ; Nadya Andwiani (Penerjemah) ; Maria Lubis
+                                                        (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847350">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230442.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Master your emotions :  panduan praktis untuk mengatasi perasaan negatif dan pandai mengelola perasaanmu">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+
+
+
+
+
+                                                </div>
+
+                                                <div
+                                                    class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Emosi dan Perasaan
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Master your emotions : panduan praktis untuk mengatasi perasaan
+                                                        negatif dan pandai mengelola perasaanmu</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
+                                                        Meurisse, Thibaut (Pengarang) ; Nadya Andwiani (Penerjemah) ;
+                                                        Haris Priyatna (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847355">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230452.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The almanack of Naval Ravikant :  panduan asyik dan autentik untuk meraih kekayaan dan kebahagiaan">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Penghidupan yang Sukses / Motivasi Diri
+                                                    </div>
+                                                    <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The almanack of Naval Ravikant : panduan asyik dan autentik
+                                                        untuk meraih kekayaan dan kebahagiaan</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
+                                                        Jorgenson, Eric (Pengarang) ; Nadya Andwiani (Penerjemah) ;
+                                                        Maria Lubis (Penerjemah) ; Ida Wajdi (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847374">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230510.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="Dallergut 2 :  toko penjual mimpi">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        FIksi Korea
+                                                    </div>
+                                                    <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        Dallergut 2 : toko penjual mimpi</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Lee Miye
+                                                        (Pengarang) ; Dwita Rizki (Penerjemah) ; Jia Effendie
+                                                        (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847361">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230474.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The Indonesian table">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Resep makanan / Masakan Indonesia / Buku masakan
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The Indonesian table</h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Elliott,
+                                                        Petty Pandean (Pengarang)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="swiper-slide h-full">
+                                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000847378">
+                                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/230519.jpg"
+                                                src="images/no-images.png"
+                                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                                alt="The Banda island :  hidden histories &amp; miracles of nature">
+                                            <div
+                                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                                <div class="flex items-center justify-between">
+                                                </div>
+
+                                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                    <div
+                                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                        Sejarah/ Kepulauan Banda (Maluku Tengah) / Tanaman rempah/
+                                                        Kepulauan Banda (Maluku Tengah)
+                                                    </div>
+                                                    <h1
+                                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                        The Banda island : hidden histories &amp; miracles of nature
+                                                    </h1>
+                                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Russel,
+                                                        Jan (Penyunting)</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="my-8">
+                        <div class="flex items-center gap-2 lg:gap-4 justify-between">
+                            <div>
+                                <h3 class="font-bold text-base lg:text-xl">Our Team Project A Library</h3>
+                                <p class="hidden lg:block text-sm text-gray-600">Siapa saja pengembang dibalik Website A Library ini?</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
+                                <div class="rounded-lg border relative">
+                                    <img src="images/9c3667fd-1663-426c-b22d-87b7f4ecc6e4.jpeg"
+                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        alt="">
+                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                        <div>
+                                            <div class="capitalize text-sm lg:text-xl font-bold">Product Owner</div>
+                                            <div class="text-gray-100 text-xs line-clamp-1">
+                                                Amanda Rachmawati
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-1 flex items-center space-x-2">
+                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                <p><span data-sheets-root="1">1204222081<br></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg border relative">
+                                    <img src="images/9c3667fd-1663-426c-b22d-87b7f4ecc6e4.jpeg"
+                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        alt="">
+
+                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                        <div>
+                                            <div class="capitalize text-sm lg:text-xl font-bold">Scrum Master</div>
+                                            <div class="text-gray-100 text-xs line-clamp-1">
+                                                Ahmad Ilman Nafia
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 flex items-center space-x-2">
+                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                1204220026
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg border relative">
+                                    <img src="images/977ada3e-daf5-4b81-a4f8-968149a1356a.jpeg" class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        alt="">
+                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                        <div>
+                                            <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
+                                            <div class="text-gray-100 text-xs line-clamp-1">
+                                                Angela Fransisca Yulisiswati
+                                            </div>
+                                        </div>
+                                        <div class="mt-1 flex items-center space-x-2">
+                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                <p>1204220007</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg border relative">
+                                    <img src="images/977ada3e-daf5-4b81-a4f8-968149a1356a.jpeg"
+                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        alt="">
+                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                        <div>
+                                            <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
+                                            <div class="text-gray-100 text-xs line-clamp-1">
+                                                M. Izzul Haq Syihabbudin S.
+                                            </div>
+                                        </div>
+                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                <p>1204220052</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </section>
+                </div>
+
+                {{-- <footer
+                    class="text-sm hidden lg:block mt-12 mb-2 rounded-lg bg-gray-50 self-center p-4 border border-gray-300">
+                    <div class="flex items-center gap-4 justify-center">
+                        <a href="https://perpustakaan.jakarta.go.id/supports#faqs" class="underline font-medium">
+                            FAQ
+                        </a>
+                        <a href="https://perpustakaan.jakarta.go.id/supports/privacy-policy"
+                            class="underline font-medium">
+                            Kebijakan Privasi
+                        </a>
+                        <a href="https://perpustakaan.jakarta.go.id/supports" class="underline font-medium">
+                            Bantuan
+                        </a>
+                        <a href="https://perpustakaan.jakarta.go.id/supports/about-us"
+                            class="underline font-medium">
+                            Tentang Kami
+                        </a>
+                    </div>
+                    <div class="text-center mt-4">
+                        Copyright © 2022 Dinas Perpustakaan dan Kearsipan Provinsi DKI Jakarta. Seluruh Hak Cipta
+                        Dilindungi Undang-Undang.
+                    </div>
+                </footer> --}}
+            </main>
+
+            <aside
+                class="scroll-container hidden lg:flex w-1/6 border-l fixed right-0 top-0 h-screen p-4 overflow-y-auto flex-col space-y-4">
+                <form class="mx-auto w-full" action="https://perpustakaan.jakarta.go.id/book" method="GET">
+                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only"></label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input name="keyword" type="search" id="default-search"
+                            class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500"
+                            value="" placeholder="Cari Judul/Kategori" autofocus="">
+                    </div>
+                </form>
+
+                <div class="">
+                        {{-- <a target="_blank" href="https://perpustakaan.jakarta.go.id/catalog-requests/create"
+                            class="flex items-center justify-center space-x-2 text-white bg-primary-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-200 font-medium rounded-lg text-xs px-3 py-1.5 cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-110">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="h-4 w-4"> --}}
+                                {{-- <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75">
+                                </path>
+                            </svg>
+                            <span class="line-clamp-1">SIGN IN</span>
+                        </a>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="mt-2 justify-center">
+                    <h3 class="text-sm mb-2">Ganti Bahasa</h3>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <a href="https://perpustakaan.jakarta.go.id/language/id"
+                            class="border text-orange-500 border border-orange-500 bg-orange-50 rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
+                            <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
+                                <img src="images/Flag_of_Indonesia.svg" class="w-6 h-4 rounded border"
+                                    alt="">
+                                <span>ID</span>
+                            </div> --
+                        </a>
+                        <a href="https://perpustakaan.jakarta.go.id/language/en"
+                            class="relative border  rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
+                            <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
+                                <img src="images/Flag_of_the_United_Kingdom.svg" class="w-6 h-4 rounded"
+                                    alt="">
+                                <span>EN</span>
+                            </div>
+                            <div
+                                class="absolute -top-3 -right-2 rounded px-1 py-0.5 text-xs bg-green-100 text-green-500">
+                                v0.25
+                            </div>
+                        </a>
+                    </div>
+                </div> --}}
+
+                <div class="mb-8">
+                    <h3 class="text-sm">Daftar/Masuk ke Akun:</h3>
+                    <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+                        <a href="https://perpustakaan.jakarta.go.id/supports/contact-us/Email"
+                            class="col-span-full border rounded-lg">
+                            <div
+                                class="rounded-lg flex items-center justify-center space-x-1.5 text-center p-3 bg-gray-50 hover:bg-gray-100">
+                                {{-- <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> --}}
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75">
+                                    </path>
+                                </svg>
+                                <span class="bold-text">DAFTAR</span>
+                            </div>
+                        </a>
+                        <a href="https://perpustakaan.jakarta.go.id/supports/contact-us/WhatsApp"
+                            class="col-span-full border rounded-lg">
+                            <div
+                                class="rounded-lg flex items-center justify-center space-x-1.5 text-center p-3 bg-gray-50 hover:bg-gray-100">
+                                {{-- <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> --}}
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z">
+                                    </path>
+                                </svg>
+                                <span class="bold-text">MASUK</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </aside>
         </div>
     </body>
-</html>
+</x-client-app>
