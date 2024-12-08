@@ -1,20 +1,31 @@
-<x-app>
-    <body class=" border-top-wide border-primary d-flex flex-column">
-        <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
-        <div class="page page-center">
-            <div class="container container-tight py-4">
-                <div class="text-center mb-4">
-                    <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('static/logo.png') }}"
-                            height="50" alt=""></a>
+<x-client-app>
+
+    <body class="font-mulish antialiased overflow-x-hidden text-sm md:text-base">
+
+
+        <div class="flex min-h-screen bg-white lg:bg-gray-50 py-0 lg:py-16 px-0 lg:px-40">
+            <div class="my-0 lg:my-auto w-full rounded-lg bg-white shadow-none lg:shadow-sm">
+                <div class="fixed left-0 lg:left-5 bottom-0 lg:bottom-1 z-50">
                 </div>
-                <div class="card card-md">
-                    <div class="card-body">
-                        <h2 class="h2 text-center mb-4">Masuk ke Akun</h2>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label class="form-label">Username</label>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror"
+              
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-8 items-center">
+                    <form  class="needs-validation space-y-8 px-4 lg:px-8 py-4 lg:py-8" method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <h3 class="text-lg lg:text-2xl font-medium">Login Akun</h3>
+                        <div class="mt-2 lg:mt-4">
+                            <div class="flex items-center gap-1">
+                                <label for="identity" class="font-normal text-xs lg:text-sm">
+                                    <div class="flex flex-wrap items-center gap-x-1 ">
+                                        <span>Username/NISN</span>
+                                    </div>
+                                </label>
+                                <span class="text-sm text-red-600 font-medium">*</span>
+                            </div>
+
+                            <div class="relative">
+
+                                <input type="text" class=" w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm @error('username') is-invalid @enderror"
                                     id="username" placeholder="Username" autocomplete="off" name="username_or_email"
                                     value="{{ old('username_or_email') }}">
                                 @error('username')
@@ -22,97 +33,90 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                             </div>
-                            <div class="mb-2">
-                                <label class="form-label">
-                                    Password
-                                    <span class="form-label-description">
-                                        <a href="./forgot-password.html">Lupa Sandi?</a>
-                                    </span>
+
+                        </div>
+
+                        <div class="mt-2 lg:mt-4">
+                            <div class="flex items-center gap-1">
+                                <label for="password" class="font-normal text-xs lg:text-sm">
+                                    <div class="flex flex-wrap items-center gap-x-1 ">
+                                        <span>Kata Sandi</span>
+                                    </div>
                                 </label>
-                                <div class="input-group input-group-flat">
-                                    <input type="password" id="password"
-                                        class="form-control" name="password"
+                                <span class="text-sm text-red-600 font-medium">*</span>
+                            </div>
+
+                            <div class="relative" x-data="{ isPasswordVisible: false }">
+                                <input type="password" id="password"
+                                        class="w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm" name="password"
                                         placeholder="Your password" autocomplete="off">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <span class="input-group-text">
-                                        <a href="#" class="link-secondary toggle-password" title="Show password"
-                                            data-bs-toggle="tooltip">
-                                            <!-- Eye Closed Icon -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-eye-closed"
-                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round" style="display:block;">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <line x1="3" y1="3" x2="21" y2="21" />
-                                                <path d="M10.584 10.587a2 2 0 0 0 2.828 2.83" />
-                                                <path
-                                                    d="M9.363 5.365a9.466 9.466 0 0 1 2.637 -.365c4 0 7.333 2.333 10 7c-.666 1.167 -1.333 2.167 -2 3m-2 2a9.55 9.55 0 0 1 -2 1" />
-                                                <path
-                                                    d="M5.824 5.835a14.646 14.646 0 0 0 -3.824 5.165c2.667 4.667 6 7 10 7c.856 0 1.68 -.11 2.464 -.322" />
-                                            </svg>
 
-                                            <!-- Eye Open Icon -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-eye-open"
-                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round" style="display:none;">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <circle cx="12" cy="12" r="2" />
-                                                <path
-                                                    d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                                            </svg>
-                                        </a>
-                                    </span>
+                            
+
+                                <div @click="isPasswordVisible = !isPasswordVisible"
+                                    class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
+                                    <svg x-show="!isPasswordVisible" class="w-4 h-4" fill="none"
+                                        stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88">
+                                        </path>
+                                    </svg>
+                                    <svg x-show="isPasswordVisible" class="w-4 h-4" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
                                 </div>
                             </div>
-                            <div class="mb-2">
-                                <label class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }} />
-                                    <span class="form-check-label">Simpan info login saya</span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center">
+                                <input id="remember_me" name="remember_me" type="checkbox"
+                                    class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                                    Ingat Saya
                                 </label>
                             </div>
-                            <div class="form-footer">
-                                <button type="submit" class="btn btn-primary w-100">Masuk</button>
-                            </div>
-                        </form>
+
+                            <a href="https://perpustakaan.jakarta.go.id/forgot-password"
+                                class="text-sm text-primary-600 align">
+                                Lupa Kata Sandi?
+                            </a>
+                        </div>
+
+                        <button
+                            class="g-recaptcha w-full flex justify-center p-4 border border-transparent text-base lg:text-lg font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                            type="submit"
+                            data-action="submit">
+                            Masuk
+                        </button>
+
+                        <div class="text-center text-sm">
+                            Belum memiliki akun?
+                            <a href="{{ route('register') }}"
+                                class="font-bold text-primary-600 hover:text-primary-500">Daftar di sini</a>
+                        </div>
+                    </form>
+
+                    <div class="hidden lg:flex justify-end">
+                        <img src="{{ asset('static/logo.png') }}" style="height: 80px; width: auto;" alt="" class="mx-auto">
                     </div>
-                </div>
-                <div class="text-center text-muted mt-3">
-                    Belum memiliki akun? <a href="{{ route('register') }}" tabindex="-1">Daftar di sini.</a>
                 </div>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const passwordInput = document.getElementById('password');
-                const togglePasswordBtn = document.querySelector('.toggle-password');
-                const eyeClosedIcon = togglePasswordBtn.querySelector('.icon-eye-closed');
-                const eyeOpenIcon = togglePasswordBtn.querySelector('.icon-eye-open');
-
-                togglePasswordBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    if (passwordInput.type === 'password') {
-                        passwordInput.type = 'text';
-                        eyeClosedIcon.style.display = 'none';
-                        eyeOpenIcon.style.display = 'block';
-                    } else {
-                        passwordInput.type = 'password';
-                        eyeOpenIcon.style.display = 'none';
-                        eyeClosedIcon.style.display = 'block';
-                    }
-                });
-            });
-        </script>
-        <!-- Libs JS -->
-        <!-- Tabler Core -->
-        <script src="{{ asset('assets/js/tabler.min.js?1667333929') }}"></script>
-        <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
     </body>
-</x-app>
+</x-client-app>

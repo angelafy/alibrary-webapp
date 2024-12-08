@@ -74,7 +74,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nik' => 'required|int|max:255',
+            'nisn' => 'required|int|max:255',
             'nama' => 'required|string|max:255',
             'telepon' => 'required|int|max:255',
             'username' => 'required|string|unique:users,username|max:255',
@@ -84,7 +84,7 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-            'nik' => $validatedData['nik'],
+            'nisn' => $validatedData['nisn'],
             'nama' => $validatedData['nama'],
             'username' => $validatedData['username'],
             'telepon' => $validatedData['telepon'],

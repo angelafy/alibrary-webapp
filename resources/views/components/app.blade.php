@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/libs/list.js/dist/list.min.js?1684106062') }}"></script>
@@ -58,6 +58,9 @@
 </head>
 
 <body>
+    <script src="{{ asset('assets/js/demo-theme.min.js?1667333929') }}"></script>
+    {{-- sweet alert mas --}}
+    {{-- @include('sweetalert::alert') --}}
     <script src="{{ asset('assets/js/demo-theme.min.js?1667333929') }}"></script>
     {{-- sweet alert mas --}}
     @if (session('success'))

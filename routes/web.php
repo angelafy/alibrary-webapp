@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\UserController;
 Route::get('/', function () {
     return view('client.index');
 });
+
 Route::get('/buku', [App\Http\Controllers\Client\BukuController::class, 'index'])->name('bukuClient.index');
 Route::get('/not-found', [ErrorController::class, 'notFound'])->name('not-found');
 Auth::routes();
