@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nik',
+        'nama',
         'username',
         'email',
+        'telepon',
         'password',
         'type'
     ];
@@ -49,7 +51,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Interact with the user's first name.
+     * Interact with the user's first nama.
      *
      * @param  string  $value
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
