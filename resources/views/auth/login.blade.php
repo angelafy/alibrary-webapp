@@ -1,19 +1,17 @@
 <x-app>
-
     <body class=" border-top-wide border-primary d-flex flex-column">
         <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
         <div class="page page-center">
             <div class="container container-tight py-4">
                 <div class="text-center mb-4">
-                    <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('static/logo.webp') }}"
-                            height="36" alt=""></a>
+                    <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('static/logo.png') }}"
+                            height="50" alt=""></a>
                 </div>
                 <div class="card card-md">
                     <div class="card-body">
-                        <h2 class="h2 text-center mb-4">Login to your account</h2>
+                        <h2 class="h2 text-center mb-4">Masuk ke Akun</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-
                             <div class="mb-3">
                                 <label class="form-label">Username</label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
@@ -29,7 +27,7 @@
                                 <label class="form-label">
                                     Password
                                     <span class="form-label-description">
-                                        <a href="./forgot-password.html">I forgot password</a>
+                                        <a href="./forgot-password.html">Lupa Sandi?</a>
                                     </span>
                                 </label>
                                 <div class="input-group input-group-flat">
@@ -76,17 +74,17 @@
                                 <label class="form-check">
                                     <input type="checkbox" class="form-check-input" name="remember" id="remember"
                                         {{ old('remember') ? 'checked' : '' }} />
-                                    <span class="form-check-label">Remember me on this device</span>
+                                    <span class="form-check-label">Simpan info login saya</span>
                                 </label>
                             </div>
                             <div class="form-footer">
-                                <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                                <button type="submit" class="btn btn-primary w-100">Masuk</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="text-center text-muted mt-3">
-                    Don't have account yet? <a href="{{ route('register') }}" tabindex="-1">Sign up</a>
+                    Belum memiliki akun? <a href="{{ route('register') }}" tabindex="-1">Daftar di sini.</a>
                 </div>
             </div>
         </div>
@@ -116,6 +114,5 @@
         <!-- Tabler Core -->
         <script src="{{ asset('assets/js/tabler.min.js?1667333929') }}"></script>
         <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
-
     </body>
 </x-app>
