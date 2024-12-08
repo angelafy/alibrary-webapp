@@ -229,7 +229,7 @@
                                     kamu!</p>
                             </div>
 
-                            <ul class="flex text-xs text-gray-600 items-center space-x-4">
+                            {{-- <ul class="flex text-xs text-gray-600 items-center space-x-4">
                                 <li
                                     class="hidden lg:flex px-3 py-1 rounded bg-orange-50 text-orange-500 hover:bg-orange-100 cursor-pointer">
                                     Direkomendasikan
@@ -263,7 +263,7 @@
                                     class="block lg:hidden px-3 py-1 rounded bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 cursor-pointer">
                                     <a href="https://perpustakaan.jakarta.go.id/book">Lainnya</a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
 
                         <div class="swiper book-recommendation-swiper z-0">
@@ -1404,121 +1404,97 @@
                         </div>
                     </section>
 
-                    <section class="my-8">
-                        <div class="flex items-center gap-2 lg:gap-4 justify-between">
-                            <div>
-                                <h3 class="font-bold text-base lg:text-xl">Our Team Project A Library</h3>
-                                <p class="hidden lg:block text-sm text-gray-600">Siapa saja pengembang dibalik Website A Library ini?</p>
+                        <section class="my-8">
+                            <div class="flex items-center gap-2 lg:gap-4 justify-between">
+                                <div>
+                                    <h3 class="font-bold text-base lg:text-xl">Our Team Project A Library</h3>
+                                    <p class="hidden lg:block text-sm text-gray-600">Siapa saja pengembang dibalik Website A Library ini?</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
-                                <div class="rounded-lg border relative">
-                                    <img src="images/9c3667fd-1663-426c-b22d-87b7f4ecc6e4.jpeg"
-                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                        alt="">
-                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
-                                        <div>
-                                            <div class="capitalize text-sm lg:text-xl font-bold">Product Owner</div>
-                                            <div class="text-gray-100 text-xs line-clamp-1">
-                                                Amanda Rachmawati
+                            <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
+                                    <div class="rounded-lg border relative">
+                                        <img src="{{ asset('static/amanda.jpg') }}"
+                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            alt="">
+                                        <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                            <div>
+                                                <div class="capitalize text-sm lg:text-xl font-bold">Product Owner</div>
+                                                <div class="text-gray-100 text-xs line-clamp-1">
+                                                    Amanda Rachmawati
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="mt-1 flex items-center space-x-2">
-                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
-                                                <p><span data-sheets-root="1">1204222081<br></span></p>
+                                            <div class="mt-1 flex items-center space-x-2">
+                                                <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                    <p><span data-sheets-root="1">1204222081<br></span></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="rounded-lg border relative">
-                                    <img src="images/9c3667fd-1663-426c-b22d-87b7f4ecc6e4.jpeg"
-                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                        alt="">
+                                    <div class="rounded-lg border relative">
+                                        <img src="{{ asset('static/ilmon.jpg') }}"
+                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            alt="">
 
-                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
-                                        <div>
-                                            <div class="capitalize text-sm lg:text-xl font-bold">Scrum Master</div>
-                                            <div class="text-gray-100 text-xs line-clamp-1">
-                                                Ahmad Ilman Nafia
+                                        <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                            <div>
+                                                <div class="capitalize text-sm lg:text-xl font-bold">Scrum Master</div>
+                                                <div class="text-gray-100 text-xs line-clamp-1">
+                                                    Ahmad Ilman Nafia
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-1 flex items-center space-x-2">
-                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
-                                                1204220026
+                                            <div class="mt-1 flex items-center space-x-2">
+                                                <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                    1204220026
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="rounded-lg border relative">
-                                    <img src="images/977ada3e-daf5-4b81-a4f8-968149a1356a.jpeg" class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                        alt="">
-                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
-                                        <div>
-                                            <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
-                                            <div class="text-gray-100 text-xs line-clamp-1">
-                                                Angela Fransisca Yulisiswati
+                                    <div class="rounded-lg border relative">
+                                        <img src="{{ asset('static/angela.jpg') }}" class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            alt="">
+                                        <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                            <div>
+                                                <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
+                                                <div class="text-gray-100 text-xs line-clamp-1">
+                                                    Angela Fransisca Yulisiswati
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-1 flex items-center space-x-2">
-                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
-                                                <p>1204220007</p>
+                                            <div class="mt-1 flex items-center space-x-2">
+                                                <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                    <p>1204220007</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="rounded-lg border relative">
-                                    <img src="images/977ada3e-daf5-4b81-a4f8-968149a1356a.jpeg"
-                                        class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                        alt="">
-                                    <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
-                                        <div>
-                                            <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
-                                            <div class="text-gray-100 text-xs line-clamp-1">
-                                                M. Izzul Haq Syihabbudin S.
+                                    <div class="rounded-lg border relative">
+                                        <img src="images/977ada3e-daf5-4b81-a4f8-968149a1356a.jpeg"
+                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            alt="">
+                                        <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
+                                            <div>
+                                                <div class="capitalize text-sm lg:text-xl font-bold">Development Team</div>
+                                                <div class="text-gray-100 text-xs line-clamp-1">
+                                                    M. Izzul Haq Syihabbudin S.
+                                                </div>
                                             </div>
-                                        </div>
-                                            <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
-                                                <p>1204220052</p>
+                                                <div class="line-clamp-1 w-full capitalize text-xs lg:text-base">
+                                                    <p>1204220052</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                        </div>
-                    </section>
-                </div>
-
-                {{-- <footer
-                    class="text-sm hidden lg:block mt-12 mb-2 rounded-lg bg-gray-50 self-center p-4 border border-gray-300">
-                    <div class="flex items-center gap-4 justify-center">
-                        <a href="https://perpustakaan.jakarta.go.id/supports#faqs" class="underline font-medium">
-                            FAQ
-                        </a>
-                        <a href="https://perpustakaan.jakarta.go.id/supports/privacy-policy"
-                            class="underline font-medium">
-                            Kebijakan Privasi
-                        </a>
-                        <a href="https://perpustakaan.jakarta.go.id/supports" class="underline font-medium">
-                            Bantuan
-                        </a>
-                        <a href="https://perpustakaan.jakarta.go.id/supports/about-us"
-                            class="underline font-medium">
-                            Tentang Kami
-                        </a>
+                            </div>
+                        </section>
                     </div>
-                    <div class="text-center mt-4">
-                        Copyright © 2022 Dinas Perpustakaan dan Kearsipan Provinsi DKI Jakarta. Seluruh Hak Cipta
-                        Dilindungi Undang-Undang.
-                    </div>
-                </footer> --}}
             </main>
 
             <aside
