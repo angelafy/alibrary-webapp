@@ -73,7 +73,6 @@
                                         <th>Jenis Kelamin</th>
                                         <th>Telepon</th>
                                         <th>Alamat</th>
-                                        <th>Daerah</th>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Tipe</th>

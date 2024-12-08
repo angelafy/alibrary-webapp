@@ -35,7 +35,7 @@ $(document).ready(function () {
             { data: "jenis_kelamin", name: "jenis_kelamin" },
             { data: "telepon", name: "telepon" },
             { data: "alamat", name: "alamat" },
-            { data: "daerah", name: "daerah" },
+
             { data: "username", name: "username" },
             { data: "email", name: "email" },
             { data: "type", name: "type" },
