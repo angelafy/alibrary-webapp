@@ -9,9 +9,8 @@
 
                     <div class="flex items-center justify-between">
                         <div>
-                            <h1 class="text-base lg:text-xl font-bold">Semua Buku</h1>
-                            <p class="text-gray-600 text-sm hidden lg:block">Tingkatkan literasi membacamu hari ini!
-                            </p>
+                            <h1 class="text-base lg:text-xl font-bold">Daftar Koleksi Buku</h1>
+                            <p class="text-gray-600 text-sm hidden lg:block">Semua buku yang tersedia ditampilkan disini!</p>
                         </div>
                     </div>
 
@@ -337,7 +336,7 @@
                                 class="rounded-lg py-1.5 px-3 bg-gray-50 text-gray-500  hover:bg-orange-50 hover:text-orange-500 border hover:border-orange-500">
                                 Kelas IX
                             </a>
-                            <a href=""
+                            {{-- <a href=""
                                 class="rounded-lg py-1.5 px-3 bg-gray-50 text-gray-500  hover:bg-orange-50 hover:text-orange-500 border hover:border-orange-500">
                                 Novel
                             </a>
@@ -348,75 +347,51 @@
                             <a href=""
                                 class="rounded-lg py-1.5 px-3 bg-gray-50 text-gray-500  hover:bg-orange-50 hover:text-orange-500 border hover:border-orange-500">
                                 Sejarah
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4 lg:mt-6 mb-8">
-
                         <div class="flex flex-col gap-4">
-                            <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000865018">
+                            <a href="">
                                 <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                                    <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/288146.jpg"
-                                        src="images/no-images.png"
+                                    <img src="{{asset('static/listbuku/kelas7/Indonesia.jpg') }}"
                                         onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
                                         class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full min-h-48 lg:min-h-64 max-h-full -z-10"
                                         alt="Adab di atas ilmu 2">
-                                    <div
-                                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                    <div class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
                                         <div class="flex items-center justify-between">
-
-
-
-
-
                                         </div>
 
-                                        <div
-                                            class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                            <div
-                                                class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                                Adab / Ilmu
+                                        <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                            <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                Bahasa
                                             </div>
-                                            <h1
-                                                class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                                Adab di atas ilmu 2</h1>
-                                            <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Imam Nawawi
-                                                (Pengarang) ; Rusdianto (Penerjemah) ; Muhammad Syadi Musthafa
-                                                (Penyunting)</h3>
+                                            <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                Bahasa Indonesia Kelas 7</h1>
                                         </div>
                                     </div>
                                 </div>
                             </a>
-                            <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000865017">
+                            <a href="">
                                 <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                                    <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/288141.jpeg"
-                                        src="images/no-images.png"
+                                    <img src="{{ asset('static/listbuku/kelas7/IPA.jpg') }}"
                                         onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
                                         class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full min-h-48 lg:min-h-64 max-h-full -z-10"
                                         alt="Homo sacer">
                                     <div
                                         class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
                                         <div class="flex items-center justify-between">
-
-
-
-
-
                                         </div>
 
-                                        <div
-                                            class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                        <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
                                             <div
                                                 class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                                Filsafat
+                                                Ilmu Pengetahuan
                                             </div>
                                             <h1
                                                 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                                Homo sacer</h1>
-                                            <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Giorgio
-                                                Agamben (Pengarang) ; Stephanus Aswar Herinato (Penerjemah) ;
-                                                Muhammad Ali Fakih (Penyunting)</h3>
+                                                IPA Kelas 7</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -1481,7 +1456,7 @@
     </main>
 
 
-  
+
     </div>
 
     <script src="js/jquery-3.6.0.min.js"></script>

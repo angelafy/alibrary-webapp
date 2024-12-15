@@ -176,7 +176,7 @@
                 </a>
             </div>
         </div>
-  
+
             <div class="rounded-lg bg-primary-50/50 border border-primary-500 p-3">
                 <div class="flex items-center space-x-2 text-primary-800">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
