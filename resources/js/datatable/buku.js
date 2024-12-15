@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
     var bukuShowUrl = "/admin/buku/{id}/show";
 
-    let table = $("#tableBukus").DataTable({
+    let table = $("#tableBuku").DataTable({
         processing: true,
         serverSide: true,
         autoWidth: false,
@@ -32,9 +32,9 @@ $(document).ready(function () {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'title', name: 'title' },
-            { data: 'author', name: 'author' },
-            { data: 'publisher', name: 'publisher' },
-            { data: 'tahun_terbit', name: 'tahun_terbit' },
+            { data: 'penulis', name: 'author' },
+            { data: 'penerbit', name: 'publisher' },
+            { data: 'terbit', name: 'terbit' },
             // { data: 'deskripsi', name: 'deskripsi' },
             // { data: 'sinopsis', name: 'sinopsis' },
             { data: 'genre', name: 'genre' },

@@ -1,7 +1,6 @@
 <x-app>
-    <div class="page">
-        <div class="page-wrapper">
-            <!-- Page header -->
+    <div class="page-body">
+        <div class="container-xl">
             <div class="page-header d-print-none">
                 <div class="container-xl">
                     <div class="row g-2 align-items-center">
@@ -10,6 +9,8 @@
                             <div class="page-pretitle">
                                 Overview
                             </div>
+                            {{-- <td>{{ $kandang->pemilik->name ?? 'Tidak Ada Pemilik' }}</td> --}}
+
                             <h2 class="page-title">
                                 {{ $judul }}
                             </h2>
@@ -18,31 +19,28 @@
                         <div class="col-12 col-md-auto ms-auto d-print-none">
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
-                                    {{-- <a href="#" class="btn">
-                            New view
-                          </a> --}}
+                                    <a href="sad" class="btn">
+                                        Cetak
+                                    </a>
                                 </span>
-                                <a href="#" class="btn btn-primary d-none d-sm-inline-block"
-                                    data-bs-toggle="modal" data-bs-target="#modal-report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                <a href="{{ route('bukus.create') }}" class="btn btn-primary d-none d-sm-inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <line x1="12" y1="5" x2="12" y2="19" />
-                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <path d="M12 5l0 14" />
+                                        <path d="M5 12l14 0" />
                                     </svg>
-                                    Tambah Data
+                                    Tambah {{ $main }}
                                 </a>
-                                <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#modal-report" aria-label="Create new report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                <a href="" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
+                                    data-bs-target="#modal-tambah-hewan" aria-label="Tambah Produk">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <line x1="12" y1="5" x2="12" y2="19" />
-                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <path d="M12 5l0 14" />
+                                        <path d="M5 12l14 0" />
                                     </svg>
                                 </a>
                             </div>
@@ -50,7 +48,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Page body -->
             <div class="page-body">
                 <div class="row row-cards">
                     <div class="col-lg-8">
@@ -74,20 +71,24 @@
                                         {{-- Search: --}}
                                         <div class="ms-2 d-inline-block">
                                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                                placeholder="Cari Hewan" aria-label="Search supplier">
+                                                placeholder="Cari Buku" aria-label="Search supplier">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-vcenter card-table" id="tableHewan">
+                                <table class="table table-vcenter card-table" id="tableBuku">
                                     <thead>
                                         <tr>
-                                            <th style="width: 5%;">No</th>
-                                            <th style="width: 15%;">Tag</th>
-                                            <th style="width: 15%;">Jenis</th>
-                                            <th style="width: 15%;">Sex</th>
-                                            <th style="width: 25%;">Tipe</th>
+                                            <th style="width: 5%;">ID</th>
+                                            <th style="width: 15%;">Judul</th>
+                                            <th style="width: 15%;">Author</th>
+                                            <th>Publisher</th>
+                                            <th>Tahun Terbit</th>
+                                            {{-- <th>Deskripsi</th>
+                                            <th>Sinopsis</th> --}}
+                                            <th>Genre</th>
+                                            <th>Stock</th>
                                             <th class="w-1" style="width: 30%;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -108,7 +109,7 @@
                                 <table class="table table-sm table-borderless">
                                     <thead>
                                         <tr>
-                                            <th>Sex</th>
+                                            <th>Tahun</th>
                                             <th class="text-end">Jumlah</th>
                                         </tr>
                                     </thead>
@@ -133,7 +134,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="progressbg-text">
-                                                            {{ $item->sex == 'Jantan' ? 'Jantan' : 'Betina' }}
+                                                            {{ $item->tahun_terbit == '2021' ? '2021' : '2022' }}
                                                         </div>
                                                     </div>
                                                 </td>
