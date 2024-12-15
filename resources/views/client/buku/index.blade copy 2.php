@@ -353,118 +353,149 @@
                     </div>
 
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4 lg:mt-6 mb-8">
-                        @foreach ($bukus as $buku)
-                            <div class="flex flex-col gap-4">
-                                <a href="#">
-                                    <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                                        <img data-src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
-                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                            class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                            alt="{{ $buku->title }}">
+                        <div class="flex flex-col gap-4">
+                            <a href="#">
+                                <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
+                                    <img data-src="#" src=""
+                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full min-h-48 lg:min-h-64 max-h-full -z-10"
+                                        alt="Masih :  karena cinta selalu berkisah">
+                                    <div
+                                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
+                                        <div class="flex items-center justify-between">
+                                        </div>
                                         <div
-                                            class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70 p-3 flex flex-col justify-between">
+                                            class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
                                             <div
-                                                class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                                <div
-                                                    class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                                    {{ $buku->genre ?? 'Unknown Genre' }}
-                                                </div>
-                                                <h1
-                                                    class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                                    {{ $buku->title }}
-                                                </h1>
-                                                <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
-                                                    {{ $buku->penulis ?? 'Unknown Author' }}
-                                                    {{ $buku->penerbit ?? 'Unknown Publisher' }}
-                                                </h3>
+                                                class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                                Novel
                                             </div>
-
+                                            <h1
+                                                class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                Masih : karena cinta selalu berkisah</h1>
+                                            <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Novelia Indri
+                                                S. (Pengarang) ; Abdul Latif (Penyunting) ; Osmanovski (Ilustrator)
+                                            </h3>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                        @endforeach
+                                </div>
+                            </a>
+
+                        </div>
 
                     </div>
 
-
                     <div class="mt-4">
-                        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-                            <!-- Pagination for mobile view -->
+                        <nav role="navigation" aria-label="Pagination Navigation"
+                            class="flex items-center justify-between">
                             <div class="flex justify-between flex-1 sm:hidden">
-                                <!-- Previous Page -->
-                                @if ($bukus->onFirstPage())
-                                    <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
-                                        « Sebelumnya
-                                    </span>
-                                @else
-                                    <a href="{{ $bukus->previousPageUrl() }}" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                                        Selanjutnya »
-                                    </a>
-                                @endif
+                                <span
+                                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
+                                    « Sebelumnya
+                                </span>
+
+                                <a href="https://perpustakaan.jakarta.go.id/book?page=2"
+                                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                                    Selanjutnya »
+                                </a>
                             </div>
-                    
-                            <!-- Pagination for desktop view -->
+
                             <div class="hidden sm:flex-1 sm:flex space-x-4 sm:items-center sm:justify-between">
                                 <div>
                                     <p class="text-sm text-gray-700 leading-5">
-                                        Menampilkan <span class="font-medium">{{ $bukus->firstItem() }}</span> hingga <span class="font-medium">{{ $bukus->lastItem() }}</span> dari <span class="font-medium">{{ $bukus->total() }}</span> hasil
+                                        Menampilkan
+                                        <span class="font-medium">1</span>
+                                        hingga
+                                        <span class="font-medium">32</span>
+                                        dari
+                                        <span class="font-medium">138489</span>
+                                        hasil
                                     </p>
                                 </div>
-                    
+
                                 <div>
                                     <span class="relative z-0 inline-flex shadow-sm rounded-md">
-                                        <!-- Previous Page -->
-                                        @if ($bukus->onFirstPage())
-                                            <span aria-disabled="true" aria-label="&amp;laquo; Sebelumnya">
-                                                <span class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5" aria-hidden="true">
-                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                    </svg>
-                                                </span>
-                                            </span>
-                                        @else
-                                            <a href="{{ $bukus->previousPageUrl() }}" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md leading-5">
+
+                                        <span aria-disabled="true" aria-label="&amp;laquo; Sebelumnya">
+                                            <span
+                                                class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5"
+                                                aria-hidden="true">
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </a>
-                                        @endif
-                    
-                                        <!-- Page Numbers -->
-                                        @for ($page = 1; $page <= $bukus->lastPage(); $page++)
-                                            @if ($page == $bukus->currentPage())
-                                                <span aria-current="page">
-                                                    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-bold text-orange-500 bg-white border border-gray-300 cursor-default leading-5">{{ $page }}</span>
-                                                </span>
-                                            @else
-                                                <a href="{{ $bukus->url($page) }}" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page {{ $page }}">
-                                                    {{ $page }}
-                                                </a>
-                                            @endif
-                                        @endfor
-                    
-                                        <!-- Next Page -->
-                                        @if ($bukus->hasMorePages())
-                                            <a href="{{ $bukus->nextPageUrl() }}" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </a>
-                                        @else
-                                            <span class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 cursor-default">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                        clip-rule="evenodd"></path>
                                                 </svg>
                                             </span>
-                                        @endif
+                                        </span>
+                                        <span aria-current="page">
+                                            <span
+                                                class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-bold text-orange-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
+                                        </span>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=2"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 2">
+                                            2
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=3"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 3">
+                                            3
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 4">
+                                            4
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=5"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 5">
+                                            5
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=6"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 6">
+                                            6
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=7"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 7">
+                                            7
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=8"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 8">
+                                            8
+                                        </a>
+
+                                        <span aria-disabled="true">
+                                            <span
+                                                class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">...</span>
+                                        </span>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4327"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 4327">
+                                            4327
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4328"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 4328">
+                                            4328
+                                        </a>
+                                        <a href="https://perpustakaan.jakarta.go.id/book?page=2" rel="next"
+                                            class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+                                            aria-label="Selanjutnya &amp;raquo;">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </a>
                                     </span>
                                 </div>
                             </div>
                         </nav>
-                    </div>
-                    
 
+                    </div>
                 </form>
             </section>
         </div>

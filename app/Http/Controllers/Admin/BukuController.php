@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Buku; // Missing model import
+use App\Models\Buku;
 use App\Models\Genre;
 use App\Models\Penerbit;
 use App\Models\Penulis;
@@ -18,6 +18,7 @@ class BukuController extends Controller
         $data['main'] = 'Buku';
         $data['judul'] = 'Manajemen Buku';
         $data['sub_judul'] = 'Data Buku';
+        $data['bukus'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
         if ($request->ajax()) {
             $data = Buku::select('id', 'title', 'penulis', 'penerbit', 'terbit', 'deskripsi', 'sinopsis', 'genre', 'stock');
             return Datatables::of($data)
@@ -48,18 +49,18 @@ class BukuController extends Controller
             'terbit' => 'required|date',
             'genre' => 'required|numeric',
             'stock' => 'required|numeric',
-            'gambar_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
+            'gambar_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
-    
-        // Check if an image file is uploaded
+
+        // fungsi gawe naruh gambar
         if ($request->hasFile('gambar_buku')) {
             $gambar = $request->file('gambar_buku');
-            $gambarName = time() . '.' . $gambar->getClientOriginalExtension(); // Create a unique name for the image
-            $gambar->storeAs('public/buku', $gambarName); // Store the image in the 'public/buku' directory
+            $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+            $gambar->storeAs('public/buku', $gambarName);
         } else {
-            $gambarName = null; // If no image is uploaded, set the filename to null
+            $gambarName = null;
         }
-    
+
         // Create a new book record
         Buku::create([
             'title' => $request->title,
@@ -68,14 +69,12 @@ class BukuController extends Controller
             'terbit' => $request->terbit,
             'genre' => $request->genre,
             'stock' => $request->stock ?? '0',
-            'gambar_buku' => $gambarName, // Save the image filename to the database
+            'gambar_buku' => $gambarName,
         ]);
-    
-        // Redirect to the supplier list with a success message
         return redirect()->route('bukus.index')
             ->with('success', 'Buku berhasil ditambahkan.');
     }
-    
+
     public function create()
     {
         $data['penulis'] = Penulis::all();

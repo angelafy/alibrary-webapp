@@ -353,40 +353,36 @@
                     </div>
 
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4 lg:mt-6 mb-8">
-                        @foreach ($bukus as $buku)
+                        @foreach($bukus as $buku)
                             <div class="flex flex-col gap-4">
                                 <a href="#">
                                     <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                                         <img data-src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
-                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                            class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                            alt="{{ $buku->title }}">
-                                        <div
-                                            class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70 p-3 flex flex-col justify-between">
-                                            <div
-                                                class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                                <div
-                                                    class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
+                                             onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                             class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
+                                             alt="{{ $buku->title }}">
+                                        <div class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70 p-3 flex flex-col justify-between">
+                                            <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
+                                                <div class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
                                                     {{ $buku->genre ?? 'Unknown Genre' }}
                                                 </div>
-                                                <h1
-                                                    class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
+                                                <h1 class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
                                                     {{ $buku->title }}
                                                 </h1>
                                                 <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">
                                                     {{ $buku->penulis ?? 'Unknown Author' }}
-                                                    {{ $buku->penerbit ?? 'Unknown Publisher' }}
+                                                    {{ $buku->penerbit ?? 'Unknown Publisher' }} 
                                                 </h3>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         @endforeach
-
+                        
                     </div>
-
+                    
 
                     <div class="mt-4">
                         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
@@ -408,7 +404,13 @@
                             <div class="hidden sm:flex-1 sm:flex space-x-4 sm:items-center sm:justify-between">
                                 <div>
                                     <p class="text-sm text-gray-700 leading-5">
-                                        Menampilkan <span class="font-medium">{{ $bukus->firstItem() }}</span> hingga <span class="font-medium">{{ $bukus->lastItem() }}</span> dari <span class="font-medium">{{ $bukus->total() }}</span> hasil
+                                        Menampilkan
+                                        <span class="font-medium">{{ $bukus->firstItem() }}</span>
+                                        hingga
+                                        <span class="font-medium">{{ $bukus->lastItem() }}</span>
+                                        dari
+                                        <span class="font-medium">{{ $bukus->total() }}</span>
+                                        hasil
                                     </p>
                                 </div>
                     
@@ -431,18 +433,10 @@
                                             </a>
                                         @endif
                     
-                                        <!-- Page Numbers -->
-                                        @for ($page = 1; $page <= $bukus->lastPage(); $page++)
-                                            @if ($page == $bukus->currentPage())
-                                                <span aria-current="page">
-                                                    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-bold text-orange-500 bg-white border border-gray-300 cursor-default leading-5">{{ $page }}</span>
-                                                </span>
-                                            @else
-                                                <a href="{{ $bukus->url($page) }}" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page {{ $page }}">
-                                                    {{ $page }}
-                                                </a>
-                                            @endif
-                                        @endfor
+                                        <!-- Current Page -->
+                                        <span aria-current="page">
+                                            <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-bold text-orange-500 bg-white border border-gray-300 cursor-default leading-5">{{ $bukus->currentPage() }}</span>
+                                        </span>
                     
                                         <!-- Next Page -->
                                         @if ($bukus->hasMorePages())
@@ -464,7 +458,6 @@
                         </nav>
                     </div>
                     
-
                 </form>
             </section>
         </div>
