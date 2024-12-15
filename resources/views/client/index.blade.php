@@ -1515,7 +1515,7 @@
                     </div>
                 </form>
 
-                <div class="">
+                {{-- <div class=""> --}}
                         {{-- <a target="_blank" href="https://perpustakaan.jakarta.go.id/catalog-requests/create"
                             class="flex items-center justify-center space-x-2 text-white bg-primary-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-200 font-medium rounded-lg text-xs px-3 py-1.5 cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-110">
                             {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -1589,16 +1589,15 @@
                 @endguest
                            @auth
                 <div class="mb-8">
-                    <h3 class="text-sm">Daftar/Masuk ke Akun:</h3>
+                    {{-- <h3 class="text-sm">Daftar/Masuk ke Akun:</h3> --}}
                     <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
-                    
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();"
-                            class="col-span-full border rounded-lg">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                          document.getElementById('logout-form').submit();"
+                        class="col-span-full border rounded-lg">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                             <div
                                 class="rounded-lg flex items-center justify-center space-x-1.5 text-center p-3 bg-gray-50 hover:bg-gray-100">
                                 {{-- <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"

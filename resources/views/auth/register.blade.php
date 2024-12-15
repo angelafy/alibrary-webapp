@@ -1,4 +1,5 @@
 <x-client-app>
+
     <body class="font-mulish antialiased overflow-x-hidden text-sm md:text-base">
         <div class="flex min-h-screen bg-white lg:bg-gray-50 py-0 lg:py-16 px-0 lg:px-56">
             <div class="my-0 lg:my-auto w-full rounded-lg bg-white shadow-none lg:shadow-sm">
@@ -159,8 +160,7 @@
                                             </span>
                                         @enderror
 
-                                        <div @click="isPasswordVisible = !isPasswordVisible"
-                                            class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
+                                        <div @click="isPasswordVisible = !isPasswordVisible" class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
                                             <svg x-show="!isPasswordVisible" class="w-4 h-4" fill="none"
                                                 stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -248,7 +248,7 @@
                         <div class="text-center">
                             <div class="text-sm">
                                 Sudah memiliki akun?
-                                <a href="https://perpustakaan.jakarta.go.id/login"
+                                <a href="{{ route('login')}}"
                                     class="font-bold text-primary-600 hover:text-primary-500">Masuk</a>
                             </div>
                         </div>

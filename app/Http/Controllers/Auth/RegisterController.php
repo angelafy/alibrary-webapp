@@ -55,7 +55,7 @@ class RegisterController extends Controller
             ],
         ], [
             'password.regex' => 'Kata sandi harus mengandung minimal satu huruf besar, satu huruf kecil, satu angka, dan satu karakter spesial.',
-            'nisn.unique' => 'NIK sudah terdaftar.',
+            'nisn.unique' => 'NISN sudah terdaftar.',
             'username.unique' => 'Username sudah digunakan.',
             'email.unique' => 'Email sudah terdaftar.',
         ]);

@@ -7,10 +7,9 @@
             <div class="my-0 lg:my-auto w-full rounded-lg bg-white shadow-none lg:shadow-sm">
                 <div class="fixed left-0 lg:left-5 bottom-0 lg:bottom-1 z-50">
                 </div>
-              
-
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-8 items-center">
-                    <form  class="needs-validation space-y-8 px-4 lg:px-8 py-4 lg:py-8" method="POST" action="{{ route('login') }}">
+                    <form class="needs-validation space-y-8 px-4 lg:px-8 py-4 lg:py-8" method="POST"
+                        action="{{ route('login') }}">
                         @csrf
                         <h3 class="text-lg lg:text-2xl font-medium">Login Akun</h3>
                         <div class="mt-2 lg:mt-4">
@@ -25,7 +24,8 @@
 
                             <div class="relative">
 
-                                <input type="text" class=" w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm @error('username') is-invalid @enderror"
+                                <input type="text"
+                                    class=" w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm @error('username') is-invalid @enderror"
                                     id="username" placeholder="Username" autocomplete="off" name="username_or_email"
                                     value="{{ old('username_or_email') }}">
                                 @error('username')
@@ -41,7 +41,7 @@
                         <div class="mt-2 lg:mt-4">
                             <div class="flex items-center gap-1">
                                 <label for="password" class="font-normal text-xs lg:text-sm">
-                                    <div class="flex flex-wrap items-center gap-x-1 ">
+                                    <div class="flex flex-wrap items-center gap-x-1">
                                         <span>Kata Sandi</span>
                                     </div>
                                 </label>
@@ -49,17 +49,15 @@
                             </div>
 
                             <div class="relative" x-data="{ isPasswordVisible: false }">
-                                <input type="password" id="password"
-                                        class="w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm" name="password"
-                                        placeholder="Your password" autocomplete="off">
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-                            
-
+                                <input name="password" id="password" :type="isPasswordVisible ? 'text' : 'password'"
+                                    placeholder="Password Anda"
+                                    class="w-full bg-gray-50 mt-1 block p-3 lg:p-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 text-xs lg:text-sm"
+                                    value="" required="" />
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div @click="isPasswordVisible = !isPasswordVisible"
                                     class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
                                     <svg x-show="!isPasswordVisible" class="w-4 h-4" fill="none"
@@ -80,7 +78,6 @@
                                     </svg>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="flex items-center justify-between gap-2">
@@ -100,8 +97,7 @@
 
                         <button
                             class="g-recaptcha w-full flex justify-center p-4 border border-transparent text-base lg:text-lg font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                            type="submit"
-                            data-action="submit">
+                            type="submit" data-action="submit">
                             Masuk
                         </button>
 
@@ -113,7 +109,8 @@
                     </form>
 
                     <div class="hidden lg:flex justify-end">
-                        <img src="{{ asset('static/logo.png') }}" style="height: 80px; width: auto;" alt="" class="mx-auto">
+                        <img src="{{ asset('static/logo.png') }}" style="height: 80px; width: auto;" alt=""
+                            class="mx-auto">
                     </div>
                 </div>
             </div>
