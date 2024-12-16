@@ -15,6 +15,15 @@ class PenerbitSeeder extends Seeder
         DB::table('penerbit')->insert([
             [
                 'kode_penerbit' => 'P001',
+                'nama_penerbit' => 'Kementerian Pendidikan Dan Kebudayaan',
+                'alamat' => 'Jl. Palmerah Barat, Jakarta',
+                'email' => 'info@gramedia.com',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'kode_penerbit' => 'P002',
                 'nama_penerbit' => 'Gramedia',
                 'alamat' => 'Jl. Palmerah Barat, Jakarta',
                 'email' => 'info@gramedia.com',
@@ -22,7 +31,7 @@ class PenerbitSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'kode_penerbit' => 'P002',
+                'kode_penerbit' => 'P003',
                 'nama_penerbit' => 'Erlangga',
                 'alamat' => 'Jl. Kapuk Raya, Jakarta',
                 'email' => 'info@erlangga.co.id',
@@ -30,7 +39,7 @@ class PenerbitSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'kode_penerbit' => 'P003',
+                'kode_penerbit' => 'P004',
                 'nama_penerbit' => 'Mizan',
                 'alamat' => 'Jl. Cinambo No. 12, Bandung',
                 'email' => 'info@mizan.com',

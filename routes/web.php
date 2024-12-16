@@ -23,6 +23,7 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('admin/buku/{id}/show', [App\Http\Controllers\client\BukuController::class, 'show'])->name('clientBuku.show');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
 
@@ -51,7 +52,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'store'])->name('bukus.store');
     Route::get('admin/buku/create', [App\Http\Controllers\Admin\BukuController::class, 'create'])->name('bukus.create');
     Route::put('admin/buku/{id}', [App\Http\Controllers\Admin\BukuController::class, 'update'])->name('bukus.update');
+
     // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
+
+    // detail buku
+
 });
 
 /*------------------------------------------

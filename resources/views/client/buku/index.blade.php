@@ -157,114 +157,6 @@
                                                     <div>
                                                         <div class="my-4">
                                                             <div class="font-medium text-sm lg:text-base">
-                                                                Saring Lokasi
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex flex-col space-y-1">
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location0" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="6">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location0"
-                                                                        class="text-gray-700">Perpustakaan Jakarta -
-                                                                        Cikini</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location1" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="8">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location1"
-                                                                        class="text-gray-700">Perpustakaan Jakarta -
-                                                                        PDS HB Jassin</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location2" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="11">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location2"
-                                                                        class="text-gray-700">Perpustakaan Jakarta
-                                                                        Barat - Tanjung Duren</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location3" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="12">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location3"
-                                                                        class="text-gray-700">Perpustakaan Jakarta
-                                                                        Timur - Jatinegara</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location4" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="13">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location4"
-                                                                        class="text-gray-700">Perpustakaan Jakarta
-                                                                        Utara - Koja</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location5" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="14">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location5"
-                                                                        class="text-gray-700">Perpustakaan Jakarta
-                                                                        Pusat - Petojo Enclek</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex items-start">
-                                                                <div class="flex items-center h-5">
-                                                                    <input id="location6" type="checkbox"
-                                                                        name="location_filter"
-                                                                        onchange="setBookFilterByLocationId(this.name)"
-                                                                        class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
-                                                                        value="15">
-                                                                </div>
-                                                                <div class="ml-3 text-xs lg:text-sm">
-                                                                    <label for="location6"
-                                                                        class="text-gray-700">Perpustakaan Jakarta
-                                                                        Selatan - Gandaria Tengah</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div class="my-4">
-                                                            <div class="font-medium text-sm lg:text-base">
                                                                 Saring Bahasa
                                                             </div>
                                                         </div>
@@ -355,7 +247,8 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4 lg:mt-6 mb-8">
                         @foreach ($bukus as $buku)
                             <div class="flex flex-col gap-4">
-                                <a href="#">
+                                <!-- Tambahkan URL ke detail buku -->
+                                <a href="{{ route('clientBuku.show', $buku->id) }}">
                                     <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                                         <img data-src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
                                             onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
@@ -378,13 +271,11 @@
                                                     {{ $buku->penerbit ?? 'Unknown Publisher' }}
                                                 </h3>
                                             </div>
-
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         @endforeach
-
                     </div>
 
 
@@ -403,7 +294,7 @@
                                     </a>
                                 @endif
                             </div>
-                    
+
                             <!-- Pagination for desktop view -->
                             <div class="hidden sm:flex-1 sm:flex space-x-4 sm:items-center sm:justify-between">
                                 <div>
@@ -411,7 +302,7 @@
                                         Menampilkan <span class="font-medium">{{ $bukus->firstItem() }}</span> hingga <span class="font-medium">{{ $bukus->lastItem() }}</span> dari <span class="font-medium">{{ $bukus->total() }}</span> hasil
                                     </p>
                                 </div>
-                    
+
                                 <div>
                                     <span class="relative z-0 inline-flex shadow-sm rounded-md">
                                         <!-- Previous Page -->
@@ -430,7 +321,7 @@
                                                 </svg>
                                             </a>
                                         @endif
-                    
+
                                         <!-- Page Numbers -->
                                         @for ($page = 1; $page <= $bukus->lastPage(); $page++)
                                             @if ($page == $bukus->currentPage())
@@ -443,7 +334,7 @@
                                                 </a>
                                             @endif
                                         @endfor
-                    
+
                                         <!-- Next Page -->
                                         @if ($bukus->hasMorePages())
                                             <a href="{{ $bukus->nextPageUrl() }}" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150">
@@ -463,7 +354,7 @@
                             </div>
                         </nav>
                     </div>
-                    
+
 
                 </form>
             </section>
