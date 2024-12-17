@@ -1,3 +1,4 @@
+<script src="{{ asset('client/js/kode/buku.js') }}"></script>
 <x-app>
     <div class="page-body">
         <div class="container-xl">
@@ -10,6 +11,24 @@
                             <h4 class="card-title">Tambah Buku</h4>
                         </div>
                         <div class="card-body">
+                            {{-- kode buku --}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Kode</label>
+                                        <input type="text" class="form-control" name="kode_buku" id="kode_buku"
+                                            value="{{ old('kode_buku') }}" readonly disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">ISBN</label>
+                                        <input type="text" class="form-control" name="isbn" id="isbn"
+                                            name="isbn" value="{{ old('isbn') }}" />
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Judul Buku -->
                             <div class="mb-3">
                                 <label for="title" class="form-label">Judul Buku</label>
@@ -23,7 +42,7 @@
                             <!-- Penulis -->
                             <div class="mb-3">
                                 <label for="penulis" class="form-label">Penulis</label>
-                                <select class="form-control" id="penulis" name="penulis" required>
+                                <select class="form-control" id="penulis_id" name="penulis_id" required>
                                     <option value="" disabled selected>Pilih Penulis</option>
                                     @foreach ($penulis as $item)
                                         <option value="{{ $item->id }}"
@@ -40,7 +59,7 @@
                             <!-- Penerbit -->
                             <div class="mb-3">
                                 <label for="penerbit" class="form-label">Penerbit</label>
-                                <select class="form-control" id="penerbit" name="penerbit" required>
+                                <select class="form-control" id="penerbit_id" name="penerbit_id" required>
                                     <option value="" disabled selected>Pilih Penerbit</option>
                                     @foreach ($penerbit as $item)
                                         <option value="{{ $item->id }}"
@@ -67,7 +86,7 @@
                             <!-- Genre -->
                             <div class="mb-3">
                                 <label for="genre" class="form-label">Genre</label>
-                                <select class="form-control" id="genre" name="genre" required>
+                                <select class="form-control" id="genre_id" name="genre_id" required>
                                     <option value="" disabled selected>Pilih Genre</option>
                                     @foreach ($genre as $item)
                                         <option value="{{ $item->id }}"
@@ -94,6 +113,24 @@
                                 <label for="gambar_buku">Gambar Buku</label>
                                 <input type="file" class="form-control" id="gambar_buku" name="gambar_buku">
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="mb-12">
+                                    <label class="form-label">Deskripsi
+                                        <span class="form-label-description" id="ketikan_sakkarepmu">0/100</span>
+                                    </label>
+                                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" maxlength="100">{{ old('deskripsi') }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="mb-12">
+                                    <label class="form-label">Sinopsis
+                                        <span class="form-label-description" id="ketikan_sakkarepmu">0/100</span>
+                                    </label>
+                                    <textarea class="form-control" name="sinopsis" id="sinopsis" rows="3" maxlength="100">{{ old('sinopsis') }}</textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Tombol Submit -->
@@ -112,7 +149,8 @@
     </div>
     <script>
         // Gawe Count Text
-        const textarea = document.getElementById('alamat');
+        const textarea = document.getElementById('deskripsi');
+        const textarea = document.getElementById('sinopsis');
         const ketikan_sakkarepmu = document.getElementById('ketikan_sakkarepmu');
 
         textarea.addEventListener('input', function() {
@@ -122,7 +160,7 @@
         });
 
         // Hapus readonly dan disabled sebelum submit
-        document.getElementById('supplierForm').addEventListener('submit', function() {
+        document.getElementById('bukuForm').addEventListener('submit', function() {
             document.getElementById('kode').removeAttribute('readonly');
             document.getElementById('kode').removeAttribute('disabled');
         });

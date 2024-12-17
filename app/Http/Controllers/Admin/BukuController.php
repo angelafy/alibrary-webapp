@@ -20,7 +20,7 @@ class BukuController extends Controller
         $data['sub_judul'] = 'Data Buku';
         $data['bukus'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
         if ($request->ajax()) {
-            $data = Buku::select('id', 'title', 'penulis', 'penerbit', 'terbit', 'deskripsi', 'sinopsis', 'genre', 'stock');
+            $data = Buku::select('id', 'kode_buku', 'isbn', 'title', 'penulis_id', 'penerbit_id', 'terbit', 'deskripsi', 'sinopsis', 'genre_id', 'stock');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -43,12 +43,16 @@ class BukuController extends Controller
     {
         // Validate incoming data
         $request->validate([
+            'kode_buku' => 'required|string|max:255',
+            'isbn' => 'required|string|max:255',
             'title' => 'required|string|max:255',
-            'penulis' => 'required|numeric',
-            'penerbit' => 'required|numeric',
+            'penulis_id' => 'required|numeric',
+            'penerbit_id' => 'required|numeric',
             'terbit' => 'required|date',
-            'genre' => 'required|numeric',
+            'genre_id' => 'required|numeric',
             'stock' => 'required|numeric',
+            'deskripsi' => 'required|string|max:255',
+            'sinopsis' => 'required|string|max:255',
             'gambar_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
@@ -63,11 +67,15 @@ class BukuController extends Controller
 
         // Create a new book record
         Buku::create([
+            'kode_buku' => $request->kode_buku,
+            'isbn' => $request->isbn,
             'title' => $request->title,
-            'penulis' => $request->penulis,
-            'penerbit' => $request->penerbit,
+            'penulis_id' => $request->penulis_id,
+            'penerbit_id' => $request->penerbit_id,
             'terbit' => $request->terbit,
-            'genre' => $request->genre,
+            'genre_id' => $request->genre_id,
+            'deskripsi' => $request->deskripsi,
+            'sinopsis' => $request->sinopsis,
             'stock' => $request->stock ?? '0',
             'gambar_buku' => $gambarName,
         ]);
@@ -85,6 +93,25 @@ class BukuController extends Controller
     }
 
 
+    public function getBukuData(Request $request)
+    {
+        // Fetch books with their associated penulis, penerbit, and genre
+        $buku = Buku::with(['penulis', 'penerbit', 'genre'])->get();
 
+        return datatables()->of($buku)
+            ->addColumn('penulis_id', function ($buku) {
+                return $buku->penulis ? $buku->penulis->nama_author : '-'; // Ensure penulis is not null
+            })
+            ->addColumn('penerbit_id', function ($buku) {
+                return $buku->penerbit ? $buku->penerbit->nama_penerbit : '-'; // Ensure penerbit is not null
+            })
+            ->addColumn('genre_id', function ($buku) {
+                return $buku->genre ? $buku->genre->nama_genre : '-'; // Ensure genre is not null
+            })
+            ->addColumn('action', function ($buku) {
+                return '<button class="btn btn-info">View</button>'; // Example action button
+            })
+            ->make(true);
+    }
 }
 

@@ -11,28 +11,30 @@ class Buku extends Model
 
     protected $table = 'buku';
     protected $fillable = [
+        'kode_buku',
+        'isbn',
         'title',
-        'penulis',
-        'penerbit',
+        'penulis_id',
+        'penerbit_id',
         'terbit',
         'deskripsi',
         'sinopsis',
-        'genre',
+        'genre_id',
         'stock',
         'gambar_buku',
     ];
     public function penulis()
     {
-        return $this->belongsTo(Penulis::class, 'penulis', 'id');  // 'penulis' is the foreign key column in 'buku' table
+        return $this->belongsTo(Penulis::class, 'penulis_id', 'id');  
     }
 
     public function penerbit()
     {
-        return $this->belongsTo(Penerbit::class, 'penerbit', 'id');  // 'penerbit' is the foreign key column in 'buku' table
+        return $this->belongsTo(Penerbit::class, 'penerbit_id', 'id');  
     }
 
     public function genre()
     {
-        return $this->belongsTo(Genre::class, 'genre', 'id');  // 'genre' is the foreign key column in 'buku' table
+        return $this->belongsTo(Genre::class, 'genre_id', 'id'); 
     }
 }

@@ -48,6 +48,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('admin/users/users-admin', [App\Http\Controllers\Admin\UserController::class, 'adalahAdmin'])->name('users.adalahAdmin');
 
+    Route::get('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'getBukuData']);
     Route::get('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'index'])->name('bukus.index');
     Route::post('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'store'])->name('bukus.store');
     Route::get('admin/buku/create', [App\Http\Controllers\Admin\BukuController::class, 'create'])->name('bukus.create');

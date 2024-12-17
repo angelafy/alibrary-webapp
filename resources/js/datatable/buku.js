@@ -13,7 +13,7 @@ $(document).ready(function () {
         scrollX: true,
         responsive: true,
         pageLength: 10,
-        dom: "t", // Remove default search and pagination
+        dom: "t",
         language: {
             lengthMenu: "",
             info: "",
@@ -23,25 +23,28 @@ $(document).ready(function () {
             zeroRecords: "Data tidak ditemukan",
             pagingType: "simple",
             paginate: {
-                previous: "", // Menghilangkan teks "Previous"
-                next: "", // Menghilangkan teks "Next"
+                previous: "",
+                next: "",
             },
-            processing: "Loading...", // Custom processing message
+            processing: "Loading...",
         },
-        ajax: "/admin/buku",
+        ajax: "/admin/buku", 
         columns: [
-            { data: 'id', name: 'id' },
-            { data: 'title', name: 'title' },
-            { data: 'penulis', name: 'author' },
-            { data: 'penerbit', name: 'publisher' },
-            { data: 'terbit', name: 'terbit' },
-            // { data: 'deskripsi', name: 'deskripsi' },
-            // { data: 'sinopsis', name: 'sinopsis' },
-            { data: 'genre', name: 'genre' },
-            { data: 'stock', name: 'stock' },
-            { data: 'action', name: 'action', orderable: false, searchable: false }
+            { data: "id", name: "id" }, 
+            { data: "title", name: "title" }, 
+            { data: "penulis_id", name: "penulis_id"},
+            { data: "penerbit_id", name: "penerbit_id" },
+            { data: "terbit", name: "terbit" }, 
+            { data: "genre_id", name: "genre_id" },  
+            { data: "stock", name: "stock" }, 
+            {
+                data: "action",
+                name: "action",
+                orderable: false,
+                searchable: false,
+            },
         ],
-        drawCallback: sihubDrawCallback, // Gawe Nyelok Callback
+        drawCallback: sihubDrawCallback, 
     });
 
     // Gawe Page Length

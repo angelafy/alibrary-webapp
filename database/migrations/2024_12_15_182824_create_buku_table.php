@@ -11,34 +11,36 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('buku', function (Blueprint $table) {
-            $table->id(); // Tipe data unsignedBigInteger secara default
-            $table->string('title'); // Judul buku
-            $table->unsignedBigInteger('penulis'); // Penulis buku
-            $table->unsignedBigInteger('penerbit')->nullable(); // Penerbit buku
+            $table->id();
+            $table->string('kode_buku');
+            $table->string('isbn');
+            $table->string('title');
+            $table->unsignedBigInteger('penulis_id');
+            $table->unsignedBigInteger('penerbit_id')->nullable();
             $table->date('terbit')->nullable();
-            $table->text('deskripsi')->nullable(); // Deskripsi buku
-            $table->text('sinopsis')->nullable(); // Sinopsis buku
-            $table->unsignedBigInteger('genre')->nullable(); // Genre buku
-            $table->integer('stock')->default(1); // Stok buku
+            $table->text('deskripsi')->nullable();
+            $table->text('sinopsis')->nullable();
+            $table->unsignedBigInteger('genre_id')->nullable();
+            $table->integer('stock')->default(1);
             $table->string('gambar_buku')->nullable();
             $table->timestamps();
 
-            $table->foreign('penerbit')
+            // Foreign key constraints
+            $table->foreign('penerbit_id')
                 ->references('id')
                 ->on('penerbit')
                 ->onDelete('cascade');
 
-
-            $table->foreign('penulis')
+            $table->foreign('penulis_id')
                 ->references('id')
                 ->on('penulis')
                 ->onDelete('cascade');
 
-
-            $table->foreign('genre')
+            $table->foreign('genre_id')
                 ->references('id')
                 ->on('genre')
                 ->onDelete('cascade');
+
         });
 
 

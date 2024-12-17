@@ -62,7 +62,8 @@
 
                                                         <li>
                                                             <input type="radio" id="0" disabled=""
-                                                                name="location_id" value="6" class="hidden peer">
+                                                                name="location_id" value="6"
+                                                                class="hidden peer">
                                                             <label for="0"
                                                                 class=" opacity-25  inline-flex items-center space-x-4 justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-primary-500 peer-checked:text-primary-500 hover:bg-gray-50">
                                                                 <div class="block">
@@ -86,7 +87,8 @@
 
                                                         <li>
                                                             <input type="radio" id="1" disabled=""
-                                                                name="location_id" value="8" class="hidden peer">
+                                                                name="location_id" value="8"
+                                                                class="hidden peer">
                                                             <label for="1"
                                                                 class=" opacity-25  inline-flex items-center space-x-4 justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-primary-500 peer-checked:text-primary-500 hover:bg-gray-50">
                                                                 <div class="block">
@@ -109,7 +111,8 @@
 
                                                         <li>
                                                             <input type="radio" id="2" disabled=""
-                                                                name="location_id" value="11" class="hidden peer">
+                                                                name="location_id" value="11"
+                                                                class="hidden peer">
                                                             <label for="2"
                                                                 class=" opacity-25  inline-flex items-center space-x-4 justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-primary-500 peer-checked:text-primary-500 hover:bg-gray-50">
                                                                 <div class="block">
@@ -302,8 +305,8 @@
                             </div>
                             <div class="p-4 lg:p-6">
                                 <h2 class="text-lg lg:text-2xl font-bold capitalize">{{ $buku->title }}</h2>
-                                <h4 class="text-gray-500 text-sm lg:text-base mt-1">
-                                    {{ $buku->penulis->nama_author ?? 'Unknown Author' }} (Pengarang)</h4>
+                                <h4 class="text-gray-500 text-sm lg:text-base mt-1">Fidela Asa, JJ (Pengarang) ; Tim
+                                    Elementa (editor)</h4>
 
                                 <div class="flex flex-wrap items-center gap-2 mt-4">
                                     <a href="https://perpustakaan.jakarta.go.id/book?keyword=Bacaan%20kanak%2Fkanak"
@@ -319,8 +322,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M6 6h.008v.008H6V6Z"></path>
                                                 </svg>
-                                                <div class="text-sm capitalize">
-                                                    {{ $buku->genre->nama_genre ?? 'Unknown Author' }}</div>
+                                                <div class="text-sm capitalize">Bacaan kanak/kanak</div>
                                             </div>
                                         </div>
                                     </a>
@@ -330,14 +332,13 @@
 
                                 <div class="mt-4 lg:mt-6 text-sm grid grid-flow-row rounded border divide-y">
                                     <div class="grid grid-cols-2 p-2">
-                                        <span class="font-medium">Kode Buku</span>
-                                        <span>
-                                            {{ $buku->kode_buku ?? 'Unknown Data' }}</span>
+                                        <span class="font-medium">Edisi</span>
+                                        <span>-</span>
                                     </div>
+
                                     <div class="grid grid-cols-2 p-2">
                                         <span class="font-medium">Penerbit</span>
-                                        <span> {{ $buku->penerbit->nama_penerbit ?? 'Unknown Author' }} :
-                                            {{ $buku->terbit ?? 'Unknown Author' }}</span>
+                                        <span>Bekasi : Elementa Media, 2023</span>
                                     </div>
 
                                     <div class="grid grid-cols-2 p-2">
@@ -346,8 +347,8 @@
                                     </div>
 
                                     <div class="grid grid-cols-2 p-2">
-                                        <span class="font-medium">Kode Buku</span>
-                                        <span>{{ $buku->isbn ?? 'Unknown Data' }}</span>
+                                        <span class="font-medium">ISBN</span>
+                                        <span>9786230955853</span>
                                     </div>
 
                                     <div class="grid grid-cols-2 p-2">
@@ -356,14 +357,20 @@
                                     </div>
 
                                     <div class="grid grid-cols-2 p-2">
-                                        <span class="font-medium">Deskripsi</span>
-                                        <span> {{ $buku->deskripsi ?? 'Unknown Data' }}
+                                        <span class="font-medium">Bahasa</span>
+                                        <span> Indonesia
                                         </span>
                                     </div>
 
+                                    <div class="grid grid-cols-2 p-2">
+                                        <span class="font-medium">Call Number</span>
+                                        <span>028.5 FID p</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="p-4">
                             <div class="flex items-center space-x-2">
                                 <div class="rounded-full h-2 w-2 bg-orange-500"></div>
@@ -374,8 +381,8 @@
                                 </div>
 
                                 <div class="rounded-lg p-4 bg-gray-50 border border-gray-200 text-gray-500">
-                                    <span
-                                        class="block font-medium text-sm line-clamp-2">{{ $buku->sinopsis ?? 'Unknown Data' }}</span>
+                                    <span class="block font-medium text-sm line-clamp-2">Koleksi belum dapat dipinjam
+                                        atau dibaca di tempat</span>
                                 </div>
                             </div>
                         </div>
