@@ -22,6 +22,15 @@ All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
+    Route::get('/pinjam/keranjang', [App\Http\Controllers\Client\PeminjamanController::class, 'keranjang'])->name('pinjam.keranjang');
+
+    // Menambahkan buku ke dalam keranjang
+    Route::post('/pinjam/keranjang/add', [App\Http\Controllers\Client\PeminjamanController::class, 'store'])->name('pinjam.store');
+
+    // Proses peminjaman buku (checkout)
+    Route::get('/pinjam/checkout', [App\Http\Controllers\Client\PeminjamanController::class, 'checkout'])->name('pinjam.checkout');
+    Route::post('/pinjam/checkout', [App\Http\Controllers\Client\PeminjamanController::class, 'process'])->name('pinjam.process');
+    
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');

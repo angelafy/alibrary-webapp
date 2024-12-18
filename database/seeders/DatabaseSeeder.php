@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             BukuSeeder::class,
             PeminjamanSeeder::class,
             DendaSeeder::class,
+            KeranjangSeeder::class,
+            DetailKeranjangSeeder::class,
+            DetailPeminjamanSeeder::class,
         ]);
     }
 }

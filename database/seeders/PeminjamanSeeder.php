@@ -11,18 +11,16 @@ class PeminjamanSeeder extends Seeder
     {
         Peminjaman::create([
             'user_id' => 1, // Admin User
-            'buku_id' => 1, // Laravel Basics
-            'borrow_date' => now(),
-            'return_date' => now()->addDays(7), // 7 days loan
-            'is_returned' => false,
+            'tgl_pinjam' => now(),
+            'tgl_kembali' => now()->addDays(7), // 7 days loan
+            'status' => false,
         ]);
 
         Peminjaman::create([
             'user_id' => 2, // Regular User
-            'buku_id' => 2, // Advanced PHP
-            'borrow_date' => now(),
-            'return_date' => now()->addDays(14), // 14 days loan
-            'is_returned' => false,
+            'tgl_pinjam' => now(),
+            'tgl_kembali' => now()->addDays(14), // 14 days loan
+            'status' => false,
         ]);
     }
 }
