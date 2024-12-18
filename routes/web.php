@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\UserController;
 Route::get('/', function () {
     return view('client.index');
 });
-
+// Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/buku', [App\Http\Controllers\Client\BukuController::class, 'index'])->name('bukuClient.index');
 Route::get('/not-found', [ErrorController::class, 'notFound'])->name('not-found');
 Auth::routes();
@@ -23,7 +23,7 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('admin/buku/{id}/show', [App\Http\Controllers\client\BukuController::class, 'show'])->name('clientBuku.show');
+    Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
 

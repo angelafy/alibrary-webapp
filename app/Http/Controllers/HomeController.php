@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        return view('client.index');
-    } 
+        return view('welcome');
+    }
   
     /**
      * Show the application dashboard.
