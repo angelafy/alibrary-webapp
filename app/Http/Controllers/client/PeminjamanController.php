@@ -13,12 +13,20 @@ class PeminjamanController extends Controller
     // Menampilkan halaman keranjang peminjaman
     public function keranjang()
     {
-        $data['keranjang']  = Keranjang::where('user_id', Auth::id())->with('detailKeranjang.buku')->first();
-        $data['totalDetailKeranjang'] = $data['keranjang'] && $data['keranjang']->detailKeranjang ? $data['keranjang']->detailKeranjang->count() : 0;
+        $data = [];
         
-        if (!$data['keranjang'] || $data['keranjang']->detailKeranjang->isEmpty()) {
-            return view('client.buku.pinjam.keranjang', ['message' => 'Keranjang Anda kosong.']);
-        }
+        $data['keranjang'] = Keranjang::where('user_id', Auth::id())
+            ->with('detailKeranjang.buku')
+            ->first();
+            
+        $data['totalDetailKeranjang'] = $data['keranjang'] && $data['keranjang']->detailKeranjang 
+            ? $data['keranjang']->detailKeranjang->count() 
+            : 0;
+            
+        $data['message'] = !$data['keranjang'] || $data['keranjang']->detailKeranjang->isEmpty() 
+            ? 'Keranjang Anda kosong.' 
+            : null;
+        
         return view('client.buku.pinjam.keranjang', $data);
     }
     
