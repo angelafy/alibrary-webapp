@@ -117,7 +117,7 @@
                                                     let bukuId = document.getElementById('buku_id').value; // Misalnya buku_id sudah ada di input tersembunyi
                                     
                                                     // Kirim request ke server
-                                                    axios.post('/pinjam/keranjang/add', { buku_id: bukuId })
+                                                    axios.post('/pinjam/add', { buku_id: bukuId })
                                                         .then(response => {
                                                             Swal.fire('Berhasil!', response.data.message, 'success');
                                                             // Lakukan sesuatu setelah berhasil, misalnya refresh halaman atau update UI
@@ -147,8 +147,6 @@
                                         @endif
                                     </div>
                                     
-                                    
-
                                     <div class="fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title"
                                         role="dialog" aria-modal="true" x-show="checkoutModal">
                                         <div

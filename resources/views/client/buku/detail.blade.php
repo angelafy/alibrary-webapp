@@ -22,23 +22,20 @@
                                 }
                             }" x-cloak class="w-full">
                                 <!-- Button to choose book location -->
-                                <form action="{{ route('pinjam.store') }}" method="POST">
+                                <form id="keranjangForm" method="POST">
                                     @csrf
                                     <input type="hidden" name="buku_id" value="{{ $buku->id }}">
-
                                     <div
-                                        class="flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-500 text-white px-6 py-2 mx-4 hover:bg-primary-700">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
+                                        class="flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-500 text-white px-6 py-2 mx-4 hover:bg-primary-700"
+                                        onclick="submitKeranjang(event)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
                                         <span>Pinjam buku ini</span>
                                     </div>
-
                                 </form>
-
-
+                                
                                 <!-- Modal for choosing book location -->
                                 <div aria-labelledby="modal-title" aria-modal="true" class="fixed z-50 inset-0"
                                     role="dialog" x-show="chooseBookLocation">
@@ -75,7 +72,6 @@
                                                                 </div>
                                                             </label>
                                                         </li>
-                                                        <!-- Repeat for other locations as needed -->
                                                     </ul>
                                                 </div>
                                                 <div
@@ -232,4 +228,61 @@
             </div>
         </main>
     </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @elseif(session('error'))
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 </x-client-app>
+<script>
+    function submitKeranjang(event) {
+        event.preventDefault(); 
+        const form = document.getElementById('keranjangForm');
+        const formData = new FormData(form);
+        fetch("{{ route('keranjang.store') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: data.message,
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: data.message,
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Terjadi kesalahan!',
+                text: 'Silakan coba lagi nanti.',
+            });
+            console.error('Error:', error);
+        });
+    }
+</script>
