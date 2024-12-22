@@ -101,15 +101,53 @@
                                     <span>Tambah Buku</span>
                                 </a>
                                 <div x-data="{ checkoutModal: false }" x-cloak>
-                                    <div @click="checkoutModal = !checkoutModal"
-                                        class="w-full flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-600 text-sm text-white px-6 py-2 hover:bg-primary-700">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                                        </svg>
-                                        <span>Pinjam</span>
+                                    <div x-data="{ isKeranjangEmpty: {{ $totalDetailKeranjang == 0 ? 'true' : 'false' }} }" x-cloak>
+                                        <!-- Tombol Pinjam hanya akan muncul jika keranjang tidak kosong -->
+                                        <div @click="if (!isKeranjangEmpty) {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin?',
+                                                text: 'Buku ini akan dipinjam!',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Iya',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Ambil ID buku yang dipilih
+                                                    let bukuId = document.getElementById('buku_id').value; // Misalnya buku_id sudah ada di input tersembunyi
+                                    
+                                                    // Kirim request ke server
+                                                    axios.post('/pinjam/keranjang/add', { buku_id: bukuId })
+                                                        .then(response => {
+                                                            Swal.fire('Berhasil!', response.data.message, 'success');
+                                                            // Lakukan sesuatu setelah berhasil, misalnya refresh halaman atau update UI
+                                                        })
+                                                        .catch(error => {
+                                                            Swal.fire('Gagal!', error.response.data.message, 'error');
+                                                        });
+                                                }
+                                            });
+                                        }"
+                                        :class="isKeranjangEmpty ? 'cursor-not-allowed bg-gray-400 hover:bg-gray-400' : 'cursor-pointer bg-primary-600 hover:bg-primary-700'"
+                                        :disabled="isKeranjangEmpty"
+                                        class="w-full flex items-center justify-center gap-2 rounded-lg text-sm text-white px-6 py-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                            </svg>
+                                            <span>Pinjam</span>
+                                        </div>
+                                    
+                                        <!-- Form tersembunyi untuk mengirim permintaan POST, hanya tampil jika keranjang tidak kosong -->
+                                        @if($totalDetailKeranjang > 0)
+                                            <form id="pinjamForm" method="POST" action="{{ route('pinjam.store') }}">
+                                                @csrf
+                                                <!-- ID Buku yang akan dipinjam, misalnya bisa didapat dari data keranjang -->
+                                                <input type="hidden" name="buku_id" id="buku_id" value="{{ $keranjang->detailKeranjang->first()->buku_id }}">
+                                            </form>
+                                        @endif
                                     </div>
+                                    
+                                    
 
                                     <div class="fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title"
                                         role="dialog" aria-modal="true" x-show="checkoutModal">
@@ -411,475 +449,6 @@
                 @endif
         </div>
         </div>
-
-        {{-- <div class="mt-12 mb-4 sm:mb-16">
-            <div class="flex items-center space-x-2">
-                <div class="rounded-full h-2 w-2 bg-orange-500"></div>
-                <h4 class="font-medium text-lg">Buku Rekomendasi Lainnya</h4>
-            </div>
-
-            <div class="mt-4">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-07100000000012">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Dasar-dasar perencanaan beton bertulang">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Dasar-dasar perencanaan beton bertulang</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">KUSUMA,
-                                        Gideon H.</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-07110000000058">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Pendidikan jasmani olah raga dan kesehatan 4 : Penjaskes untuk kelas IV SD">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        OLAHRAGA / STUDI DAN PENGAJARAN / PENJASKES
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Pendidikan jasmani olah raga dan kesehatan 4 : Penjaskes untuk kelas
-                                        IV SD</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1"></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-03100000017700">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Tanya Jawab Kredit Dokumenter">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        EKONOMI INTERNASIONAL
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Tanya Jawab Kredit Dokumenter</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">A.A. RACHMAT
-                                        M. Z</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12120000000498">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/65801.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="INDONESIAN heritage 7 : visual art">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        INDONESIA / KESENIAN
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        INDONESIAN heritage 7 : visual art</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">INDONESIAN
-                                        heritage</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12120000000541">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Lembaran negara Republik Indonesia tahun 1974 no. 1-67">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        UNDANG/UNDANG DAN PERATURAN
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Lembaran negara Republik Indonesia tahun 1974 no. 1-67</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">INDONESIA.
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12139000000607">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Double vision 2C : reptil-reptil keren">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        REPTIL / KARYA BERGAMBAR
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Double vision 2C : reptil-reptil keren</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">RED Bird
-                                        Publishing</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000774555">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/98289.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Understand-Inc People :  Strategi Taktis Komunikasi Berdasarkan Kepribadian">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        KOMUNIKASI / STRATEGI
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Understand-Inc People : Strategi Taktis Komunikasi Berdasarkan
-                                        Kepribadian</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Erwin
-                                        Parengkuan</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000787777">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/111569.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Tips Job&#039;s Hunting">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Tips Job&#039;s Hunting</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Dewi Anggiani
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000797852">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/121730.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Pangan Bagi Kehidupan">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        Sosial
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Pangan Bagi Kehidupan</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">-</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000799225">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/123117.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Ensiklopedia junior : hutan">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        ENSIKLOPEDIA ANAK / HUTAN
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Ensiklopedia junior : hutan</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Tonny Prakoso
-                                        ; Kartika Indah Prativi</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000806262">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/130265.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Resep komplit olahan tempe">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        MASAKAN
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Resep komplit olahan tempe</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Fenita
-                                        Agustina</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000831224">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/176066.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Longuseiku :  Kumpulan Puisi">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        Puisi
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Longuseiku : Kumpulan Puisi</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Iverdixon
-                                        Tinungki</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000855529">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/257341.jpeg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Ombak Losari : Sajak - Sajak dari Makassar">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        Kesusasteraan Makassar / Puisi
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Ombak Losari : Sajak - Sajak dari Makassar</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Puisi
-                                        Indonesia (Pengarang) ; S. Sinansari Ecip (penyunting)</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000862069">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/278384.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Perjalanan :  kumpulan puisi">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        Kesusastraan / Puisi
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Perjalanan : kumpulan puisi</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Basyral
-                                        Hamidy Harahap (Pengarang)</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000863653">
-                        <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
-                            <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/283619.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
-                                class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
-                                alt="Kugapai sakinah bersamamu">
-                            <div
-                                class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70  p-3 flex flex-col justify-between">
-                                <div class="flex items-center justify-between">
-
-
-
-
-
-                                </div>
-
-                                <div class="self-center flex flex-col items-center space-y-1 text-center p-2 w-full">
-                                    <div
-                                        class="max-w-full capitalize line-clamp-1 overflow-x-hidden rounded-lg px-3 font-medium py-1 bg-primary-500/50 text-xs border-primary-500 text-white">
-                                        Pernikahan sakinah
-                                    </div>
-                                    <h1
-                                        class="capitalize text-white text-base sm:text-lg font-bold drop-shadow-md line-clamp-1">
-                                        Kugapai sakinah bersamamu</h1>
-                                    <h3 class="text-gray-100 text-xs sm:text-sm line-clamp-1">Abdul Syukur
-                                        al-Azizi (Pengarang) ; Jabir Ahmad al-Hajjawi (Pengarang)</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div> --}}
         </section>
         </div>
 

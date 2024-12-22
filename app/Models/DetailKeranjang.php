@@ -22,4 +22,8 @@ class DetailKeranjang extends Model
     {
         return $this->belongsTo(Keranjang::class, 'keranjang_id');
     }
+
+    
+
+    
 }

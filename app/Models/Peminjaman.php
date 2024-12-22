@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Peminjaman extends Model
 {
     protected $table = 'peminjaman';
+    protected $fillable = [
+        'user_id',   
+        'tgl_pinjam',
+        'tgl_kembali',
+        'status',
+    ];
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -19,4 +25,5 @@ class Peminjaman extends Model
         return $this->hasOne(Denda::class);
 
     }
+    
 }
