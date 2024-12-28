@@ -23,6 +23,7 @@ class PeminjamanController extends Controller
                 'peminjaman.user_id',
                 'peminjaman.tgl_pinjam',
                 'peminjaman.tgl_kembali',
+                'peminjaman.tgl_dikembalikan',
                 'peminjaman.status'
             ]);
 
@@ -41,7 +42,6 @@ class PeminjamanController extends Controller
                     return $row->tgl_kembali ? $row->tgl_kembali->format('d M Y') : 'Belum dikembalikan';
                 })
                 ->editColumn('status', function ($row) {
-                    // Menentukan label dan kelas badge berdasarkan status
                     $statusLabels = [
                         0 => ['label' => 'Persetujuan', 'badge' => 'bg-secondary'],
                         1 => ['label' => 'Disetujui', 'badge' => 'bg-success'],
@@ -62,15 +62,12 @@ class PeminjamanController extends Controller
                 ->rawColumns(['action', 'status'])
                 ->make(true);
         }
-        // Menghitung jumlah berdasarkan status peminjaman
+
         $tracker = Peminjaman::select('status', DB::raw('COUNT(*) as jumlah'))
             ->groupBy('status')
             ->get();
 
-        // Mendapatkan jumlah total peminjaman
         $total = $tracker->sum('jumlah');
-
-        // Menghitung jumlah berdasarkan status secara terpisah
         $statusCounts = [
             'Pending Persetujuan' => 0,
             'Disetujui' => 0,
@@ -114,5 +111,138 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.index', $data);
     }
 
+    public function approve($id)
+    {
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+
+            if ($peminjaman->status == 0) {
+                $peminjaman->status = 2; 
+                $peminjaman->tgl_pinjam = now();
+                $peminjaman->save();
+
+                return redirect()->back()->with('success', 'Peminjaman telah disetujui');
+            } else if ($peminjaman->status == 6) {
+                $peminjaman->status = 3; 
+                $peminjaman->tgl_dikembalikan = now(); 
+                $peminjaman->save();
+
+                return redirect()->back()->with('success', 'Pengembalian telah disetujui');
+            }
+
+            return redirect()->back()->with('error', 'Status peminjaman tidak valid');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+
+    public function return($id)
+    {
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+
+            if ($peminjaman->status == 6) { 
+                $peminjaman->status = 3; 
+                $peminjaman->tgl_dikembalikan = now();
+                $peminjaman->save();
+
+                return redirect()->back()->with('success', 'Pengembalian telah dikonfirmasi dan tanggal pengembalian telah diperbarui.');
+            }
+
+            return redirect()->back()->with('error', 'Status peminjaman tidak valid untuk pengembalian.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function permintaan(Request $request)
+    {
+        if ($request->ajax()) {
+            $query = Peminjaman::with(['user', 'detailPeminjaman.buku']);
+            $recordsTotal = $query->count();
+            if ($request->has('search') && !empty($request->search['value'])) {
+                $searchValue = $request->search['value'];
+                $query->where(function ($q) use ($searchValue) {
+                    $q->where('kode_peminjaman', 'like', "%{$searchValue}%")
+                        ->orWhereHas('user', function ($q) use ($searchValue) {
+                            $q->where('nama', 'like', "%{$searchValue}%");
+                        });
+                });
+            }
+
+            $recordsFiltered = $query->count();
+            if ($request->has('order')) {
+                $columnIndex = $request->order[0]['column'];
+                $columnName = $request->columns[$columnIndex]['name'];
+                $columnDirection = $request->order[0]['dir'];
+
+                if ($columnName === 'user.name') {
+                    $query->join('users', 'peminjaman.user_id', '=', 'users.id')
+                        ->orderBy('users.name', $columnDirection)
+                        ->select('peminjaman.*');
+                } else {
+                    $query->orderBy($columnName, $columnDirection);
+                }
+            } else {
+                $query->latest();
+            }
+            $limit = $request->length ?? 10;
+            $start = $request->start ?? 0;
+            $data = $query->take($limit)->skip($start)->get();
+
+            return response()->json([
+                'draw' => $request->draw,
+                'recordsTotal' => $recordsTotal,
+                'recordsFiltered' => $recordsFiltered,
+                'data' => $data
+            ]);
+        }
+
+        $tracker = DB::table('peminjaman')
+            ->select('status', DB::raw('count(*) as jumlah'))
+            ->groupBy('status')
+            ->get();
+
+        $total = $tracker->sum('jumlah');
+
+        return view('admin.permintaan.index', compact('tracker', 'total'));
+    }
+    public function reject($id)
+    {
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+            $allowedStatus = [0, 6];
+
+            if (!in_array($peminjaman->status, $allowedStatus)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Status peminjaman tidak valid untuk ditolak'
+                ], 422);
+            }
+            $peminjaman->status = 7;
+            if ($peminjaman->status == 0) {
+                $peminjaman->keterangan = 'Peminjaman ditolak';
+            } else if ($peminjaman->status == 6) {
+                $peminjaman->keterangan = 'Pengembalian ditolak';
+            }
+
+            $peminjaman->save();
+
+            $message = $peminjaman->status == 6 ? 'Pengembalian berhasil ditolak' : 'Peminjaman berhasil ditolak';
+
+            return response()->json([
+                'success' => true,
+                'message' => $message
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 
 }

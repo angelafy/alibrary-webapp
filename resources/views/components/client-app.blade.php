@@ -83,12 +83,14 @@
     @endif
     {{-- end sweet alert mas --}}
 
-    {{-- gawe nyeluk component navbar --}}
-    @if (!in_array(Route::currentRouteName(), ['login', 'register', 'not-found']) && Route::has(Route::currentRouteName()))
- 
-    @endif
+    
+
     {{ $slot }}
+    {{-- gawe nyeluk component navbar --}}
+    @if (!in_array(Route::currentRouteName(), ['login', 'register', 'not-found']))
     <x-client-sidebar />
+    @endif
+    {{-- <x-client-sidebar /> --}}
     <x-client-footer />
 
 

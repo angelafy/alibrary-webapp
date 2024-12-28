@@ -14,9 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('kode_peminjaman');
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
-            $table->date('tgl_pinjam'); 
+            $table->date('tgl_pinjam')->nullable(); 
             $table->date('tgl_kembali')->nullable(); 
-            $table->date('tanggal_dikembalikan')->nullable(); 
+            $table->date('tgl_dikembalikan')->nullable(); 
             $table->unsignedTinyInteger('status')->default(0); 
             $table->timestamps();
         });

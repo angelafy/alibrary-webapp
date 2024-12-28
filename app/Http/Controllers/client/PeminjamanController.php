@@ -17,10 +17,9 @@ class PeminjamanController extends Controller
 {
     public function index(Request $request)
     {
-        // Mendapatkan data peminjaman milik user yang sedang login
         $peminjamans = Peminjaman::with(['detailPeminjaman.buku'])
             ->where('user_id', auth()->id())
-            ->paginate(10); // Menampilkan 10 item per halaman
+            ->paginate(10);
 
         return view('client.buku.pinjam.peminjaman', compact('peminjamans'));
     }
@@ -41,14 +40,13 @@ class PeminjamanController extends Controller
             return response()->json(['message' => 'Buku ini tidak ada di keranjang.'], 400);
         }
 
-        // Generate kode_peminjaman unik
+        // Gawe generate random string gawe kode
         $kodePeminjaman = strtoupper(Str::random(12));
 
-        // Buat peminjaman baru
         $peminjaman = Peminjaman::create([
             'user_id' => Auth::id(),
             'kode_peminjaman' => $kodePeminjaman,
-            'tgl_pinjam' => now(),
+            // 'tgl_pinjam' => now(),
             'tgl_kembali' => now()->addDays(3),
             'status' => false,
         ]);
@@ -82,8 +80,6 @@ class PeminjamanController extends Controller
         }
         return view('client.buku.pinjam.checkout', compact('keranjang'));
     }
-
-    // Memproses peminjaman (checkout)
     public function process(Request $request)
     {
         $keranjang = session()->get('keranjang', []);
@@ -97,7 +93,6 @@ class PeminjamanController extends Controller
 
     public function showDetail($id)
     {
-        // Ambil data peminjaman berdasarkan ID
         $peminjaman = Peminjaman::with('user', 'detailPeminjaman.buku')->findOrFail($id);
 
         return view('client.buku.pinjam.detail_peminjaman', compact('peminjaman'));
@@ -113,7 +108,6 @@ class PeminjamanController extends Controller
 
             return redirect()->back()->with('success', 'Status peminjaman telah diperbarui');
         }
-
         return redirect()->back()->with('error', 'Peminjaman tidak dapat diperbarui');
     }
 

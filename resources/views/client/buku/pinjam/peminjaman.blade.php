@@ -17,7 +17,8 @@
                             @forelse ($peminjamans as $item)
                                 <div class="rounded-lg border p-3 lg:p-4 mb-4">
                                     <h1 class="font-bold">
-                                        #{{ $item->kode_peminjaman }} - {{ $item->tgl_pinjam->format('d M Y') }}
+                                        {{-- #{{ $item->kode_peminjaman }} - {{ $item->tgl_pinjam->format('d M Y') : 'Belum Disetujui'  }} --}}
+                                        #{{ $item->kode_peminjaman }} - {{ $item->tgl_pinjam ? $item->tgl_pinjam->format('d M Y') : 'Belum Disetujui' }}
                                     </h1>
                                     <div class="text-sm mt-1">
                                         {{ $item->tgl_kembali ? 'Tanggal Kembali: ' . $item->tgl_kembali->format('d M Y') : 'Belum Dikembalikan' }}

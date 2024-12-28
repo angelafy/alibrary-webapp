@@ -5,4 +5,5 @@ import './datatable/users';
 import './datatable/buku';
 import './datatable/admin';
 import './datatable/peminjaman';
+import './datatable/permintaan';
 import './kode';

@@ -71,8 +71,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // Peminjaman Listr
     Route::get('/admin/peminjaman', [App\Http\Controllers\Admin\PeminjamanController::class, 'index'])->name('peminjaman.index');
-
-
+    Route::get('/admin/peminjaman/permintaan', [App\Http\Controllers\Admin\PeminjamanController::class, 'permintaan'])->name('permintaan.index');
+    Route::patch('/admin/peminjaman/{id}/approve', [App\Http\Controllers\Admin\PeminjamanController::class, 'approve'])->name('peminjaman.approve');
+    Route::patch('/admin/peminjaman/{id}/return', [App\Http\Controllers\Admin\PeminjamanController::class, 'return'])->name('peminjaman.return');
+    Route::patch('/admin/peminjaman/{id}/reject', [App\Http\Controllers\Admin\PeminjamanController::class, 'reject'])->name('peminjaman.reject');
     // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
 
     // detail buku
