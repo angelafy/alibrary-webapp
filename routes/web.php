@@ -28,6 +28,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     // Menambahkan buku ke dalam keranjang
     Route::get('/peminjaman', [App\Http\Controllers\Client\PeminjamanController::class, 'index'])->name('pinjam.index');
     Route::get('/peminjaman/{id}/detail', [App\Http\Controllers\Client\PeminjamanController::class, 'showDetail'])->name('peminjaman.detail');
+    Route::post('/peminjaman/{id}/kembalikan', [App\Http\Controllers\Client\PeminjamanController::class, 'updateStatusToPendingPengembalian'])->name('peminjaman.kembalikan');
+
     Route::post('/pinjam/add', [App\Http\Controllers\Client\PeminjamanController::class, 'store'])->name('pinjam.store');
 
     // Proses peminjaman buku (checkout)
@@ -36,7 +38,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
-   
+
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
 
@@ -69,7 +71,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // Peminjaman Listr
     Route::get('/admin/peminjaman', [App\Http\Controllers\Admin\PeminjamanController::class, 'index'])->name('peminjaman.index');
-  
+
 
     // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
 

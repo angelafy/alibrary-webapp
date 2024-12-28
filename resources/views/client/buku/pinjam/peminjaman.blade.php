@@ -41,6 +41,8 @@
                                                             return 'bg-red-100 text-red-800'; // Terlambat
                                                         case 5:
                                                             return 'bg-gray-300 text-gray-600'; // Hilang
+                                                        case 6:
+                                                            return 'bg-yellow-100 text-yellow-800'; // Hilang
                                                         default:
                                                             return 'bg-gray-200 text-gray-500'; // Tidak diketahui
                                                     }
@@ -75,28 +77,30 @@
                                                     Hilang
                                                 @break
 
+                                                @case(6)
+                                                    Pending Pengembalian
+                                                @break
+
                                                 @default
                                                     Tidak Diketahui
                                             @endswitch
                                         </div>
 
                                         <div class="flex space-x-2">
-                                            {{-- <button @click="violationDetailModal{{ $item->id }} = true"
-                                                class="py-2 px-4 lg:px-6 rounded-lg border border-primary-700 text-xs text-primary-700 font-medium line-clamp-1 hover:bg-primary-50">
-                                                Lihat Detail
-                                            </button> --}}
-                                            <button @click="violationDetailModal{{ $item->id }} = true"
-                                                @class([
+                                            <form action="{{ route('peminjaman.kembalikan', $item->id) }}"
+                                                method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" @class([
                                                     'py-2 px-4 lg:px-6 rounded-lg border text-xs font-medium line-clamp-1',
                                                     'border-primary-700 text-primary-700 hover:bg-primary-50' =>
                                                         $item->status === 2,
                                                     'border-gray-300 text-gray-400 cursor-not-allowed bg-gray-50' =>
                                                         $item->status !== 2,
                                                 ])
-                                                {{ $item->status !== 2 ? 'disabled' : '' }}>
-                                                Kembalikan
-                                            </button>
-
+                                                    {{ $item->status !== 2 ? 'disabled' : '' }}>
+                                                    Kembalikan
+                                                </button>
+                                            </form>
                                             <!-- Tombol Lihat Detail sekarang mengarah ke halaman detail peminjaman -->
                                             <a href="{{ route('peminjaman.detail', $item->id) }}"
                                                 class="py-2 px-4 lg:px-6 rounded-lg border border-primary-700 text-xs text-primary-700 font-medium line-clamp-1 hover:bg-primary-50">

@@ -49,7 +49,7 @@ class PeminjamanController extends Controller
             'user_id' => Auth::id(),
             'kode_peminjaman' => $kodePeminjaman,
             'tgl_pinjam' => now(),
-            'tgl_kembali' => now()->addDays(7),
+            'tgl_kembali' => now()->addDays(3),
             'status' => false,
         ]);
 
@@ -102,4 +102,19 @@ class PeminjamanController extends Controller
 
         return view('client.buku.pinjam.detail_peminjaman', compact('peminjaman'));
     }
+
+    public function updateStatusToPendingPengembalian($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        if ($peminjaman->status == 2) {
+            $peminjaman->status = 6;
+            $peminjaman->save();
+
+            return redirect()->back()->with('success', 'Status peminjaman telah diperbarui');
+        }
+
+        return redirect()->back()->with('error', 'Peminjaman tidak dapat diperbarui');
+    }
+
 }
