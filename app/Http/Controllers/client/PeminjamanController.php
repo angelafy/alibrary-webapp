@@ -19,8 +19,8 @@ class PeminjamanController extends Controller
     {
         // Mendapatkan data peminjaman milik user yang sedang login
         $peminjamans = Peminjaman::with(['detailPeminjaman.buku'])
-        ->where('user_id', auth()->id())
-        ->paginate(10); // Menampilkan 10 item per halaman
+            ->where('user_id', auth()->id())
+            ->paginate(10); // Menampilkan 10 item per halaman
 
         return view('client.buku.pinjam.peminjaman', compact('peminjamans'));
     }
@@ -93,5 +93,13 @@ class PeminjamanController extends Controller
         session()->forget('keranjang');
 
         return redirect()->route('pinjam.keranjang')->with('success', 'Peminjaman berhasil.');
+    }
+
+    public function showDetail($id)
+    {
+        // Ambil data peminjaman berdasarkan ID
+        $peminjaman = Peminjaman::with('user', 'detailPeminjaman.buku')->findOrFail($id);
+
+        return view('client.buku.pinjam.detail_peminjaman', compact('peminjaman'));
     }
 }

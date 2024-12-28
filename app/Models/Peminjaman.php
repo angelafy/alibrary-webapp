@@ -15,19 +15,41 @@ class Peminjaman extends Model
         'status',
     ];
 
+    const STATUS_PENDING = 0;
+    const STATUS_DISETUJUI = 1;
+    const STATUS_DIPINJAM = 2;
+    const STATUS_DIKEMBALIKAN = 3;
+    const STATUS_TERLAMBAT = 4;
+    const STATUS_HILANG = 5;
+
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_PENDING => 'Pending',
+            self::STATUS_DISETUJUI => 'Disetujui',
+            self::STATUS_DIPINJAM => 'Dipinjam',
+            self::STATUS_DIKEMBALIKAN => 'Dikembalikan',
+            self::STATUS_TERLAMBAT => 'Terlambat',
+            self::STATUS_HILANG => 'Hilang',
+        ];
+    }
+
     protected $casts = [
         'tgl_pinjam' => 'datetime',
         'tgl_kembali' => 'datetime',
     ];
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function buku() {
+    public function buku()
+    {
         return $this->belongsTo(Buku::class);
     }
 
-    public function denda() {
+    public function denda()
+    {
         return $this->hasOne(Denda::class);
 
 

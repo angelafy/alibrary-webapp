@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,10 +13,10 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->string('kode_peminjaman');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relasi ke tabel users
-            $table->date('tgl_pinjam'); // Tanggal peminjaman
-            $table->date('tgl_kembali'); // Tanggal pengembalian
-            $table->boolean('status')->default(false); // Status pengembalian/persetujuan
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->date('tgl_pinjam'); 
+            $table->date('tgl_kembali')->nullable(); 
+            $table->unsignedTinyInteger('status')->default(0); 
             $table->timestamps();
         });
     }

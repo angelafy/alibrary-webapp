@@ -77,7 +77,8 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable"  id="tablePeminjaman">
+                                <table class="table card-table table-vcenter text-nowrap datatable"
+                                    id="tablePeminjaman">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%;">No</th>
@@ -117,7 +118,6 @@
                                                     <div class="progressbg">
                                                         <div class="progress progressbg-progress">
                                                             @php
-                                                                // Hitung persentase sex berdasarkan jumlah total hewan
                                                                 $percentage =
                                                                     $total > 0 ? ($item->jumlah / $total) * 100 : 0;
                                                             @endphp
@@ -131,7 +131,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="progressbg-text">
-                                                            {{ $item->tahun_terbit == '2021' ? '2021' : '2022' }}
+                                                            @php
+                                                                $statusLabels = [
+                                                                    0 => 'Pending',
+                                                                    1 => 'Disetujui',
+                                                                    2 => 'Dipinjam',
+                                                                    3 => 'Dikembalikan',
+                                                                    4 => 'Terlambat',
+                                                                    5 => 'Hilang',
+                                                                ];
+                                                            @endphp
+                                                            {{ $statusLabels[$item->status] ?? 'Unknown' }}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -139,8 +149,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="2" class="text-center">Data tracker tidak tersedia
-                                                </td>
+                                                <td colspan="2" class="text-center">Data tracker tidak tersedia</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

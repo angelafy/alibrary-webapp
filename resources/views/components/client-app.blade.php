@@ -24,7 +24,7 @@
 
     <script src="{{ asset('client/js/alpine.js') }}" defer></script>
     <script src="{{ asset('client/js/api.js') }}"></script>
-    
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DBD9BJ92PC"></script>
@@ -52,6 +52,7 @@
 
 
 </head>
+
 <body class="font-mulish antialiased overflow-x-hidden text-sm md:text-base">
 
     <style>
@@ -59,7 +60,7 @@
             display: none;
         }
     </style>
-    
+
     {{-- sweet alert mas --}}
     @if (session('success'))
         <script>
@@ -88,71 +89,71 @@
     @endif
     {{ $slot }}
 
+    <x-client-footer />
 
 
-    
-<script src="{{ asset('client/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('client/js/jquery.toast.min.js') }}"></script>
-<script src="{{ asset('client/js/app.js') }}"></script>
-<script src="{{ asset('client/js/datepicker.js') }}"></script>
-<script src="{{ asset('client/js/qrcode.js') }}"></script>
-<script src="{{ asset('client/js/barcode.js') }}"></script>
-<script src="{{ asset('client/js/compressor.js') }}"></script>
-<script src="{{ asset('client/js/countdown.js') }}"></script>
-<script src="{{ asset('client/js/lazysizes.min.js') }}"></script>
-<script src="{{ asset('client/js/swiper.js') }}"></script>
-<script src="{{ asset('client/js/social-share.js') }}"></script>
-<script src="{{ asset('client/js/party.js') }}"></script>
-<script src="{{ asset('client/js/heic2any.js') }}"></script>
-<script src="{{ asset('client/js/custom.js') }}"></script>
-<script>
-    const bookRecommendationSwiper = new Swiper(".book-recommendation-swiper", {
-        slidesPerView: "3.4",
-        autoHeight: true,
-        autoplay: {
-            delay: 1000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-        },
-        loop: true,
-        spaceBetween: 15,
-        // centeredSlides: true,
-        breakpoints: {
-            320: {
-                slidesPerView: 2.2,
-                spaceBetween: 10
+    <script src="{{ asset('client/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('client/js/jquery.toast.min.js') }}"></script>
+    <script src="{{ asset('client/js/app.js') }}"></script>
+    <script src="{{ asset('client/js/datepicker.js') }}"></script>
+    <script src="{{ asset('client/js/qrcode.js') }}"></script>
+    <script src="{{ asset('client/js/barcode.js') }}"></script>
+    <script src="{{ asset('client/js/compressor.js') }}"></script>
+    <script src="{{ asset('client/js/countdown.js') }}"></script>
+    <script src="{{ asset('client/js/lazysizes.min.js') }}"></script>
+    <script src="{{ asset('client/js/swiper.js') }}"></script>
+    <script src="{{ asset('client/js/social-share.js') }}"></script>
+    <script src="{{ asset('client/js/party.js') }}"></script>
+    <script src="{{ asset('client/js/heic2any.js') }}"></script>
+    <script src="{{ asset('client/js/custom.js') }}"></script>
+    <script>
+        const bookRecommendationSwiper = new Swiper(".book-recommendation-swiper", {
+            slidesPerView: "3.4",
+            autoHeight: true,
+            autoplay: {
+                delay: 1000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
-            768: {
-                slidesPerView: 3.4
-            },
-            1024: {
-                slidesPerView: 4.4
+            loop: true,
+            spaceBetween: 15,
+            // centeredSlides: true,
+            breakpoints: {
+                320: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 3.4
+                },
+                1024: {
+                    slidesPerView: 4.4
+                }
             }
-        }
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const profilePhoto = '';
-        if (profilePhoto) {
-            displayHeicImage(profilePhoto, "facePhoto");
-        }
-    });
-</script>
-<script>
-    function mobileAppDownloadInfo() {
-        return {
-            openMobileAppDownloadLink: false,
-            mobileAppDownloadInfo: !getLocalStorageWithExpiration("mobileAppDownloadInfo")?.isUserHasClosedIt,
-            closeMobileAppDownloadInfo() {
-                setLocalStorageWithExpiration("mobileAppDownloadInfo", {
-                    isUserHasClosedIt: true
-                }, 1);
-                this.mobileAppDownloadInfo = false;
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const profilePhoto = '';
+            if (profilePhoto) {
+                displayHeicImage(profilePhoto, "facePhoto");
             }
-        };
-    }
-</script>
+        });
+    </script>
+    <script>
+        function mobileAppDownloadInfo() {
+            return {
+                openMobileAppDownloadLink: false,
+                mobileAppDownloadInfo: !getLocalStorageWithExpiration("mobileAppDownloadInfo")?.isUserHasClosedIt,
+                closeMobileAppDownloadInfo() {
+                    setLocalStorageWithExpiration("mobileAppDownloadInfo", {
+                        isUserHasClosedIt: true
+                    }, 1);
+                    this.mobileAppDownloadInfo = false;
+                }
+            };
+        }
+    </script>
 
 </body>
 

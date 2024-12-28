@@ -10,18 +10,18 @@ class PeminjamanSeeder extends Seeder
     public function run(): void
     {
         Peminjaman::create([
-            'kode_peminjaman' => '22071400001',
-            'user_id' => 1, // Admin User
+            'kode_peminjaman' => 'N9EMGTM91FYQ',
+            'user_id' => 1, 
             'tgl_pinjam' => now(),
-            'tgl_kembali' => now()->addDays(7), // 7 days loan
+            'tgl_kembali' => now()->addDays(7), 
             'status' => false,
         ]);
 
         Peminjaman::create([
-            'kode_peminjaman' => '22071600001',
-            'user_id' => 2, // Regular User
+            'kode_peminjaman' => 'LZFAEFE4FOQT',
+            'user_id' => 2, 
             'tgl_pinjam' => now(),
-            'tgl_kembali' => now()->addDays(14), // 14 days loan
+            'tgl_kembali' => now()->addDays(14), 
             'status' => false,
         ]);
     }
