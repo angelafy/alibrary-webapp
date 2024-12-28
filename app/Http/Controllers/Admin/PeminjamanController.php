@@ -117,14 +117,14 @@ class PeminjamanController extends Controller
             $peminjaman = Peminjaman::findOrFail($id);
 
             if ($peminjaman->status == 0) {
-                $peminjaman->status = 2; 
+                $peminjaman->status = 2;
                 $peminjaman->tgl_pinjam = now();
                 $peminjaman->save();
 
                 return redirect()->back()->with('success', 'Peminjaman telah disetujui');
             } else if ($peminjaman->status == 6) {
-                $peminjaman->status = 3; 
-                $peminjaman->tgl_dikembalikan = now(); 
+                $peminjaman->status = 3;
+                $peminjaman->tgl_dikembalikan = now();
                 $peminjaman->save();
 
                 return redirect()->back()->with('success', 'Pengembalian telah disetujui');
@@ -143,8 +143,8 @@ class PeminjamanController extends Controller
         try {
             $peminjaman = Peminjaman::findOrFail($id);
 
-            if ($peminjaman->status == 6) { 
-                $peminjaman->status = 3; 
+            if ($peminjaman->status == 6) {
+                $peminjaman->status = 3;
                 $peminjaman->tgl_dikembalikan = now();
                 $peminjaman->save();
 
@@ -192,6 +192,7 @@ class PeminjamanController extends Controller
             $start = $request->start ?? 0;
             $data = $query->take($limit)->skip($start)->get();
 
+
             return response()->json([
                 'draw' => $request->draw,
                 'recordsTotal' => $recordsTotal,
@@ -209,6 +210,8 @@ class PeminjamanController extends Controller
 
         return view('admin.permintaan.index', compact('tracker', 'total'));
     }
+
+    // GAWE REJECT
     public function reject($id)
     {
         try {

@@ -43,12 +43,23 @@ $(document).ready(function () {
             },
         },
         columns: [
+            {
+                data: "id",
+                name: "id",
+                orderable: false,
+                searchable: false,
+            },
             { data: "kode_peminjaman", name: "kode_peminjaman" },
             { data: "user.nama", name: "user.nama" },
             {
                 data: "tgl_pinjam",
                 name: "tgl_pinjam",
                 render: function (data) {
+                    // Cek apakah data null atau tidak valid
+                    if (!data || moment(data).isValid() === false) {
+                        return '<span class="badge bg-warning">Belum Disetujui</span>';
+                        // return 'XX/XX/XX';
+                    }
                     return moment(data).format("DD/MM/YYYY");
                 },
             },
@@ -64,30 +75,26 @@ $(document).ready(function () {
                 name: "status",
                 render: function (data, type, row) {
                     let badge = "";
+                    let badgeStyle =
+                        "font-size: 12px; padding: 3px 7px; width: 180px; text-align: center; display: inline-block; border-radius: 5px;";
                     switch (parseInt(data)) {
                         case 0:
-                            badge =
-                                '<span class="badge bg-warning">Pending Persetujuan</span>';
+                            badge = `<span class="badge bg-warning" style="${badgeStyle}">Pending Persetujuan</span>`;
                             break;
                         case 2:
-                            badge =
-                                '<span class="badge bg-success">Dipinjam</span>';
+                            badge = `<span class="badge bg-success" style="${badgeStyle}">Dipinjam</span>`;
                             break;
                         case 3:
-                            badge =
-                                '<span class="badge bg-info">Dikembalikan</span>';
+                            badge = `<span class="badge bg-info" style="${badgeStyle}">Dikembalikan</span>`;
                             break;
                         case 6:
-                            badge =
-                                '<span class="badge bg-warning">Pending Pengembalian</span>';
+                            badge = `<span class="badge bg-warning" style="${badgeStyle}">Pending Pengembalian</span>`;
                             break;
                         case 7:
-                            badge =
-                                '<span class="badge bg-danger">Ditolak</span>';
+                            badge = `<span class="badge bg-danger" style="${badgeStyle}">Ditolak</span>`;
                             break;
                         default:
-                            badge =
-                                '<span class="badge bg-secondary">Unknown</span>';
+                            badge = `<span class="badge bg-secondary" style="${badgeStyle}">Unknown</span>`;
                     }
                     return badge;
                 },
@@ -98,46 +105,36 @@ $(document).ready(function () {
                 searchable: false,
                 render: function (data, type, row) {
                     let buttons = '<div class="btn-group">';
+                    const baseButtonStyle =
+                        "padding: 4px 8px; font-size: 12px;";
+                    switch (row.status) {
+                        case 0: // Pending Persetujuan
+                        case 6: // Pending Pengembalian
+                            buttons += `
+                                <button type="button" class="btn btn-sm btn-success approve-btn" data-id="${row.id}" style="${baseButtonStyle}">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger reject-btn" data-id="${row.id}" style="${baseButtonStyle}">
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                </button>
+                            `;
+                            break;
 
-                    if (row.status == 0) {
-                        // Pending Persetujuan
-                        buttons += `
-                            <button type="button" class="btn btn-sm btn-success approve-btn" data-id="${row.id}">Setujui</button>
-                            <button type="button" class="btn btn-sm btn-danger reject-btn" data-id="${row.id}">Tolak</button>
-                        `;
-                    } else if (row.status == 6) {
-                        // Pending Pengembalian
-                        buttons += `
-                           <button type="button" class="btn btn-sm btn-success approve-btn" data-id="${row.id}">Setujui</button>
-                            <button type="button" class="btn btn-sm btn-danger reject-btn" data-id="${row.id}">Tolak</button>
-                        `;
-                    } else {
-                        // Status lain, tampilkan button disabled sesuai statusnya
-                        let statusText = "";
-                        let buttonClass = "btn-secondary";
-
-                        switch (parseInt(row.status)) {
-                            case 2:
-                                statusText = "Telah Disetujui";
-                                buttonClass = "btn-success";
-                                break;
-                            case 3:
-                                statusText = "Telah Dikembalikan";
-                                buttonClass = "btn-info";
-                                break;
-                            case 7:
-                                statusText = "Telah Ditolak";
-                                buttonClass = "btn-danger";
-                                break;
-                        }
-                        buttons += `<button class="btn btn-sm ${buttonClass}" disabled>${statusText}</button>`;
+                        case 2: // Dipinjam
+                        case 3: // Dikembalikan
+                        case 7: // Ditolak
+                            buttons += `
+                                <button type="button" class="btn btn-sm btn-success approve-btn" style="${baseButtonStyle}" disabled>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger reject-btn" style="${baseButtonStyle}" disabled>
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                </button>
+                            `;
+                            break;
                     }
 
-                    // Detail button selalu ditampilkan
-                    // buttons += `
-                    //     <a href="/admin/peminjaman/${row.id}" class="btn btn-sm btn-primary ms-2">Detail</a>
-                    // </div>`;
-
+                    buttons += "</div>";
                     return buttons;
                 },
             },
