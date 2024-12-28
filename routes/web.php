@@ -65,6 +65,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('admin/buku/create', [App\Http\Controllers\Admin\BukuController::class, 'create'])->name('bukus.create');
     Route::put('admin/buku/{id}', [App\Http\Controllers\Admin\BukuController::class, 'update'])->name('bukus.update');
 
+    // Peminjaman Listr
+    Route::get('/admin/peminjaman', [App\Http\Controllers\Admin\PeminjamanController::class, 'index'])->name('peminjaman.index');
     // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
 
     // detail buku

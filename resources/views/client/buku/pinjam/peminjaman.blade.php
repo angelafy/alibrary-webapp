@@ -76,7 +76,15 @@
                                     </div> --}}
                                 </div>
                             @empty
-                                <p class="text-center">Tidak ada peminjaman untuk ditampilkan.</p>
+                            <div class="rounded-lg border p-3 lg:p-4 bg-gray-50">
+                                <div class="text-center py-8">
+                                    <p class="text-gray-500">Tidak ada history peminjaman.</p>
+                                    <a href="{{ route('bukus.index') }}"
+                                        class="mt-4 inline-block text-primary-600 hover:text-primary-700">
+                                        Cari buku untuk dipinjam
+                                    </a>
+                                </div>
+                            </div>
                             @endforelse
                         </div>
 

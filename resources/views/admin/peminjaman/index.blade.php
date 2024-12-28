@@ -71,25 +71,22 @@
                                         {{-- Search: --}}
                                         <div class="ms-2 d-inline-block">
                                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                                placeholder="Cari Buku" aria-label="Search supplier">
+                                                placeholder="Cari Supplier" aria-label="Search supplier">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable"  id="tableBuku">
+                                <table class="table card-table table-vcenter text-nowrap datatable"  id="tablePeminjaman">
                                     <thead>
                                         <tr>
-                                            <th style="width: 5%;">ID</th>
-                                            <th style="width: 15%;">Judul</th>
-                                            <th style="width: 15%;">Author</th>
-                                            <th>Publisher</th>
-                                            <th>Tahun Terbit</th>
-                                            {{-- <th>Deskripsi</th>
-                                            <th>Sinopsis</th> --}}
-                                            <th>Genre</th>
-                                            <th>Stock</th>
-                                            <th class="w-1" style="width: 30%;">Aksi</th>
+                                            <th style="width: 5%;">No</th>
+                                            <th style="width: 15%;">Kode</th>
+                                            <th style="width: 15%;">Nama</th>
+                                            <th>Tgl Pinjam</th>
+                                            <th>Tgl Kembali</th>
+                                            <th>Status</th>
+                                            <th class="w-1" style="width: 20%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
