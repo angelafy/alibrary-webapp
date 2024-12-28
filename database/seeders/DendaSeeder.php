@@ -10,13 +10,13 @@ class DendaSeeder extends Seeder
     public function run(): void
     {
         Denda::create([
-            'peminjaman_id' => 1, // Related to first loan
-            'amount' => 10.00, // Late fee
+            'peminjaman_id' => 1, 
+            'jumlah' => 10000,
         ]);
 
         Denda::create([
-            'peminjaman_id' => 2, // Related to second loan
-            'amount' => 5.00, // Late fee
+            'peminjaman_id' => 2, 
+            'jumlah' => 50000, 
         ]);
     }
 }

@@ -85,10 +85,10 @@
 
     {{-- gawe nyeluk component navbar --}}
     @if (!in_array(Route::currentRouteName(), ['login', 'register', 'not-found']) && Route::has(Route::currentRouteName()))
-        <x-client-sidebar />
+ 
     @endif
     {{ $slot }}
-
+    <x-client-sidebar />
     <x-client-footer />
 
 

@@ -47,7 +47,8 @@
                     d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
             <span>Keranjang</span>
-            <span class="flex items-center justify-center px-2 py-1 text-xs font-medium leading-none text-white bg-orange-600 rounded-full">{{ $totalDetailKeranjang }}</span>
+            <span
+                class="flex items-center justify-center px-2 py-1 text-xs font-medium leading-none text-white bg-orange-600 rounded-full">{{ $totalDetailKeranjang }}</span>
         </a>
         <a href="https://perpustakaan.jakarta.go.id/mobile-library"
             class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6">
@@ -89,46 +90,6 @@
                 value="" placeholder="Cari Judul/Kategori" autofocus="">
         </div>
     </form>
-
-    {{-- <div class=""> --}}
-    {{-- <a target="_blank" href="https://perpustakaan.jakarta.go.id/catalog-requests/create"
-            class="flex items-center justify-center space-x-2 text-white bg-primary-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-200 font-medium rounded-lg text-xs px-3 py-1.5 cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-110">
-            {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="currentColor" class="h-4 w-4"> --}}
-    {{-- <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75">
-                </path>
-            </svg>
-            <span class="line-clamp-1">SIGN IN</span>
-        </a>
-    </div>
-</div> --}}
-
-    {{-- <div class="mt-2 justify-center">
-    <h3 class="text-sm mb-2">Ganti Bahasa</h3>
-    <div class="grid grid-cols-2 gap-2 text-sm">
-        <a href="https://perpustakaan.jakarta.go.id/language/id"
-            class="border text-orange-500 border border-orange-500 bg-orange-50 rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
-            <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
-                <img src="images/Flag_of_Indonesia.svg" class="w-6 h-4 rounded border"
-                    alt="">
-                <span>ID</span>
-            </div> --
-        </a>
-        <a href="https://perpustakaan.jakarta.go.id/language/en"
-            class="relative border  rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
-            <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
-                <img src="images/Flag_of_the_United_Kingdom.svg" class="w-6 h-4 rounded"
-                    alt="">
-                <span>EN</span>
-            </div>
-            <div
-                class="absolute -top-3 -right-2 rounded px-1 py-0.5 text-xs bg-green-100 text-green-500">
-                v0.25
-            </div>
-        </a>
-    </div>
-</div> --}}
     @guest
         <div class="mb-8">
             <h3 class="text-sm">Daftar/Masuk ke Akun:</h3>
@@ -185,7 +146,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="rounded-lg bg-primary-50/50 border border-primary-500 p-3">
                 <div class="flex items-center space-x-2 text-primary-800">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

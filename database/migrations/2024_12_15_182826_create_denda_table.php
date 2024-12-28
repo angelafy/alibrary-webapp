@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // Relasi foreign key ke tabel `peminjaman` secara eksplisit
             $table->foreignId('peminjaman_id')->constrained('peminjaman')->onDelete('cascade');
-            $table->decimal('amount', 8, 2); // Jumlah denda
+            $table->decimal('jumlah', 8, 2); // Jumlah denda
             $table->timestamps();
         });
     }

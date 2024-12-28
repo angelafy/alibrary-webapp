@@ -14,6 +14,7 @@ class PeminjamanSeeder extends Seeder
             'user_id' => 1, 
             'tgl_pinjam' => now(),
             'tgl_kembali' => now()->addDays(7), 
+            'tanggal_dikembalikan' => null,
             'status' => false,
         ]);
 
@@ -22,6 +23,7 @@ class PeminjamanSeeder extends Seeder
             'user_id' => 2, 
             'tgl_pinjam' => now(),
             'tgl_kembali' => now()->addDays(14), 
+            'tanggal_dikembalikan' => null, 
             'status' => false,
         ]);
     }
