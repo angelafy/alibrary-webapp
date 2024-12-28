@@ -43,21 +43,22 @@ class PeminjamanController extends Controller
                 ->editColumn('status', function ($row) {
                     // Menentukan label dan kelas badge berdasarkan status
                     $statusLabels = [
-                        0 => ['label' => 'Pending', 'badge' => 'bg-secondary'],
+                        0 => ['label' => 'Persetujuan', 'badge' => 'bg-secondary'],
                         1 => ['label' => 'Disetujui', 'badge' => 'bg-success'],
                         2 => ['label' => 'Dipinjam', 'badge' => 'bg-warning'],
                         3 => ['label' => 'Dikembalikan', 'badge' => 'bg-primary'],
                         4 => ['label' => 'Terlambat', 'badge' => 'bg-danger'],
                         5 => ['label' => 'Hilang', 'badge' => 'bg-dark'],
+                        6 => ['label' => 'Pengembalian', 'badge' => 'bg-dark'],
                     ];
-                
+
                     $status = $row->status;
                     $label = $statusLabels[$status]['label'] ?? 'Unknown';
                     $badgeClass = $statusLabels[$status]['badge'] ?? 'bg-default';
-            
+
                     return '<span class="badge ' . $badgeClass . '" style="font-size: 12px; padding: 5px 10px; width: 80px; text-align: center; display: inline-block; border-radius: 5px;">' . $label . '</span>';
                 })
-                
+
                 ->rawColumns(['action', 'status'])
                 ->make(true);
         }
@@ -71,18 +72,19 @@ class PeminjamanController extends Controller
 
         // Menghitung jumlah berdasarkan status secara terpisah
         $statusCounts = [
-            'Pending' => 0,
+            'Pending Persetujuan' => 0,
             'Disetujui' => 0,
             'Dipinjam' => 0,
             'Dikembalikan' => 0,
             'Terlambat' => 0,
             'Hilang' => 0,
+            'Pending Pengembalian' => 0,
         ];
 
         foreach ($tracker as $item) {
             switch ($item->status) {
                 case 0:
-                    $statusCounts['Pending'] = $item->jumlah;
+                    $statusCounts['Pending Persetujuan'] = $item->jumlah;
                     break;
                 case 1:
                     $statusCounts['Disetujui'] = $item->jumlah;
@@ -99,6 +101,9 @@ class PeminjamanController extends Controller
                 case 5:
                     $statusCounts['Hilang'] = $item->jumlah;
                     break;
+                case 6:
+                    $statusCounts['Pending Pengembalian'] = $item->jumlah;
+                    break;
             }
         }
 
@@ -109,5 +114,5 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.index', $data);
     }
 
-    
+
 }

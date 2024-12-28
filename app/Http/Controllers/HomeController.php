@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -24,7 +25,10 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        return view('welcome');
+         // Memuat buku dengan relasi penulis, penerbit, dan genre serta melakukan pagination
+         $bukus = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+
+         return view('client.index', compact('bukus'));
     }
   
     /**

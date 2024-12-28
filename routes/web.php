@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\UserController;
 
 Route::get('/', function () {
-    return view('client.index');
+    return redirect()->route('home');
 });
 // Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/buku', [App\Http\Controllers\Client\BukuController::class, 'index'])->name('bukuClient.index');
@@ -38,7 +38,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
-
+    Route::get('/buku/genre/{genreId}', [App\Http\Controllers\Client\BukuController::class, 'filterByGenre'])->name('bukuClient.filterByGenre');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
 
