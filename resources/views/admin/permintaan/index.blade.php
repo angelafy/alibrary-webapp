@@ -79,13 +79,13 @@
                             <table class="table card-table table-vcenter text-nowrap datatable" id="tablePermintaan">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Kode</th>
-                                        <th>Peminjam</th>
-                                        <th>Tgl Pinjam</th>
-                                        <th>Tgl Kembali</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th style="width: 5%;">ID</th>
+                                        <th style="width: 15%;">Kode</th>
+                                        <th style="width: 20%;">Peminjam</th>
+                                        <th style="width: 15%;">Tgl Pinjam</th>
+                                        <th style="width: 15%;">Tgl Kembali</th>
+                                        <th style="width: 15%;">Status</th>
+                                        <th class="w-1" style="width: 30%;">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>

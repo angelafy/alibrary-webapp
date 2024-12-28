@@ -10,7 +10,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         autoWidth: false,
-        scrollX: true,
+        // scrollX: true,
         responsive: true,
         pageLength: 10,
         dom: "t",
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 render: function (data, type, row) {
                     let badge = "";
                     let badgeStyle =
-                        "font-size: 12px; padding: 3px 7px; width: 180px; text-align: center; display: inline-block; border-radius: 5px;";
+                        "font-size: 12px; padding: 3px 7px; width: 150px; text-align: center; display: inline-block; border-radius: 5px;";
                     switch (parseInt(data)) {
                         case 0:
                             badge = `<span class="badge bg-warning" style="${badgeStyle}">Pending Persetujuan</span>`;
