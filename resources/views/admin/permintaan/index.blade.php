@@ -70,7 +70,7 @@
                                     {{-- Search: --}}
                                     <div class="ms-2 d-inline-block">
                                         <input type="text" id="searchInput" class="form-control form-control-sm"
-                                            placeholder="Cari Hewan" aria-label="Search supplier">
+                                            placeholder="Cari Permintaan.." aria-label="Search supplier">
                                     </div>
                                 </div>
                             </div>
@@ -99,11 +99,11 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">Tracker</h3>
+                            <h3 class="card-title">Permintaan Tracker</h3>
                             <table class="table table-sm table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>Tahun</th>
+                                        <th>Status</th>
                                         <th class="text-end">Jumlah</th>
                                     </tr>
                                 </thead>
@@ -135,6 +135,8 @@
                                                                 3 => 'Dikembalikan',
                                                                 4 => 'Terlambat',
                                                                 5 => 'Hilang',
+                                                                5 => 'Pengembalian',
+                                                                7 => 'Ditolak',
                                                             ];
                                                         @endphp
                                                         {{ $statusLabels[$item->status] ?? 'Unknown' }}

@@ -76,6 +76,7 @@ class PeminjamanController extends Controller
             'Terlambat' => 0,
             'Hilang' => 0,
             'Pending Pengembalian' => 0,
+            'Ditolak' => 0,
         ];
 
         foreach ($tracker as $item) {
@@ -100,6 +101,9 @@ class PeminjamanController extends Controller
                     break;
                 case 6:
                     $statusCounts['Pending Pengembalian'] = $item->jumlah;
+                    break;
+                case 7:
+                    $statusCounts['Ditolak'] = $item->jumlah;
                     break;
             }
         }

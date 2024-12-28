@@ -133,13 +133,15 @@
                                                         <div class="progressbg-text">
                                                             @php
                                                                 $statusLabels = [
-                                                                    0 => 'Pending',
-                                                                    1 => 'Disetujui',
-                                                                    2 => 'Dipinjam',
-                                                                    3 => 'Dikembalikan',
-                                                                    4 => 'Terlambat',
-                                                                    5 => 'Hilang',
-                                                                ];
+                                                                0 => 'Pending',
+                                                                1 => 'Disetujui',
+                                                                2 => 'Dipinjam',
+                                                                3 => 'Dikembalikan',
+                                                                4 => 'Terlambat',
+                                                                5 => 'Hilang',
+                                                                5 => 'Pengembalian',
+                                                                7 => 'Ditolak',
+                                                            ];
                                                             @endphp
                                                             {{ $statusLabels[$item->status] ?? 'Unknown' }}
                                                         </div>
