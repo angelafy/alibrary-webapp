@@ -25,17 +25,17 @@
                                 <form id="keranjangForm" method="POST">
                                     @csrf
                                     <input type="hidden" name="buku_id" value="{{ $buku->id }}">
-                                    <div
-                                        class="flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-500 text-white px-6 py-2 mx-4 hover:bg-primary-700"
+                                    <div class="flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-500 text-white px-6 py-2 mx-4 hover:bg-primary-700"
                                         onclick="submitKeranjang(event)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
                                         <span>Pinjam buku ini</span>
                                     </div>
                                 </form>
-                                
+
                                 <!-- Modal for choosing book location -->
                                 <div aria-labelledby="modal-title" aria-modal="true" class="fixed z-50 inset-0"
                                     role="dialog" x-show="chooseBookLocation">
@@ -87,6 +87,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <div class="rounded-lg border">
 
@@ -198,11 +199,11 @@
                                             <span>Bacaan kanak/kanak</span>
                                         </div>
 
-                                        <div class="grid grid-cols-2 p-2">
+                                        {{-- <div class="grid grid-cols-2 p-2">
                                             <span class="font-medium">Deskripsi</span>
                                             <span> {{ $buku->deskripsi ?? 'Unknown Data' }}
                                             </span>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>
@@ -250,39 +251,39 @@
 </x-client-app>
 <script>
     function submitKeranjang(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         const form = document.getElementById('keranjangForm');
         const formData = new FormData(form);
         fetch("{{ route('keranjang.store') }}", {
-            method: "POST",
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: data.message,
-                });
-            } else {
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: data.message,
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: data.message,
+                    });
+                }
+            })
+            .catch(error => {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Gagal!',
-                    text: data.message,
+                    title: 'Terjadi kesalahan!',
+                    text: 'Silakan coba lagi nanti.',
                 });
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Terjadi kesalahan!',
-                text: 'Silakan coba lagi nanti.',
+                console.error('Error:', error);
             });
-            console.error('Error:', error);
-        });
     }
 </script>

@@ -15,7 +15,7 @@ class PenulisSeeder extends Seeder
         DB::table('penulis')->insert([
             [
                 'kode_author' => 'A001',
-                'nama_author' => 'Tere Liye',
+                'nama_author' => 'Eugenia Rakhma Subarna, Sofie Dewayani, Cicilia Erni Setyowati',
                 'bio' => 'Seorang penulis terkenal asal Indonesia dengan berbagai karya yang berfokus pada kehidupan dan nilai-nilai moral.',
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -15,7 +15,7 @@ class PenerbitSeeder extends Seeder
         DB::table('penerbit')->insert([
             [
                 'kode_penerbit' => 'P001',
-                'nama_penerbit' => 'Kementerian Pendidikan Dan Kebudayaan',
+                'nama_penerbit' => 'Pusat Kurikulum dan Perbukuan',
                 'alamat' => 'Jl. Palmerah Barat, Jakarta',
                 'email' => 'info@gramedia.com',
                 'created_at' => now(),

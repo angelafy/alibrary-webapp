@@ -10,14 +10,27 @@ use App\Models\Peminjaman;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class PeminjamanController extends Controller
 {
+    public function index(Request $request)
+    {
+        // Mendapatkan data peminjaman milik user yang sedang login
+        $peminjamans = Peminjaman::with(['detailPeminjaman.buku'])
+        ->where('user_id', auth()->id())
+        ->paginate(10); // Menampilkan 10 item per halaman
+
+        return view('client.buku.pinjam.peminjaman', compact('peminjamans'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'buku_id' => 'required|exists:buku,id', 
+            'buku_id' => 'required|exists:buku,id',
         ]);
+
         $buku = Buku::find($request->buku_id);
         $keranjang = Keranjang::where('user_id', Auth::id())->first();
         $existingKeranjang = DetailKeranjang::where('keranjang_id', $keranjang->id)
@@ -28,12 +41,16 @@ class PeminjamanController extends Controller
             return response()->json(['message' => 'Buku ini tidak ada di keranjang.'], 400);
         }
 
+        // Generate kode_peminjaman unik
+        $kodePeminjaman = strtoupper(Str::random(12));
+
         // Buat peminjaman baru
         $peminjaman = Peminjaman::create([
             'user_id' => Auth::id(),
+            'kode_peminjaman' => $kodePeminjaman,
             'tgl_pinjam' => now(),
             'tgl_kembali' => now()->addDays(7),
-            'status' => false, 
+            'status' => false,
         ]);
 
         $keranjangItems = DetailKeranjang::where('keranjang_id', $keranjang->id)->get();
@@ -41,7 +58,7 @@ class PeminjamanController extends Controller
             return [
                 'peminjaman_id' => $peminjaman->id,
                 'buku_id' => $keranjangItem->buku_id,
-                'jumlah' => $keranjangItem->jumlah, 
+                'jumlah' => $keranjangItem->jumlah,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -51,8 +68,10 @@ class PeminjamanController extends Controller
 
         DetailKeranjang::where('keranjang_id', $keranjang->id)->delete();
         $keranjang->delete();
+
         return response()->json(['message' => 'Peminjaman berhasil diproses.']);
     }
+
 
     public function checkout()
     {

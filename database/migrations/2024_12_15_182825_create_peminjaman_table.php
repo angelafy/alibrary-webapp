@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_peminjaman');
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relasi ke tabel users
             $table->date('tgl_pinjam'); // Tanggal peminjaman
             $table->date('tgl_kembali'); // Tanggal pengembalian

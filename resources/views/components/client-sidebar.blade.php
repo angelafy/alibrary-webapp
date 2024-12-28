@@ -29,7 +29,7 @@
             class="hidden xl:flex items-center justify-center px-2 py-1 text-xs font-medium leading-none text-white bg-primary-600 rounded-full animate-pulse">Baru</span> --}}
         </a>
 
-        <a href="https://perpustakaan.jakarta.go.id/transaction"
+        <a href="{{ route('pinjam.index') }}"
             class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">

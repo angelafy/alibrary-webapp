@@ -8,10 +8,16 @@ class Peminjaman extends Model
 {
     protected $table = 'peminjaman';
     protected $fillable = [
-        'user_id',   
+        'kode_peminjaman',
+        'user_id',
         'tgl_pinjam',
         'tgl_kembali',
         'status',
+    ];
+
+    protected $casts = [
+        'tgl_pinjam' => 'datetime',
+        'tgl_kembali' => 'datetime',
     ];
     public function user() {
         return $this->belongsTo(User::class);
@@ -24,6 +30,11 @@ class Peminjaman extends Model
     public function denda() {
         return $this->hasOne(Denda::class);
 
+
     }
-    
+    public function detailPeminjaman()
+    {
+        return $this->hasMany(DetailPeminjaman::class, 'peminjaman_id');
+    }
+
 }

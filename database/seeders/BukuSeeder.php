@@ -20,8 +20,8 @@ class BukuSeeder extends Seeder
                 'penulis_id' => 1, // Sesuaikan dengan ID di tabel penulis_id
                 'penerbit_id' => 1, // Sesuaikan dengan ID di tabel penerbit_id
                 'terbit' => '2023-01-01',
-                'deskripsi' => 'Yes it is',
-                'sinopsis' => 'You start we end',
+                'deskripsi' => 'Bahasa Indonesia: untuk SMP/MTS Kelas VII (Edisi Revisi)',
+                'sinopsis' => '-',
                 'genre_id' => 1, // Sesuaikan dengan ID di tabel genre_id
                 'stock' => 10,
                 'gambar_buku' => 'indonesia7.png',

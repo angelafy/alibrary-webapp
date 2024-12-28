@@ -26,12 +26,13 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/pinjam/keranjang/add', [App\Http\Controllers\Client\KeranjangController::class, 'store'])->name('keranjang.store');
 
     // Menambahkan buku ke dalam keranjang
+    Route::get('/peminjaman', [App\Http\Controllers\Client\PeminjamanController::class, 'index'])->name('pinjam.index');
     Route::post('/pinjam/add', [App\Http\Controllers\Client\PeminjamanController::class, 'store'])->name('pinjam.store');
 
     // Proses peminjaman buku (checkout)
     Route::get('/pinjam/checkout', [App\Http\Controllers\Client\PeminjamanController::class, 'checkout'])->name('pinjam.checkout');
     Route::post('/pinjam/checkout', [App\Http\Controllers\Client\PeminjamanController::class, 'process'])->name('pinjam.process');
-    
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');

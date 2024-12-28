@@ -1,16 +1,8 @@
 <x-client-app>
 
     <main class="w-full lg:w-4/6 mx-auto p-4 mb-16 lg:mb-0">
-
-
-
         <div class="fixed left-0 lg:left-5 bottom-0 lg:bottom-1 z-50">
-
-
-
-
         </div>
-
         <div class="min-h-screen">
             <section>
 
