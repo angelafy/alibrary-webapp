@@ -147,8 +147,8 @@ $(document).ready(function () {
                     </button>
                 `;
 
-                    buttons += "</div>";
-                    return buttons;
+                buttons += "</div>";
+                return buttons;
                 },
             },
         ],

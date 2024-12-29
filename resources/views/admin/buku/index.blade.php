@@ -19,7 +19,7 @@
                         <div class="col-12 col-md-auto ms-auto d-print-none">
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
-                                    <a href="{{ route('peminjaman.excel') }}" class="btn">
+                                    <a href="#" class="btn">
                                         Cetak
                                     </a>
                                 </span>
@@ -77,18 +77,18 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable"  id="tableBuku">
+                                <table class="table card-table table-vcenter text-nowrap datatable" id="tableBuku">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%;">ID</th>
                                             <th style="width: 15%;">Judul</th>
-                                            <th style="width: 15%;">Author</th>
-                                            <th>Publisher</th>
-                                            <th>Tahun Terbit</th>
+                                            {{-- <th style="width: 15%;">Author</th> --}}
+                                            {{-- <th>Publisher</th> --}}
+                                            <th style="width: 15%;">Tahun Terbit</th>
                                             {{-- <th>Deskripsi</th>
                                             <th>Sinopsis</th> --}}
-                                            <th>Genre</th>
-                                            <th>Stock</th>
+                                            <th style="width: 15%;">Genre</th>
+                                            {{-- <th>Stock</th> --}}
                                             <th class="w-1" style="width: 30%;">Aksi</th>
                                         </tr>
                                     </thead>

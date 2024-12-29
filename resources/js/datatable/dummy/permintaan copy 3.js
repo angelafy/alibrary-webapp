@@ -115,10 +115,10 @@ $(document).ready(function () {
                         case 6: // Pending Pengembalian
                             buttons += `
                                 <button type="button" class="btn btn-sm btn-success approve-btn" data-id="${row.id}" style="${baseButtonStyle}">
-                                <i class="fa-solid fa-square-check"></i>
+                                    <i class="fa-solid fa-circle-check"></i>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-danger reject-btn" data-id="${row.id}" style="${baseButtonStyle}">
-                                 <i class="fa-solid fa-square-xmark"></i>
+                                    <i class="fa-solid fa-circle-xmark"></i>
                                 </button>
                             `;
                             break;
@@ -129,23 +129,14 @@ $(document).ready(function () {
                         case 7: // Ditolak
                             buttons += `
                                 <button type="button" class="btn btn-sm btn-success approve-btn" style="${baseButtonStyle}" disabled>
-                                <i class="fa-solid fa-square-check"></i>
+                                    <i class="fa-solid fa-circle-check"></i>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-danger reject-btn" style="${baseButtonStyle}" disabled>
-                                 <i class="fa-solid fa-square-xmark"></i>
+                                    <i class="fa-solid fa-circle-xmark"></i>
                                 </button>
                             `;
                             break;
                     }
-
-                    buttons += `
-                    <button type="button" class="btn btn-sm btn-primary approve-btn" data-id="${row.id}" style="${baseButtonStyle}">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-warning delete" data-id="${row.id}" style="${baseButtonStyle}">
-                      <i class="fa-solid fa-eye"></i>
-                    </button>
-                `;
 
                     buttons += "</div>";
                     return buttons;

@@ -19,16 +19,28 @@ class BukuController extends Controller
         $data['judul'] = 'Manajemen Buku';
         $data['sub_judul'] = 'Data Buku';
         $data['bukus'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+
         if ($request->ajax()) {
-            $data = Buku::select('id', 'kode_buku', 'isbn', 'title', 'penulis_id', 'penerbit_id', 'terbit', 'deskripsi', 'sinopsis', 'genre_id', 'stock');
+            $data = Buku::with(['penulis', 'penerbit', 'genre']); // Load relasi
+
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('penulis_id', function ($row) {
+                    return $row->penulis ? $row->penulis->nama_author : '-';
+                })
+                ->addColumn('penerbit_id', function ($row) {
+                    return $row->penerbit ? $row->penerbit->nama_penerbit : '-';
+                })
+                ->addColumn('genre_id', function ($row) {
+                    return $row->genre ? $row->genre->nama_genre : '-';
+                })
                 ->addColumn('action', function ($row) {
                     return view('admin.buku.action', ['id' => $row->id])->render();
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
+
         $tracker = Buku::select('terbit', DB::raw('COUNT(*) as jumlah'))
             ->groupBy('terbit')
             ->get();
@@ -100,16 +112,16 @@ class BukuController extends Controller
 
         return datatables()->of($buku)
             ->addColumn('penulis_id', function ($buku) {
-                return $buku->penulis ? $buku->penulis->nama_author : '-'; // Ensure penulis is not null
+                return $buku->penulis ? $buku->penulis->nama_author : '-';
             })
             ->addColumn('penerbit_id', function ($buku) {
-                return $buku->penerbit ? $buku->penerbit->nama_penerbit : '-'; // Ensure penerbit is not null
+                return $buku->penerbit ? $buku->penerbit->nama_penerbit : '-';
             })
             ->addColumn('genre_id', function ($buku) {
-                return $buku->genre ? $buku->genre->nama_genre : '-'; // Ensure genre is not null
+                return $buku->genre ? $buku->genre->nama_genre : '-';
             })
             ->addColumn('action', function ($buku) {
-                return '<button class="btn btn-info">View</button>'; // Example action button
+                return '<button class="btn btn-info">View</button>';
             })
             ->make(true);
     }

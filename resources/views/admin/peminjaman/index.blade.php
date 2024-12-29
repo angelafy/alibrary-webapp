@@ -167,10 +167,7 @@
 
     <script>
         $(document).ready(function() {
-            // Initialize DataTable
 
-
-            // Delete handler
             $(document).on('click', '.delete', function() {
                 const id = $(this).data('id');
                 Swal.fire({

@@ -58,7 +58,7 @@ class PeminjamanController extends Controller
                     $label = $statusLabels[$status]['label'] ?? 'Unknown';
                     $badgeClass = $statusLabels[$status]['badge'] ?? 'bg-default';
 
-                    return '<span class="badge ' . $badgeClass . '" style="font-size: 12px; padding: 5px 10px; width: 80px; text-align: center; display: inline-block; border-radius: 5px;">' . $label . '</span>';
+                    return '<span class="badge ' . $badgeClass . '" style="font-size: 12px; padding: 3px 7px; width: 150px; text-align: center; display: inline-block; border-radius: 5px;">' . $label . '</span>';
                 })
 
                 ->rawColumns(['action', 'status'])

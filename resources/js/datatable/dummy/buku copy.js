@@ -32,11 +32,11 @@ $(document).ready(function () {
         columns: [
             { data: "id", name: "id" }, 
             { data: "title", name: "title" }, 
-            // { data: "penulis_id", name: "penulis_id"},
-            // { data: "penerbit_id", name: "penerbit_id" },
+            { data: "penulis_id", name: "penulis_id"},
+            { data: "penerbit_id", name: "penerbit_id" },
             { data: "terbit", name: "terbit" }, 
             { data: "genre_id", name: "genre_id" },  
-            // { data: "stock", name: "stock" }, 
+            { data: "stock", name: "stock" }, 
             {
                 data: "action",
                 name: "action",
