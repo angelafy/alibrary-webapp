@@ -133,15 +133,15 @@
                                                         <div class="progressbg-text">
                                                             @php
                                                                 $statusLabels = [
-                                                                0 => 'Pending',
-                                                                1 => 'Disetujui',
-                                                                2 => 'Dipinjam',
-                                                                3 => 'Dikembalikan',
-                                                                4 => 'Terlambat',
-                                                                5 => 'Hilang',
-                                                                5 => 'Pengembalian',
-                                                                7 => 'Ditolak',
-                                                            ];
+                                                                    0 => 'Pending',
+                                                                    1 => 'Disetujui',
+                                                                    2 => 'Dipinjam',
+                                                                    3 => 'Dikembalikan',
+                                                                    4 => 'Terlambat',
+                                                                    5 => 'Hilang',
+                                                                    5 => 'Pengembalian',
+                                                                    7 => 'Ditolak',
+                                                                ];
                                                             @endphp
                                                             {{ $statusLabels[$item->status] ?? 'Unknown' }}
                                                         </div>
@@ -184,7 +184,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/users/${id}`,
+                            url: `/admin//peminjaman/${id}`,
                             type: 'DELETE',
                             success: function(result) {
                                 Swal.fire(
@@ -192,7 +192,10 @@
                                     'Data pengguna telah dihapus.',
                                     'success'
                                 );
-                                table.ajax.reload();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
                             },
                             error: function(err) {
                                 Swal.fire(

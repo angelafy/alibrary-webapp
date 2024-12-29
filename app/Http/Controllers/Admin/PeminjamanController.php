@@ -35,7 +35,7 @@ class PeminjamanController extends Controller
                     return $row->user ? $row->user->nama : '-';
                 })
                 ->addColumn('action', function ($row) {
-                    return view('admin.buku.action', ['id' => $row->id])->render();
+                    return view('admin.peminjaman.action', ['id' => $row->id])->render();
                 })
                 ->editColumn('tgl_pinjam', function ($row) {
                     return $row->tgl_pinjam ? $row->tgl_pinjam->format('d M Y') : '-';
@@ -115,6 +115,21 @@ class PeminjamanController extends Controller
         $data['statusCounts'] = $statusCounts;
 
         return view('admin.peminjaman.index', $data);
+    }
+    public function destroy($id)
+    {
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+            $peminjaman->delete();
+
+            return response()->json([
+                'success' => 'Data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Data gagal dihapus: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     public function approve($id)

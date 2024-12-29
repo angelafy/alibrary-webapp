@@ -124,7 +124,6 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
-                        // SweetAlert untuk menampilkan pesan error
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -138,7 +137,6 @@
 
                         window.snap.pay(data.snap_token, {
                             onSuccess: function(result) {
-                                // Setelah pembayaran berhasil, update status denda
                                 fetch(`/peminjaman/payment/status/update/{{ $peminjaman->id }}`, {
                                         method: 'POST',
                                         headers: {
@@ -150,17 +148,15 @@
                                     .then(response => response.json())
                                     .then(data => {
                                         if (data.success) {
-                                            // SweetAlert untuk sukses dengan pesan dari controller
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Pembayaran Berhasil!',
                                                 text: data
-                                                .success, // Menampilkan pesan dari controller
+                                                .success, 
                                             }).then(() => {
                                                 window.location.reload();
                                             });
                                         } else {
-                                            // SweetAlert untuk error saat update status denda
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Gagal Memperbarui Status Denda',
@@ -170,7 +166,6 @@
                                     })
                                     .catch(error => {
                                         console.error('Error updating denda status:', error);
-                                        // SweetAlert untuk kesalahan update status denda
                                         Swal.fire({
                                             icon: 'error',
                                             title: 'Terjadi Kesalahan',
@@ -179,10 +174,9 @@
                                     });
                             },
                             onPending: function(result) {
-                                // You can add a pending state if needed
                             },
                             onError: function(result) {
-                                // SweetAlert untuk pembayaran gagal
+            
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Pembayaran Gagal',
@@ -195,7 +189,6 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    // SweetAlert untuk error umum
                     Swal.fire({
                         icon: 'error',
                         title: 'Terjadi Kesalahan',
