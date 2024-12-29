@@ -25,10 +25,13 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/pinjam/keranjang', [App\Http\Controllers\Client\KeranjangController::class, 'keranjang'])->name('pinjam.keranjang');
     Route::post('/pinjam/keranjang/add', [App\Http\Controllers\Client\KeranjangController::class, 'store'])->name('keranjang.store');
     Route::delete('/pinjam/keranjang/{id}', [App\Http\Controllers\Client\KeranjangController::class, 'destroy'])->name('keranjang.destroy');
+
     // Menambahkan buku ke dalam keranjang
     Route::get('/peminjaman', [App\Http\Controllers\Client\PeminjamanController::class, 'index'])->name('pinjam.index');
     Route::get('/peminjaman/{id}/detail', [App\Http\Controllers\Client\PeminjamanController::class, 'showDetail'])->name('peminjaman.detail');
     Route::post('/peminjaman/{id}/kembalikan', [App\Http\Controllers\Client\PeminjamanController::class, 'updateStatusToPendingPengembalian'])->name('peminjaman.kembalikan');
+    Route::post('/peminjaman/payment/initiate/{id}', [App\Http\Controllers\Client\PeminjamanController::class, 'initiatePayment'])->name('peminjaman.payment.initiate');
+    Route::post('/peminjaman/payment/notification', [App\Http\Controllers\Client\PeminjamanController::class, 'handlePaymentNotification'])->name('peminjaman.payment.notification');
 
     Route::post('/pinjam/add', [App\Http\Controllers\Client\PeminjamanController::class, 'store'])->name('pinjam.store');
 
@@ -41,6 +44,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/buku/genre/{genreId}', [App\Http\Controllers\Client\BukuController::class, 'filterByGenre'])->name('bukuClient.filterByGenre');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
+
+// Midtrans payment notification webhook (outside auth middleware)
+Route::post('/payment/callback', [App\Http\Controllers\Client\PeminjamanController::class, 'handlePaymentCallback'])
+    ->name('peminjaman.payment.callback')
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 /*------------------------------------------
 --------------------------------------------

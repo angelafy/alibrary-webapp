@@ -60,7 +60,6 @@ class KeranjangController extends Controller
             ], 400);
         }
     
-        // Tambahkan buku ke detail keranjang
         DetailKeranjang::create([
             'keranjang_id' => $keranjang->id,
             'buku_id' => $buku->id,

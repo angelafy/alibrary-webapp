@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Denda extends Model
 {
     protected $table = 'denda';
-    public function peminjaman() {
-        return $this->hasMany(Peminjaman::class);
+    protected $fillable = ['peminjaman_id', 'jumlah'];
+    public function peminjaman()
+    {
+        return $this->belongsTo(Peminjaman::class);
     }
 }

@@ -23,20 +23,21 @@
                                 </a>
                             </div>
                         </div>
-
-                        <!-- Card untuk Tabel Info Buku -->
+                        {{-- gawe tabel info buku --}}
                         <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-4">Informasi Buku</h3>
                             <table class="min-w-full bg-white border border-gray-200">
                                 <thead>
                                     <tr>
-                                        <th class="py-2 px-4 border-b">Judul Buku</th>
-                                        <th class="py-2 px-4 border-b">Jumlah</th>
+                                        <th class="py-2 px-4 border-b text-left">Kode</th>
+                                        <th class="py-2 px-4 border-b text-left">Judul Buku</th>
+                                        <th class="py-2 px-4 border-b text-left">Jumlah</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($peminjaman->detailPeminjaman as $detail)
                                         <tr>
+                                            <td class="py-2 px-4 border-b">{{ $detail->buku->kode_buku }}</td>
                                             <td class="py-2 px-4 border-b">{{ $detail->buku->title }}</td>
                                             <td class="py-2 px-4 border-b">{{ $detail->jumlah }}</td>
                                         </tr>
@@ -44,7 +45,38 @@
                                 </tbody>
                             </table>
                         </div>
-
+                        {{-- gawe tabel denda --}}
+                        @if ($peminjaman->denda && !$peminjaman->denda->status)
+                            <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-4 text-red-600">Informasi Denda</h3>
+                                <table class="min-w-full bg-white border border-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-2 px-4 border-b text-left">Jumlah Denda</th>
+                                            <th class="py-2 px-4 border-b text-left">Status</th>
+                                            <th class="py-2 px-4 border-b text-left">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">Rp
+                                                {{ number_format($peminjaman->denda->jumlah, 0, ',', '.') }}</td>
+                                            <td class="py-2 px-4 border-b">
+                                                <span class="px-2 py-1 rounded-full text-sm bg-red-100 text-red-800">
+                                                    Belum Lunas
+                                                </span>
+                                            </td>
+                                            <td class="py-2 px-4 border-b">
+                                                <button onclick="initiatePayment()"
+                                                    class="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                                                    Bayar Sekarang
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                         <!-- Card untuk Sinopsis -->
                         <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
                             <div class="flex items-center space-x-2">
@@ -53,24 +85,66 @@
                             </div>
                             <div class="mt-4">
                                 <div class="rounded-lg p-4 bg-gray-50 border border-gray-200 text-gray-500">
-                                    <span class="block font-medium text-sm line-clamp-2">asd</span>
+                                    <span class="block font-medium text-sm line-clamp-2">Mohon untuk mengembalikan buku
+                                        dengan tepat waktu, dan tidak menghilangkan buku !</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Kembali Button -->
-                    <div class="flex items-center justify-start gap-4 cursor-pointer rounded-lg bg-primary-500 text-white px-4 py-2 mt-4 hover:bg-primary-700"
-                        onclick="window.history.back()">
+                    <a href="{{ route('pinjam.index') }}"
+                        class="flex items-center justify-start gap-4 cursor-pointer rounded-lg bg-primary-500 text-white px-4 py-2 mt-4 hover:bg-primary-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
                             </path>
                         </svg>
                         <span class="text-sm">Kembali</span>
-                    </div>
+                    </a>
+
                 </section>
             </div>
         </main>
     </div>
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-7P5mXHtlZS17kMxg"></script>
+
+    <script>
+        function initiatePayment() {
+            fetch(`/peminjaman/payment/initiate/{{ $peminjaman->id }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    if (data.snap_token) {
+                        console.log(data.message);
+
+                        window.snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                window.location.reload();
+                            },
+                            onPending: function(result) {},
+                            onError: function(result) {
+                                alert('Pembayaran gagal, silakan coba lagi');
+                            },
+                            onClose: function() {}
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan, silakan coba lagi');
+                });
+        }
+    </script>
 </x-client-app>
