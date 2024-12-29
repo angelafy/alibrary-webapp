@@ -72,6 +72,31 @@ class KeranjangController extends Controller
             'message' => 'Buku berhasil ditambahkan ke keranjang.',
         ]);
     }
-    
+    public function destroy($id)
+    {
+        try {
+            $detailKeranjang = DetailKeranjang::findOrFail($id);
+
+            $keranjangId = $detailKeranjang->keranjang_id;
+            $detailKeranjang->delete();
+            $remainingItems = DetailKeranjang::where('keranjang_id', $keranjangId)->count();
+            if ($remainingItems === 0) {
+                Keranjang::destroy($keranjangId);
+            }
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Item berhasil dihapus dari keranjang'
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Error deleting cart item: ' . $e->getMessage());
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus item: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 
 }

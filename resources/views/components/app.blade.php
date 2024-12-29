@@ -63,7 +63,28 @@
     {{-- @include('sweetalert::alert') --}}
     <script src="{{ asset('assets/js/demo-theme.min.js?1667333929') }}"></script>
     {{-- sweet alert mas --}}
-    
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#198754', 
+        });
+    </script>
+@elseif(session('error'))
+    <script>
+        Swal.fire({
+            title: 'Error!',
+            text: "{{ session('error') }}",
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#dc3545', 
+        });
+    </script>
+@endif
+
     {{-- end sweet alert mas --}}
     <div id="app">
         {{-- gawe nyeluk component navbar --}}

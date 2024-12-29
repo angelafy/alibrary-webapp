@@ -24,7 +24,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/pinjam/keranjang', [App\Http\Controllers\Client\KeranjangController::class, 'keranjang'])->name('pinjam.keranjang');
     Route::post('/pinjam/keranjang/add', [App\Http\Controllers\Client\KeranjangController::class, 'store'])->name('keranjang.store');
-
+    Route::delete('/pinjam/keranjang/{id}', [App\Http\Controllers\Client\KeranjangController::class, 'destroy'])->name('keranjang.destroy');
     // Menambahkan buku ke dalam keranjang
     Route::get('/peminjaman', [App\Http\Controllers\Client\PeminjamanController::class, 'index'])->name('pinjam.index');
     Route::get('/peminjaman/{id}/detail', [App\Http\Controllers\Client\PeminjamanController::class, 'showDetail'])->name('peminjaman.detail');

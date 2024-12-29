@@ -88,16 +88,14 @@
                                         </div>
 
                                         <div class="flex space-x-2">
-                                            <form action="{{ route('peminjaman.kembalikan', $item->id) }}"
-                                                method="POST" class="inline">
+                                            <form action="{{ route('peminjaman.kembalikan', $item->id) }}" method="POST" class="kembalikanForm">
                                                 @csrf
-                                                <button type="submit" @class([
-                                                    'py-2 px-4 lg:px-6 rounded-lg border text-xs font-medium line-clamp-1',
-                                                    'border-primary-700 text-primary-700 hover:bg-primary-50' =>
-                                                        $item->status === 2,
-                                                    'border-gray-300 text-gray-400 cursor-not-allowed bg-gray-50' =>
-                                                        $item->status !== 2,
-                                                ])
+                                                <button type="button" 
+                                                    @class([
+                                                        'py-2 px-4 lg:px-6 rounded-lg border text-xs font-medium line-clamp-1',
+                                                        'border-primary-700 text-primary-700 hover:bg-primary-50' => $item->status === 2,
+                                                        'border-gray-300 text-gray-400 cursor-not-allowed bg-gray-50' => $item->status !== 2,
+                                                    ])
                                                     {{ $item->status !== 2 ? 'disabled' : '' }}>
                                                     Kembalikan
                                                 </button>
@@ -225,11 +223,30 @@
                         </div>
                     </section>
                 </div>
-
-
             </main>
-
-
-
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const buttons = document.querySelectorAll('form.kembalikanForm button[type="button"]');
+                buttons.forEach((button) => {
+                    button.addEventListener('click', function () {
+                        const form = button.closest('form'); // Ambil form terkait
+                        Swal.fire({
+                            title: 'Konfirmasi',
+                            text: 'Apakah Anda yakin ingin mengembalikan buku ini?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#dc3545',
+                            confirmButtonText: 'Ya, kembalikan!',
+                            cancelButtonText: 'Tidak, batalkan!',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit(); // Kirim form jika dikonfirmasi
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
     </x-client-app>
