@@ -76,6 +76,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::post('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'store'])->name('bukus.store');
     Route::get('admin/buku/create', [App\Http\Controllers\Admin\BukuController::class, 'create'])->name('bukus.create');
     Route::put('admin/buku/{id}', [App\Http\Controllers\Admin\BukuController::class, 'update'])->name('bukus.update');
+    Route::get('/admin/buku/excel', [App\Http\Controllers\Admin\BukuController::class, 'excel'])->name('bukus.excel');
 
     // Peminjaman Listr
     Route::get('/admin/peminjaman', [App\Http\Controllers\Admin\PeminjamanController::class, 'index'])->name('peminjaman.index');

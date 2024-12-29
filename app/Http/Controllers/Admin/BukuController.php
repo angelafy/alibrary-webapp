@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\BukuExport;
 use App\Models\Buku;
 use App\Models\Genre;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Penerbit;
 use App\Models\Penulis;
 use Yajra\DataTables\Facades\DataTables;
@@ -124,6 +126,10 @@ class BukuController extends Controller
                 return '<button class="btn btn-info">View</button>';
             })
             ->make(true);
+    }
+    public function excel()
+    {
+        return Excel::download(new BukuExport, 'buku.xlsx');
     }
 }
 
