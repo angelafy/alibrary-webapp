@@ -22,6 +22,7 @@ class Peminjaman extends Model
     const STATUS_DIKEMBALIKAN = 3;
     const STATUS_TERLAMBAT = 4;
     const STATUS_HILANG = 5;
+    const STATUS_PENDING_PENGEMBALIAN = 6;
 
     public static function getStatusList()
     {
@@ -32,13 +33,16 @@ class Peminjaman extends Model
             self::STATUS_DIKEMBALIKAN => 'Dikembalikan',
             self::STATUS_TERLAMBAT => 'Terlambat',
             self::STATUS_HILANG => 'Hilang',
+            self::STATUS_PENDING_PENGEMBALIAN => 'Pending Pengembalian',
         ];
     }
 
     protected $casts = [
         'tgl_pinjam' => 'datetime',
         'tgl_kembali' => 'datetime',
+        'tgl_pengembalian' => 'datetime',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -52,12 +56,10 @@ class Peminjaman extends Model
     public function denda()
     {
         return $this->hasOne(Denda::class);
-
-
     }
+
     public function detailPeminjaman()
     {
         return $this->hasMany(DetailPeminjaman::class, 'peminjaman_id');
     }
-
 }

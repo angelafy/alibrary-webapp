@@ -17,7 +17,7 @@
                     <div class="col-12 col-md-auto ms-auto d-print-none">
                         <div class="btn-list">
                             <span class="d-none d-sm-inline">
-                                <a href="sad" class="btn">
+                                <a href="{{ route('permintaan.excel') }}" class="btn">
                                     Cetak
                                 </a>
                             </span>

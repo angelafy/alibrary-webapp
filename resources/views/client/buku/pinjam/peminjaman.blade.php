@@ -86,26 +86,38 @@
                                                     Tidak Diketahui
                                             @endswitch
                                         </div>
-
                                         <div class="flex space-x-2">
-                                            <form action="{{ route('peminjaman.kembalikan', $item->id) }}" method="POST" class="kembalikanForm">
-                                                @csrf
-                                                <button type="button" 
-                                                    @class([
-                                                        'py-2 px-4 lg:px-6 rounded-lg border text-xs font-medium line-clamp-1',
-                                                        'border-primary-700 text-primary-700 hover:bg-primary-50' => $item->status === 2,
-                                                        'border-gray-300 text-gray-400 cursor-not-allowed bg-gray-50' => $item->status !== 2,
-                                                    ])
-                                                    {{ $item->status !== 2 ? 'disabled' : '' }}>
-                                                    Kembalikan
-                                                </button>
-                                            </form>
-                                            <!-- Tombol Lihat Detail sekarang mengarah ke halaman detail peminjaman -->
+                                            <!-- Tombol Bayar Denda (Hanya jika ada denda dan belum dibayar) -->
+                                            @if ($item->denda && !$item->denda->status)
+                                                <a href="{{ route('peminjaman.detail', $item->id) }}" 
+                                                    class="py-2 px-4 lg:px-6 rounded-lg border border-primary-700 text-xs text-primary-700 font-medium line-clamp-1 hover:bg-primary-50">
+                                                    Bayar Denda
+                                                </a>
+                                            @else
+                                                <!-- Tombol Kembalikan Buku jika tidak ada denda -->
+                                                <form action="{{ route('peminjaman.kembalikan', $item->id) }}" method="POST" class="kembalikanForm">
+                                                    @csrf
+                                                    <button type="submit" 
+                                                        @class([
+                                                            'py-2 px-4 lg:px-6 rounded-lg border text-xs font-medium line-clamp-1',
+                                                            'border-primary-700 text-primary-700 hover:bg-primary-50' => $item->status === 2,
+                                                            'border-gray-300 text-gray-400 cursor-not-allowed bg-gray-50' => $item->status !== 2,
+                                                        ])>
+                                                        Kembalikan
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            
+                                            <!-- Tombol Lihat Detail -->
                                             <a href="{{ route('peminjaman.detail', $item->id) }}"
                                                 class="py-2 px-4 lg:px-6 rounded-lg border border-primary-700 text-xs text-primary-700 font-medium line-clamp-1 hover:bg-primary-50">
                                                 Lihat Detail
                                             </a>
                                         </div>
+                                        
+                                        
+
+
 
                                     </div>
                                 </div>

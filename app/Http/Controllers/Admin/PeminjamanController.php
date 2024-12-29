@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Exports\PermintaanExport;
 use App\Http\Controllers\Controller;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeminjamanController extends Controller
 {
@@ -118,6 +120,7 @@ class PeminjamanController extends Controller
     public function approve($id)
     {
         try {
+            date_default_timezone_set('Asia/Jakarta');
             $peminjaman = Peminjaman::findOrFail($id);
 
             if ($peminjaman->status == 0) {
@@ -250,6 +253,11 @@ class PeminjamanController extends Controller
                 'message' => 'Terjadi kesalahan: ' . $e->getMessage()
             ], 500);
         }
+    }
+
+    public function excel()
+    {
+        return Excel::download(new PermintaanExport, 'permintaan.xlsx');
     }
 
 }

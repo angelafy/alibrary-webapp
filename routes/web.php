@@ -32,6 +32,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/peminjaman/{id}/kembalikan', [App\Http\Controllers\Client\PeminjamanController::class, 'updateStatusToPendingPengembalian'])->name('peminjaman.kembalikan');
     Route::post('/peminjaman/payment/initiate/{id}', [App\Http\Controllers\Client\PeminjamanController::class, 'initiatePayment'])->name('peminjaman.payment.initiate');
     Route::post('/peminjaman/payment/notification', [App\Http\Controllers\Client\PeminjamanController::class, 'handlePaymentNotification'])->name('peminjaman.payment.notification');
+    // Route::post('/peminjaman/payment/callback', [App\Http\Controllers\Client\PeminjamanController::class, 'handlePaymentCallback'])->name('peminjaman.payment-callback');
+    Route::post('/peminjaman/payment/status/update/{id}', [App\Http\Controllers\Client\PeminjamanController::class, 'updatePaymentStatus'])->name('payment.updateStatus');
+
+
 
     Route::post('/pinjam/add', [App\Http\Controllers\Client\PeminjamanController::class, 'store'])->name('pinjam.store');
 
@@ -45,10 +49,6 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
 
-// Midtrans payment notification webhook (outside auth middleware)
-Route::post('/payment/callback', [App\Http\Controllers\Client\PeminjamanController::class, 'handlePaymentCallback'])
-    ->name('peminjaman.payment.callback')
-    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 /*------------------------------------------
 --------------------------------------------
@@ -80,6 +80,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     // Peminjaman Listr
     Route::get('/admin/peminjaman', [App\Http\Controllers\Admin\PeminjamanController::class, 'index'])->name('peminjaman.index');
     Route::get('/admin/peminjaman/permintaan', [App\Http\Controllers\Admin\PeminjamanController::class, 'permintaan'])->name('permintaan.index');
+    Route::get('/admin/peminjaman/permintaan/excel', [App\Http\Controllers\Admin\PeminjamanController::class, 'excel'])->name('permintaan.excel');
     Route::patch('/admin/peminjaman/{id}/approve', [App\Http\Controllers\Admin\PeminjamanController::class, 'approve'])->name('peminjaman.approve');
     Route::patch('/admin/peminjaman/{id}/return', [App\Http\Controllers\Admin\PeminjamanController::class, 'return'])->name('peminjaman.return');
     Route::patch('/admin/peminjaman/{id}/reject', [App\Http\Controllers\Admin\PeminjamanController::class, 'reject'])->name('peminjaman.reject');

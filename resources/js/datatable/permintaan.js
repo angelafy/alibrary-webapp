@@ -87,6 +87,9 @@ $(document).ready(function () {
                         case 3:
                             badge = `<span class="badge bg-info" style="${badgeStyle}">Dikembalikan</span>`;
                             break;
+                        case 4:
+                            badge = `<span class="badge bg-danger" style="${badgeStyle}">Pelanggaran</span>`;
+                            break;
                         case 6:
                             badge = `<span class="badge bg-warning" style="${badgeStyle}">Pending Pengembalian</span>`;
                             break;
@@ -122,6 +125,7 @@ $(document).ready(function () {
 
                         case 2: // Dipinjam
                         case 3: // Dikembalikan
+                        case 4:
                         case 7: // Ditolak
                             buttons += `
                                 <button type="button" class="btn btn-sm btn-success approve-btn" style="${baseButtonStyle}" disabled>

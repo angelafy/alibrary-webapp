@@ -114,94 +114,94 @@
 
     <script>
         function initiatePayment() {
-            fetch(`/peminjaman/payment/initiate/{{ $peminjaman->id }}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        // SweetAlert untuk menampilkan pesan error
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: data.error,
-                        });
-                        return;
-                    }
+    fetch(`/peminjaman/payment/initiate/{{ $peminjaman->id }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                // SweetAlert untuk menampilkan pesan error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.error,
+                });
+                return;
+            }
 
-                    if (data.snap_token) {
-                        console.log(data.message);
+            if (data.snap_token) {
+                console.log(data.message);
 
-                        window.snap.pay(data.snap_token, {
-                            onSuccess: function(result) {
-                                // Setelah pembayaran berhasil, update status denda
-                                fetch(`/peminjaman/payment/status/update/{{ $peminjaman->id }}`, {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': document.querySelector(
-                                                'meta[name="csrf-token"]').content
-                                        }
-                                    })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.success) {
-                                            // SweetAlert untuk sukses dengan pesan dari controller
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Pembayaran Berhasil!',
-                                                text: data
-                                                .success, // Menampilkan pesan dari controller
-                                            }).then(() => {
-                                                window.location.reload();
-                                            });
-                                        } else {
-                                            // SweetAlert untuk error saat update status denda
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Gagal Memperbarui Status Denda',
-                                                text: 'Silakan coba lagi.',
-                                            });
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.error('Error updating denda status:', error);
-                                        // SweetAlert untuk kesalahan update status denda
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Terjadi Kesalahan',
-                                            text: 'Terjadi kesalahan saat memperbarui status denda.',
-                                        });
+                window.snap.pay(data.snap_token, {
+                    onSuccess: function(result) {
+                        // Setelah pembayaran berhasil, update status denda
+                        fetch(`/peminjaman/payment/status/update/{{ $peminjaman->id }}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector(
+                                        'meta[name="csrf-token"]').content
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // SweetAlert untuk sukses dengan pesan dari controller
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Pembayaran Berhasil!',
+                                        text: data.success, // Menampilkan pesan dari controller
+                                    }).then(() => {
+                                        window.location.reload();
                                     });
-                            },
-                            onPending: function(result) {
-                                // You can add a pending state if needed
-                            },
-                            onError: function(result) {
-                                // SweetAlert untuk pembayaran gagal
+                                } else {
+                                    // SweetAlert untuk error saat update status denda
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Gagal Memperbarui Status Denda',
+                                        text: 'Silakan coba lagi.',
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating denda status:', error);
+                                // SweetAlert untuk kesalahan update status denda
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Pembayaran Gagal',
-                                    text: 'Silakan coba lagi.',
+                                    title: 'Terjadi Kesalahan',
+                                    text: 'Terjadi kesalahan saat memperbarui status denda.',
                                 });
-                            },
-                            onClose: function() {}
+                            });
+                    },
+                    onPending: function(result) {
+                        // You can add a pending state if needed
+                    },
+                    onError: function(result) {
+                        // SweetAlert untuk pembayaran gagal
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Pembayaran Gagal',
+                            text: 'Silakan coba lagi.',
                         });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // SweetAlert untuk error umum
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Terjadi Kesalahan',
-                        text: 'Silakan coba lagi.',
-                    });
+                    },
+                    onClose: function() {}
                 });
-        }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // SweetAlert untuk error umum
+            Swal.fire({
+                icon: 'error',
+                title: 'Terjadi Kesalahan',
+                text: 'Silakan coba lagi.',
+            });
+        });
+}
+
     </script>
 </x-client-app>

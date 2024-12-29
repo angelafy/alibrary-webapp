@@ -41,17 +41,10 @@ class MidtransService
                     'expires_at' => $denda->pending_payment_until->format('Y-m-d H:i:s'),
                     'message' => 'Menggunakan invoice yang masih aktif'
                 ];
-            } else {
-                // Jika invoice sudah expired, hapus data invoice lama
-                $denda->update([
-                    'pending_payment_until' => null,
-                    'pending_payment_id' => null,
-                    'order_id' => null
-                ]);
             }
         }
 
-        // Buat invoice baru jika tidak ada yang aktif
+        // Buat invoice baru
         $orderId = 'DENDA-' . $peminjaman->kode_peminjaman . '-' . time();
         $expiryTime = now()->addHour();
 
@@ -96,30 +89,30 @@ class MidtransService
                 'message' => 'Invoice baru dibuat'
             ];
         } catch (\Exception $e) {
-            \Log::error('Midtrans Error: ' . $e->getMessage());
+            Log::error('Midtrans Error: ' . $e->getMessage());
             throw new \Exception('Gagal membuat transaksi: ' . $e->getMessage());
         }
     }
-    public function handleCallback($notification)
+
+    public function validateCallback($notification)
     {
         try {
-            Log::info('Processing payment notification:', ['notification' => $notification]);
+            Log::info('Validating payment notification:', ['notification' => $notification]);
 
             $orderId = $notification->order_id ?? null;
             $transactionStatus = $notification->transaction_status ?? null;
             $fraudStatus = $notification->fraud_status ?? null;
             $grossAmount = $notification->gross_amount ?? 0;
-
+            
             if (!$orderId) {
                 throw new \Exception('Invalid order ID');
             }
 
-            $denda = Denda::where('order_id', $orderId)->firstOrFail();
-            $peminjaman = $denda->peminjaman;
-
-            if (!$peminjaman) {
-                throw new \Exception('Peminjaman not found');
+            $denda = Denda::where('order_id', $orderId)->first();
+            if (!$denda) {
+                throw new \Exception('Denda not found');
             }
+
             if ((int) $grossAmount !== (int) $denda->jumlah) {
                 Log::warning('Amount mismatch', [
                     'expected' => $denda->jumlah,
@@ -128,60 +121,20 @@ class MidtransService
                 return false;
             }
 
-            Log::info('Payment status:', [
-                'order_id' => $orderId,
+            // Return payment status information
+            return [
+                'denda' => $denda,
+                'peminjaman' => $denda->peminjaman,
                 'status' => $transactionStatus,
                 'fraud_status' => $fraudStatus
+            ];
+
+        } catch (\Exception $e) {
+            Log::error('Callback validation error:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
             ]);
-
-            switch ($transactionStatus) {
-                case 'capture':
-                case 'settlement':
-                    if ($fraudStatus === 'accept' || $fraudStatus === null) {
-                        return $this->processSuccessPayment($denda, $peminjaman);
-                    }
-                    break;
-                case 'pending':
-                    return true;
-                case 'deny':
-                case 'expire':
-                case 'cancel':
-                    $denda->update([
-                        'pending_payment_until' => null,
-                        'pending_payment_id' => null,
-                        'order_id' => null
-                    ]);
-                    return true;
-            }
-
-            return false;
-        } catch (\Exception $e) {
-            Log::error('Callback processing error:', ['error' => $e->getMessage()]);
             throw $e;
-        }
-    }
-
-    private function processSuccessPayment(Denda $denda, Peminjaman $peminjaman)
-    {
-        try {
-            \DB::transaction(function () use ($denda, $peminjaman) {
-                $denda->update([
-                    'status' => true,
-                    'tanggal_pembayaran' => now(),
-                    'pending_payment_until' => null,
-                    'pending_payment_id' => null,
-                    'order_id' => null
-                ]);
-
-                $peminjaman->update([
-                    'status' => 6 // Status Pending Pengembalian
-                ]);
-            });
-
-            return true;
-        } catch (\Exception $e) {
-            \Log::error('Process Payment Error: ' . $e->getMessage());
-            return false;
         }
     }
 }

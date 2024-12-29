@@ -27,4 +27,5 @@ class PeminjamanSeeder extends Seeder
             'status' => false,
         ]);
     }
+    
 }
