@@ -87,11 +87,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::patch('/admin/peminjaman/{id}/reject', [App\Http\Controllers\Admin\PeminjamanController::class, 'reject'])->name('peminjaman.reject');
     Route::delete('/admin//peminjaman/{id}', [App\Http\Controllers\Admin\PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
 
-    // Penerbit
+    /* Penerbit */
     Route::get('/admin/penerbit', [App\Http\Controllers\Admin\PenerbitController::class, 'index'])->name('penerbit.index');
-    // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
 
-    // detail buku
+    /* Genre */
+    Route::get('/admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'index'])->name('genre.index');
+
+    /* Penulis */
+    Route::get('/admin/penulis', [App\Http\Controllers\Admin\PenulisController::class, 'index'])->name('penulis.index');
 
 });
 
