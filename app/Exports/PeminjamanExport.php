@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class PermintaanExport implements FromView, WithStyles, ShouldAutoSize
+class PeminjamanExport implements FromView, WithStyles, ShouldAutoSize
 {
     public function styles(Worksheet $sheet)
     {
@@ -21,7 +21,7 @@ class PermintaanExport implements FromView, WithStyles, ShouldAutoSize
 
     public function view(): View
     {
-        return view('admin.permintaan.export.excel', [
+        return view('admin.peminjaman.export.excel', [
             'peminjaman' => Peminjaman::all()
         ]);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Exports\PeminjamanExport;
 use App\Exports\PermintaanExport;
 use App\Http\Controllers\Controller;
 use App\Models\Peminjaman;
@@ -228,7 +229,7 @@ class PeminjamanController extends Controller
 
     public function excel()
     {
-        return Excel::download(new PermintaanExport, 'permintaan.xlsx');
+        return Excel::download(new PeminjamanExport, 'peminjaman.xlsx');
     }
 
 }

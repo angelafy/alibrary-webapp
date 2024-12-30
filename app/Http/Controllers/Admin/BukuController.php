@@ -131,5 +131,35 @@ class BukuController extends Controller
     {
         return Excel::download(new BukuExport, 'buku.xlsx');
     }
+
+    public function show($id)
+    {
+        $data['buku'] = Buku::with([
+            'penulis',
+            'penerbit',
+            'genre',
+        ])
+            ->where('id', $id)
+            ->firstOrFail();
+
+
+        return view('admin.buku.show', $data);
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $peminjaman = Buku::findOrFail($id);
+            $peminjaman->delete();
+
+            return response()->json([
+                'success' => 'Buku berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Buku gagal dihapus: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }
 

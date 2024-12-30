@@ -28,15 +28,20 @@ $(document).ready(function () {
             },
             processing: "Loading...",
         },
-        ajax: "/admin/buku", 
+        ajax: "/admin/buku",
         columns: [
-            { data: "id", name: "id" }, 
-            { data: "title", name: "title" }, 
+            {
+                data: "DT_RowIndex",
+                name: "DT_RowIndex",
+                orderable: false,
+                searchable: false,
+            },
+            { data: "title", name: "title" },
             // { data: "penulis_id", name: "penulis_id"},
             // { data: "penerbit_id", name: "penerbit_id" },
-            { data: "terbit", name: "terbit" }, 
-            { data: "genre_id", name: "genre_id" },  
-            // { data: "stock", name: "stock" }, 
+            { data: "terbit", name: "terbit" },
+            { data: "genre_id", name: "genre_id" },
+            // { data: "stock", name: "stock" },
             {
                 data: "action",
                 name: "action",
@@ -44,7 +49,7 @@ $(document).ready(function () {
                 searchable: false,
             },
         ],
-        drawCallback: sihubDrawCallback, 
+        drawCallback: sihubDrawCallback,
     });
 
     // Gawe Page Length
@@ -63,5 +68,62 @@ $(document).ready(function () {
         if (!$(this).closest("li").hasClass("disabled")) {
             table.page($(this).data("page")).draw("page");
         }
+    });
+
+    /* gawe sweet alert delete e */
+    $(document).ready(function () {
+        // Initialize DataTable
+
+        // Delete handler
+        $(document).on("click", ".delete-buku", function () {
+            const id = $(this).data("id");
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data pengguna akan dihapus secara permanen!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Tidak, batal!",
+                reverseButtons: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/admin/buku/${id}`,
+                        type: "DELETE",
+                        success: function (result) {
+                            Swal.fire(
+                                "Dihapus!",
+                                "Data pengguna telah dihapus.",
+                                "success"
+                            );
+                            table.ajax.reload();
+                        },
+                        error: function (err) {
+                            Swal.fire(
+                                "Error!",
+                                "Terjadi kesalahan saat menghapus pengguna.",
+                                "error"
+                            );
+                        },
+                    });
+                } else {
+                    Swal.fire(
+                        "Dibatalkan",
+                        "Data pengguna tidak dihapus.",
+                        "info"
+                    );
+                }
+            });
+        });
+
+        // Page length change
+        $("#pageLength").on("change", function () {
+            table.page.len($(this).val()).draw();
+        });
+
+        // Search input
+        $("#searchInput").on("keyup", function () {
+            table.search($(this).val()).draw();
+        });
     });
 });

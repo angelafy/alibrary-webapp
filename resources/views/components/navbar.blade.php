@@ -280,7 +280,7 @@
                                </div>
                            </div>
                        </li> --}}
-                       <li class="nav-item {{ Route::is('bukus.index') ? 'active' : '' }}">
+                       <li class="nav-item {{ Route::is('bukus.index','bukus.create') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('bukus.index') }}">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->

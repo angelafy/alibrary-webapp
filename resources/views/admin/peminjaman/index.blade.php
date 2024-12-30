@@ -19,11 +19,12 @@
                         <div class="col-12 col-md-auto ms-auto d-print-none">
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
-                                    <a href="sad" class="btn">
+                                    <a href="{{ route('peminjaman.excel') }}" class="btn">
                                         Cetak
                                     </a>
                                 </span>
-                                <a href="{{ route('bukus.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                                <button href="#" class="btn btn-primary d-none d-sm-inline-block" disabled
+                                    readonly>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -32,7 +33,7 @@
                                         <path d="M5 12l14 0" />
                                     </svg>
                                     Tambah {{ $main }}
-                                </a>
+                                </button>
                                 <a href="" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                                     data-bs-target="#modal-tambah-hewan" aria-label="Tambah Produk">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
