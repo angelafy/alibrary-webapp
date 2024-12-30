@@ -44,7 +44,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/pinjam/checkout', [App\Http\Controllers\Client\PeminjamanController::class, 'process'])->name('pinjam.process');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('admin/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
+    Route::get('/buku/{id}/show', [App\Http\Controllers\Client\BukuController::class, 'show'])->name('clientBuku.show');
     Route::get('/buku/genre/{genreId}', [App\Http\Controllers\Client\BukuController::class, 'filterByGenre'])->name('bukuClient.filterByGenre');
     // Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 });
@@ -91,7 +91,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     /* Penulis */
     Route::get('/admin/penulis', [App\Http\Controllers\Admin\PenulisController::class, 'index'])->name('penulis.index');
     Route::delete('/admin/penulis/{id}', [App\Http\Controllers\Admin\PenulisController::class, 'destroy'])->name('penulis.destroy');
-
+    Route::get('/admin/penulis/create', [App\Http\Controllers\Admin\PenulisController::class, 'create'])->name('penulis.create');
+    Route::post('/admin/penulis/add', [App\Http\Controllers\Admin\PenulisController::class, 'store'])->name('penulis.store');
 });
 
 /*------------------------------------------

@@ -50,4 +50,33 @@ class PenulisController extends Controller
             ], 500);
         }
     }
+
+    /* Gawe store database */
+    public function store(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'kode_author' => 'required|string|max:255',
+            'nama_author' => 'required|string|max:255',
+            'bio' => 'required|string',
+        ]);
+        /* Gawe store create */
+        Penulis::create([
+            'kode_author' => $request->kode_author,
+            'nama_author' => $request->nama_author,
+            'bio' => $request->bio,
+
+        ]);
+
+        // Redirect to the supplier list with a success message
+        return redirect()->route('penulis.index')
+            ->with('success', 'Penulis berhasil ditambahkan.');
+    }
+    public function create()
+    {
+        $data['main'] = 'Penulis';
+        $data['judul'] = 'Manajemen Data Penulis';
+        $data['sub_judul'] = 'Data Penulis';
+        return view('admin.penulis.create', $data);
+    }
 }
