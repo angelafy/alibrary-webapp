@@ -177,7 +177,7 @@
                     showCancelButton: true,
                     confirmButtonText: 'Ya, hapus!',
                     cancelButtonText: 'Tidak, batal!',
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

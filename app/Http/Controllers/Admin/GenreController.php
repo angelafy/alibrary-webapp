@@ -17,6 +17,11 @@ class GenreController extends Controller
             $data = Genre::select('id', 'kode_genre', 'nama_genre', 'deskripsi');
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('deskripsi', function ($row) {
+                    return strlen($row->deskripsi) > 50
+                        ? substr($row->deskripsi, 0, 50) . '...'
+                        : $row->deskripsi;
+                })
                 ->addColumn('action', function ($row) {
                     return view('admin.genre.action', ['id' => $row->id])->render();
                 })
@@ -25,5 +30,20 @@ class GenreController extends Controller
         }
         return view('admin.genre.index', $data);
 
+    }
+    public function destroy($id)
+    {
+        try {
+            $genre = Genre::findOrFail($id);
+            $genre->delete();
+
+            return response()->json([
+                'success' => 'Data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Data gagal dihapus: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

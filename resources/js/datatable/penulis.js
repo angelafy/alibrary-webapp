@@ -10,7 +10,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         autoWidth: false,
-        scrollX: true,
+        scrollX: false,
         responsive: true,
         pageLength: 10,
         dom: "t", // Remove default search and pagination
@@ -60,5 +60,52 @@ $(document).ready(function () {
         if (!$(this).closest("li").hasClass("disabled")) {
             table.page($(this).data("page")).draw("page");
         }
+    });
+
+    /* sweetalert delete e */
+    $(document).ready(function () {
+        $(document).on("click", ".delete-penulis", function () {
+            const id = $(this).data("id");
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data pengguna akan dihapus secara permanen!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Tidak, batal!",
+                reverseButtons: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/admin/penulis/${id}`,
+                        type: "DELETE",
+                        success: function (result) {
+                            Swal.fire(
+                                "Dihapus!",
+                                "Data pengguna telah dihapus.",
+                                "success"
+                            );
+
+                            setTimeout(function () {
+                                location.reload();
+                            }, 3000);
+                        },
+                        error: function (err) {
+                            Swal.fire(
+                                "Error!",
+                                "Terjadi kesalahan saat menghapus pengguna.",
+                                "error"
+                            );
+                        },
+                    });
+                } else {
+                    Swal.fire(
+                        "Dibatalkan",
+                        "Data pengguna tidak dihapus.",
+                        "info"
+                    );
+                }
+            });
+        });
     });
 });

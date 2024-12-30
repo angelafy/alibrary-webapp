@@ -28,4 +28,19 @@ class PenerbitController extends Controller
         return view('admin.penerbit.index', $data);
 
     }
+    public function destroy($id)
+    {
+        try {
+            $penerbit = Penerbit::findOrFail($id);
+            $penerbit->delete();
+
+            return response()->json([
+                'success' => 'Data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Data gagal dihapus: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }

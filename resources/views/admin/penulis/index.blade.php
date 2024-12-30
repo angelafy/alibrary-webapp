@@ -86,8 +86,8 @@
                                     <tr>
                                         <th style="width: 5%;">No</th>
                                         <th style="width: 15%;">Kode</th>
-                                        <th style="width: 15%;">Nama</th>
-                                        <th style="width: 30%;">Bio</th>
+                                        <th style="width: 30%;">Nama</th>
+                                        <th style="width: 50%;">Bio</th>
                                         <th class="w-1" style="width: 20%;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -102,47 +102,5 @@
             </div>
         </div>
     </div>
-    <script>
-        // Delete handler
-        $(document).on('click', '.delete', function() {
-            const id = $(this).data('id');
-            Swal.fire({
-                title: 'Anda yakin?',
-                text: 'Data akan dihapus secara permanen!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Tidak, batal!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "/suppliers/" + id,
-                        type: 'DELETE',
-                        success: function(result) {
-                            Swal.fire(
-                                'Dihapus!',
-                                'Data telah dihapus.',
-                                'success'
-                            );
-                            table.ajax.reload();
-                        },
-                        error: function(err) {
-                            Swal.fire(
-                                'Error!',
-                                'There was an error deleting the supplier.',
-                                'error'
-                            );
-                        }
-                    });
-                } else {
-                    Swal.fire(
-                        'Cancelled',
-                        'Data tidak dihapus.',
-                        'info'
-                    );
-                }
-            });
-        });
-    </script>
+
 </x-app>
