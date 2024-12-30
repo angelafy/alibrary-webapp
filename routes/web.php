@@ -87,6 +87,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::patch('/admin/peminjaman/{id}/reject', [App\Http\Controllers\Admin\PeminjamanController::class, 'reject'])->name('peminjaman.reject');
     Route::delete('/admin//peminjaman/{id}', [App\Http\Controllers\Admin\PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
 
+    // Penerbit
+    Route::get('/admin/penerbit', [App\Http\Controllers\Admin\PenerbitController::class, 'index'])->name('penerbit.index');
     // Route::get('/admin/buku', [BukuController::class, 'index'])->name('bukus.index');
 
     // detail buku

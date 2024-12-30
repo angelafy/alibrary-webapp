@@ -46,39 +46,53 @@
                             </table>
                         </div>
                         {{-- gawe tabel denda --}}
-
-                        <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
-                            <h3 class="text-lg font-semibold mb-4 text-red-600">Informasi Denda</h3>
-                            <table class="min-w-full bg-white border border-gray-200">
-                                <thead>
-                                    <tr>
-                                        <th class="py-2 px-4 border-b text-left">Jumlah Denda</th>
-                                        <th class="py-2 px-4 border-b text-left">Status</th>
-                                        <th class="py-2 px-4 border-b text-left">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($peminjaman->denda && !$peminjaman->denda->status)
+                        @if ($peminjaman->denda && $peminjaman->denda->jumlah > 0)
+                            <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-4 text-red-600">Informasi Denda</h3>
+                                <table class="min-w-full bg-white border border-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-2 px-4 border-b text-left">Jumlah Denda</th>
+                                            <th class="py-2 px-4 border-b text-left">Status</th>
+                                            <th class="py-2 px-4 border-b text-left">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <tr>
                                             <td class="py-2 px-4 border-b">Rp
                                                 {{ number_format($peminjaman->denda->jumlah, 0, ',', '.') }}</td>
                                             <td class="py-2 px-4 border-b">
-                                                <span class="px-2 py-1 rounded-full text-sm bg-red-100 text-red-800">
-                                                    Belum Lunas
-                                                </span>
+                                                @if ($peminjaman->denda->status)
+                                                    <span
+                                                        class="px-2 py-1 rounded-full text-sm bg-green-100 text-green-800">
+                                                        Lunas
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="px-2 py-1 rounded-full text-sm bg-red-100 text-red-800">
+                                                        Belum Lunas
+                                                    </span>
+                                                @endif
                                             </td>
                                             <td class="py-2 px-4 border-b">
-                                                <button onclick="initiatePayment()"
-                                                    class="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">
-                                                    Bayar Sekarang
-                                                </button>
+                                                @if ($peminjaman->denda->status)
+                                                    <button
+                                                        class="bg-gray-300 text-white px-4 py-2 rounded-lg cursor-not-allowed"
+                                                        disabled>
+                                                        Bayar Sekarang
+                                                    </button>
+                                                @else
+                                                    <button onclick="initiatePayment()"
+                                                        class="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                                                        Bayar Sekarang
+                                                    </button>
+                                                @endif
                                             </td>
                                         </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                         <!-- Card untuk Sinopsis -->
                         <div class="mt-4 lg:mt-6 bg-white rounded-lg p-4">
                             <div class="flex items-center space-x-2">
@@ -152,7 +166,7 @@
                                                 icon: 'success',
                                                 title: 'Pembayaran Berhasil!',
                                                 text: data
-                                                .success, 
+                                                    .success,
                                             }).then(() => {
                                                 window.location.reload();
                                             });
@@ -173,10 +187,9 @@
                                         });
                                     });
                             },
-                            onPending: function(result) {
-                            },
+                            onPending: function(result) {},
                             onError: function(result) {
-            
+
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Pembayaran Gagal',

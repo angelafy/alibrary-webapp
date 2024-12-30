@@ -6,4 +6,5 @@ import './datatable/buku';
 import './datatable/admin';
 import './datatable/peminjaman';
 import './datatable/permintaan';
+import './datatable/penerbit';
 import './kode';
