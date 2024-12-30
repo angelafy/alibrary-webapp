@@ -71,7 +71,7 @@
                                         {{-- Search: --}}
                                         <div class="ms-2 d-inline-block">
                                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                                placeholder="Cari Supplier" aria-label="Search supplier">
+                                                placeholder="Cari Peminjaman" aria-label="Search supplier">
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                             <th style="width: 15%;">Nama</th>
                                             <th>Tgl Pinjam</th>
                                             <th>Tgl Kembali</th>
-                                            <th>Status</th>
+                                            <th>Permintaan</th>
                                             <th class="w-1" style="width: 20%;">Aksi</th>
                                         </tr>
                                     </thead>
@@ -139,7 +139,7 @@
                                                                     3 => 'Dikembalikan',
                                                                     4 => 'Terlambat',
                                                                     5 => 'Hilang',
-                                                                    5 => 'Pengembalian',
+                                                                    6 => 'Pengembalian',
                                                                     7 => 'Ditolak',
                                                                 ];
                                                             @endphp
@@ -164,63 +164,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-
-            $(document).on('click', '.delete', function() {
-                const id = $(this).data('id');
-                Swal.fire({
-                    title: 'Anda yakin?',
-                    text: 'Data pengguna akan dihapus secara permanen!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Tidak, batal!',
-                    reverseButtons: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `/admin//peminjaman/${id}`,
-                            type: 'DELETE',
-                            success: function(result) {
-                                Swal.fire(
-                                    'Dihapus!',
-                                    'Data pengguna telah dihapus.',
-                                    'success'
-                                );
-
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000);
-                            },
-                            error: function(err) {
-                                Swal.fire(
-                                    'Error!',
-                                    'Terjadi kesalahan saat menghapus pengguna.',
-                                    'error'
-                                );
-                            }
-                        });
-                    } else {
-                        Swal.fire(
-                            'Dibatalkan',
-                            'Data pengguna tidak dihapus.',
-                            'info'
-                        );
-                    }
-                });
-            });
-
-            // Page length change
-            $('#pageLength').on('change', function() {
-                table.page.len($(this).val()).draw();
-            });
-
-            // Search input
-            $('#searchInput').on('keyup', function() {
-                table.search($(this).val()).draw();
-            });
-        });
-    </script>
 </x-app>

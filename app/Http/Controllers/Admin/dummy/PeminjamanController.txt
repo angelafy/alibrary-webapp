@@ -19,58 +19,102 @@ class PeminjamanController extends Controller
         $data['sub_judul'] = 'Data Peminjaman';
 
         if ($request->ajax()) {
-            $query = Peminjaman::with(['user', 'detailPeminjaman.buku']);
-            $recordsTotal = $query->count();
+            $peminjaman = Peminjaman::with('user')->select([
+                'peminjaman.id',
+                'peminjaman.kode_peminjaman',
+                'peminjaman.user_id',
+                'peminjaman.tgl_pinjam',
+                'peminjaman.tgl_kembali',
+                'peminjaman.tgl_dikembalikan',
+                'peminjaman.status'
+            ]);
 
-            if ($request->has('search') && !empty($request->search['value'])) {
-                $searchValue = $request->search['value'];
-                $query->where(function ($q) use ($searchValue) {
-                    $q->where('kode_peminjaman', 'like', "%{$searchValue}%")
-                        ->orWhereHas('user', function ($q) use ($searchValue) {
-                            $q->where('nama', 'like', "%{$searchValue}%");
-                        });
-                });
-            }
-
-            $recordsFiltered = $query->count();
-
-            if ($request->has('order')) {
-                $columnIndex = $request->order[0]['column'];
-                $columnName = $request->columns[$columnIndex]['name'];
-                $columnDirection = $request->order[0]['dir'];
-
-                if ($columnName === 'user.name') {
-                    $query->join('users', 'peminjaman.user_id', '=', 'users.id')
-                        ->orderBy('users.name', $columnDirection)
-                        ->select('peminjaman.*');
-                } else {
-                    $query->orderBy($columnName, $columnDirection);
-                }
-            } else {
-                $query->latest();
-            }
-
-            $limit = $request->length ?? 10;
-            $start = $request->start ?? 0;
-            $data = $query->take($limit)->skip($start)->get();
-
-            return DataTables::of($data)
+            return Datatables::of($peminjaman)
                 ->addIndexColumn()
+                ->addColumn('nama_peminjam', function ($row) {
+                    return $row->user ? $row->user->nama : '-';
+                })
                 ->addColumn('action', function ($row) {
                     return view('admin.peminjaman.action', ['id' => $row->id])->render();
                 })
-                ->rawColumns(['action'])
+                ->editColumn('tgl_pinjam', function ($row) {
+                    return $row->tgl_pinjam ? $row->tgl_pinjam->format('d M Y') : '-';
+                })
+                ->editColumn('tgl_kembali', function ($row) {
+                    return $row->tgl_kembali ? $row->tgl_kembali->format('d M Y') : 'Belum dikembalikan';
+                })
+                ->editColumn('status', function ($row) {
+                    $statusLabels = [
+                        0 => ['label' => 'Persetujuan', 'badge' => 'bg-secondary'],
+                        1 => ['label' => 'Disetujui', 'badge' => 'bg-success'],
+                        2 => ['label' => 'Dipinjam', 'badge' => 'bg-warning'],
+                        3 => ['label' => 'Dikembalikan', 'badge' => 'bg-primary'],
+                        4 => ['label' => 'Terlambat', 'badge' => 'bg-danger'],
+                        5 => ['label' => 'Hilang', 'badge' => 'bg-dark'],
+                        6 => ['label' => 'Pengembalian', 'badge' => 'bg-dark'],
+                    ];
+
+                    $status = $row->status;
+                    $label = $statusLabels[$status]['label'] ?? 'Unknown';
+                    $badgeClass = $statusLabels[$status]['badge'] ?? 'bg-default';
+
+                    return '<span class="badge ' . $badgeClass . '" style="font-size: 12px; padding: 3px 7px; width: 150px; text-align: center; display: inline-block; border-radius: 5px;">' . $label . '</span>';
+                })
+
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
 
-        $tracker = DB::table('peminjaman')
-            ->select('status', DB::raw('count(*) as jumlah'))
+        $tracker = Peminjaman::select('status', DB::raw('COUNT(*) as jumlah'))
             ->groupBy('status')
             ->get();
 
         $total = $tracker->sum('jumlah');
+        $statusCounts = [
+            'Pending Persetujuan' => 0,
+            'Disetujui' => 0,
+            'Dipinjam' => 0,
+            'Dikembalikan' => 0,
+            'Terlambat' => 0,
+            'Hilang' => 0,
+            'Pending Pengembalian' => 0,
+            'Ditolak' => 0,
+        ];
 
-        return view('admin.peminjaman.index', $data, compact('tracker', 'total'));
+        foreach ($tracker as $item) {
+            switch ($item->status) {
+                case 0:
+                    $statusCounts['Pending Persetujuan'] = $item->jumlah;
+                    break;
+                case 1:
+                    $statusCounts['Disetujui'] = $item->jumlah;
+                    break;
+                case 2:
+                    $statusCounts['Dipinjam'] = $item->jumlah;
+                    break;
+                case 3:
+                    $statusCounts['Dikembalikan'] = $item->jumlah;
+                    break;
+                case 4:
+                    $statusCounts['Terlambat'] = $item->jumlah;
+                    break;
+                case 5:
+                    $statusCounts['Hilang'] = $item->jumlah;
+                    break;
+                case 6:
+                    $statusCounts['Pending Pengembalian'] = $item->jumlah;
+                    break;
+                case 7:
+                    $statusCounts['Ditolak'] = $item->jumlah;
+                    break;
+            }
+        }
+
+        $data['tracker'] = $tracker;
+        $data['total'] = $total;
+        $data['statusCounts'] = $statusCounts;
+
+        return view('admin.peminjaman.index', $data);
     }
     public function destroy($id)
     {
