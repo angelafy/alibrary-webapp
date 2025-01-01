@@ -8,6 +8,7 @@ use App\Models\Genre;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Penerbit;
 use App\Models\Penulis;
+use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -36,12 +37,16 @@ class BukuController extends Controller
                 ->addColumn('genre_id', function ($row) {
                     return $row->genre ? $row->genre->nama_genre : '-';
                 })
+                ->addColumn('terbit', function ($row) {
+                    return Carbon::parse($row->terbit)->format('d/m/Y');
+                })
                 ->addColumn('action', function ($row) {
                     return view('admin.buku.action', ['id' => $row->id])->render();
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
+
 
         // Year tracker
         $tahunTracker = Buku::select(DB::raw('YEAR(terbit) as tahun'), DB::raw('COUNT(*) as jumlah'))
@@ -121,6 +126,67 @@ class BukuController extends Controller
         return view('admin.buku.create', $data);
     }
 
+    public function update(Request $request, $id)
+    {
+        // Validate incoming data
+        $request->validate([
+            'kode_buku' => 'required|string|max:255',
+            'isbn' => 'required|string|max:12',
+            'title' => 'required|string|max:255',
+            'penulis_id' => 'required|numeric',
+            'penerbit_id' => 'required|numeric',
+            'terbit' => 'required|date',
+            'genre_id' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'deskripsi' => 'required|string|max:255',
+            'sinopsis' => 'required|string|max:255',
+            'gambar_buku' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ]);
+
+        $buku = Buku::findOrFail($id);
+
+        // Handle image upload
+        if ($request->hasFile('gambar_buku')) {
+            // Delete old image if exists
+            if ($buku->gambar_buku) {
+                Storage::delete('public/buku/' . $buku->gambar_buku);
+            }
+
+            $gambar = $request->file('gambar_buku');
+            $gambarName = time() . '.' . $gambar->getClientOriginalExtension();
+            $gambar->storeAs('public/buku', $gambarName);
+        } else {
+            $gambarName = $buku->gambar_buku;
+        }
+
+        // Update the book record
+        $buku->update([
+            'kode_buku' => $request->kode_buku,
+            'isbn' => $request->isbn,
+            'title' => $request->title,
+            'penulis_id' => $request->penulis_id,
+            'penerbit_id' => $request->penerbit_id,
+            'terbit' => $request->terbit,
+            'genre_id' => $request->genre_id,
+            'deskripsi' => $request->deskripsi,
+            'sinopsis' => $request->sinopsis,
+            'stock' => $request->stock,
+            'gambar_buku' => $gambarName,
+        ]);
+
+        return redirect()->route('bukus.index')
+            ->with('success', 'Buku berhasil diperbarui.');
+    }
+
+    public function edit($id)
+    {
+        $data['buku'] = Buku::findOrFail($id);
+        $data['penulis'] = Penulis::all();
+        $data['penerbit'] = Penerbit::all();
+        $data['genre'] = Genre::all();
+
+        return view('admin.buku.edit', $data);
+    }
 
     public function getBukuData(Request $request)
     {
@@ -137,6 +203,7 @@ class BukuController extends Controller
             ->addColumn('genre_id', function ($buku) {
                 return $buku->genre ? $buku->genre->nama_genre : '-';
             })
+            
             ->addColumn('action', function ($buku) {
                 return '<button class="btn btn-info">View</button>';
             })

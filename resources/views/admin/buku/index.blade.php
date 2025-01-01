@@ -81,13 +81,14 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 5%;">ID</th>
-                                            <th style="width: 15%;">Judul</th>
+                                            <th style="width: 15%;">Kode</th>
+                                            <th style="width: 30%;">Judul</th>
                                             {{-- <th style="width: 15%;">Author</th> --}}
                                             {{-- <th>Publisher</th> --}}
-                                            <th style="width: 15%;">Tahun Terbit</th>
+                                            <th style="width: 20%;">Tahun Terbit</th>
                                             {{-- <th>Deskripsi</th>
                                             <th>Sinopsis</th> --}}
-                                            <th style="width: 15%;">Genre</th>
+                                            <th style="width: 20%;">Genre</th>
                                             {{-- <th>Stock</th> --}}
                                             <th class="w-1" style="width: 30%;">Aksi</th>
                                         </tr>
@@ -153,11 +154,14 @@
                         <div class="card accordion" id="dashboardAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingYear">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="false" aria-controls="collapseYear">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseYear"
+                                        aria-expanded="false" aria-controls="collapseYear">
                                         <h3 class="card-title m-0">Tahun Tracker</h3>
                                     </button>
                                 </h2>
-                                <div id="collapseYear" class="accordion-collapse collapse" aria-labelledby="headingYear" data-bs-parent="#dashboardAccordion">
+                                <div id="collapseYear" class="accordion-collapse collapse"
+                                    aria-labelledby="headingYear" data-bs-parent="#dashboardAccordion">
                                     <div class="accordion-body">
                                         <table class="table table-sm table-borderless">
                                             <thead>
@@ -173,16 +177,20 @@
                                                             <div class="progressbg">
                                                                 <div class="progress progressbg-progress">
                                                                     @php
-                                                                        $percentage = $totalBooks > 0 ? ($item->jumlah / $totalBooks) * 100 : 0;
+                                                                        $percentage =
+                                                                            $totalBooks > 0
+                                                                                ? ($item->jumlah / $totalBooks) * 100
+                                                                                : 0;
                                                                     @endphp
-                                                                    <div class="progress-bar bg-primary-lt" 
-                                                                        style="width: {{ $percentage }}%" 
+                                                                    <div class="progress-bar bg-primary-lt"
+                                                                        style="width: {{ $percentage }}%"
                                                                         role="progressbar"
-                                                                        aria-valuenow="{{ $percentage }}" 
-                                                                        aria-valuemin="0"
-                                                                        aria-valuemax="100"
+                                                                        aria-valuenow="{{ $percentage }}"
+                                                                        aria-valuemin="0" aria-valuemax="100"
                                                                         aria-label="{{ $percentage }}% Complete">
-                                                                        <span class="visually-hidden">{{ $percentage }}% Complete</span>
+                                                                        <span
+                                                                            class="visually-hidden">{{ $percentage }}%
+                                                                            Complete</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="progressbg-text">{{ $item->tahun }}</div>
@@ -192,7 +200,8 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="2" class="text-center">Data tracker tidak tersedia</td>
+                                                        <td colspan="2" class="text-center">Data tracker tidak
+                                                            tersedia</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>

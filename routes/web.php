@@ -67,6 +67,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('admin/buku/{id}/show', [App\Http\Controllers\Admin\BukuController::class, 'show'])->name('bukus.show');
     Route::post('admin/buku', [App\Http\Controllers\Admin\BukuController::class, 'store'])->name('bukus.store');
     Route::get('admin/buku/create', [App\Http\Controllers\Admin\BukuController::class, 'create'])->name('bukus.create');
+    Route::get('admin/buku/{id}/edit', [App\Http\Controllers\Admin\BukuController::class, 'edit'])->name('bukus.edit');
     Route::put('admin/buku/{id}', [App\Http\Controllers\Admin\BukuController::class, 'update'])->name('bukus.update');
     Route::get('/admin/buku/excel', [App\Http\Controllers\Admin\BukuController::class, 'excel'])->name('bukus.excel');
     Route::delete('/admin/buku/{id}', [App\Http\Controllers\Admin\BukuController::class, 'destroy'])->name('bukus.destroy');
