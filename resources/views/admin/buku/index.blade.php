@@ -105,7 +105,7 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title">Top 5 Genre</h3>
+                                <h3 class="card-title">Genre Tracker</h3>
                                 <table class="table table-sm table-borderless">
                                     <thead>
                                         <tr>
@@ -153,11 +153,11 @@
                         <div class="card accordion" id="dashboardAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingYear">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
-                                        <h3 class="card-title m-0">Tahun</h3>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="false" aria-controls="collapseYear">
+                                        <h3 class="card-title m-0">Tahun Tracker</h3>
                                     </button>
                                 </h2>
-                                <div id="collapseYear" class="accordion-collapse collapse show" aria-labelledby="headingYear" data-bs-parent="#dashboardAccordion">
+                                <div id="collapseYear" class="accordion-collapse collapse" aria-labelledby="headingYear" data-bs-parent="#dashboardAccordion">
                                     <div class="accordion-body">
                                         <table class="table table-sm table-borderless">
                                             <thead>

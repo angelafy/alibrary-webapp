@@ -64,26 +64,26 @@
     <script src="{{ asset('assets/js/demo-theme.min.js?1667333929') }}"></script>
     {{-- sweet alert mas --}}
     @if (session('success'))
-    <script>
-        Swal.fire({
-            title: 'Success!',
-            text: "{{ session('success') }}",
-            icon: 'success',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#198754', 
-        });
-    </script>
-@elseif(session('error'))
-    <script>
-        Swal.fire({
-            title: 'Error!',
-            text: "{{ session('error') }}",
-            icon: 'error',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#dc3545', 
-        });
-    </script>
-@endif
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#198754',
+            });
+        </script>
+    @elseif(session('error'))
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#dc3545',
+            });
+        </script>
+    @endif
 
     {{-- end sweet alert mas --}}
     <div id="app">
@@ -101,6 +101,13 @@
 <script src="{{ asset('assets/libs/jsvectormap/dist/js/jsvectormap.min.js?1667333929') }}"></script>
 <script src="{{ asset('assets/libs/jsvectormap/dist/maps/world.js?1667333929') }}"></script>
 <script src="{{ asset('assets/libs/jsvectormap/dist/maps/world-merc.js?1667333929') }}"></script>
+<script src="{{ asset('assets/js/tabler.min.js?1667333929') }}"></script>
+<script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
+
+
+<script src="{{ asset('assets/libs/nouislider/dist/nouislider.min.js?1667333929') }}" defer></script>
+<script src="{{ asset('assets/libs/litepicker/dist/litepicker.js?1667333929') }}" defer></script>
+<script src="{{ asset('assets/libs/tom-select/dist/js/tom-select.base.min.js?1667333929') }}" defer></script>
 <script src="{{ asset('assets/js/tabler.min.js?1667333929') }}"></script>
 <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
 

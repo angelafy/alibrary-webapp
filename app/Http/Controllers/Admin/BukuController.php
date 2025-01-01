@@ -73,7 +73,7 @@ class BukuController extends Controller
         // Validate incoming data
         $request->validate([
             'kode_buku' => 'required|string|max:255',
-            'isbn' => 'required|string|max:255',
+            'isbn' => 'required|string|max:12',
             'title' => 'required|string|max:255',
             'penulis_id' => 'required|numeric',
             'penerbit_id' => 'required|numeric',
@@ -108,7 +108,7 @@ class BukuController extends Controller
             'stock' => $request->stock ?? '0',
             'gambar_buku' => $gambarName,
         ]);
-        return redirect()->route('buku.index')
+        return redirect()->route('bukus.index')
             ->with('success', 'Buku berhasil ditambahkan.');
     }
 
