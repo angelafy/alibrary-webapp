@@ -20,10 +20,10 @@ class BukuController extends Controller
         $data['main'] = 'Buku';
         $data['judul'] = 'Manajemen Buku';
         $data['sub_judul'] = 'Data Buku';
-        $data['bukus'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+        $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
 
         if ($request->ajax()) {
-            $data = Buku::with(['penulis', 'penerbit', 'genre']); // Load relasi
+            $data = Buku::with(['penulis', 'penerbit', 'genre']);
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -43,12 +43,27 @@ class BukuController extends Controller
                 ->make(true);
         }
 
-        $tracker = Buku::select('terbit', DB::raw('COUNT(*) as jumlah'))
-            ->groupBy('terbit')
+        // Year tracker
+        $tahunTracker = Buku::select(DB::raw('YEAR(terbit) as tahun'), DB::raw('COUNT(*) as jumlah'))
+            ->groupBy(DB::raw('YEAR(terbit)'))
+            ->orderBy('tahun', 'desc')
             ->get();
-        $total = $tracker->sum('jumlah');
-        $data['tracker'] = $tracker;
-        $data['total'] = $total;
+        $totalBooks = $tahunTracker->sum('jumlah');
+
+        // Genre tracker - get top 5 genre
+        $genreTracker = DB::table('buku')
+            ->join('genre', 'buku.genre_id', '=', 'genre.id')
+            ->select('genre.nama_genre', DB::raw('COUNT(*) as jumlah'))
+            ->groupBy('genre.id', 'genre.nama_genre')
+            ->orderBy('jumlah', 'desc')
+            ->limit(5)
+            ->get();
+        $totalGenres = $genreTracker->sum('jumlah');
+
+        $data['tahunTracker'] = $tahunTracker;
+        $data['genreTracker'] = $genreTracker;
+        $data['totalBooks'] = $totalBooks;
+        $data['totalGenres'] = $totalGenres;
 
         return view('admin.buku.index', $data);
     }
@@ -93,7 +108,7 @@ class BukuController extends Controller
             'stock' => $request->stock ?? '0',
             'gambar_buku' => $gambarName,
         ]);
-        return redirect()->route('bukus.index')
+        return redirect()->route('buku.index')
             ->with('success', 'Buku berhasil ditambahkan.');
     }
 

@@ -10,6 +10,7 @@
                             <h4 class="card-title">Tambah {{ $main }}</h4>
                         </div>
                         <div class="card-body">
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -17,6 +18,8 @@
                                         <input type="text" class="form-control" name="kode_author" id="kode_author"
                                             name="kode" value="{{ old('kode_author') }}" readonly disabled />
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label required">Nama Penulis</label>
                                         <input type="text" class="form-control" name="nama_author"

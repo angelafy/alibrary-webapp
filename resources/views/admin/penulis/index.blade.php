@@ -75,7 +75,7 @@
                                     {{-- Search: --}}
                                     <div class="ms-2 d-inline-block">
                                         <input type="text" id="searchInput" class="form-control form-control-sm"
-                                            placeholder="Cari Penerbit" aria-label="Search supplier">
+                                            placeholder="Cari Penulis" aria-label="Search supplier">
                                     </div>
                                 </div>
                             </div>

@@ -105,26 +105,27 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title">Tracker</h3>
+                                <h3 class="card-title">Top 5 Genre</h3>
                                 <table class="table table-sm table-borderless">
                                     <thead>
                                         <tr>
-                                            <th>Tahun</th>
+                                            <th>Nama</th>
                                             <th class="text-end">Jumlah</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($tracker as $item)
+                                        @forelse ($genreTracker as $genre)
                                             <tr>
                                                 <td>
                                                     <div class="progressbg">
                                                         <div class="progress progressbg-progress">
                                                             @php
-                                                                // Hitung persentase sex berdasarkan jumlah total hewan
                                                                 $percentage =
-                                                                    $total > 0 ? ($item->jumlah / $total) * 100 : 0;
+                                                                    $totalGenres > 0
+                                                                        ? ($genre->jumlah / $totalGenres) * 100
+                                                                        : 0;
                                                             @endphp
-                                                            <div class="progress-bar bg-primary-lt"
+                                                            <div class="progress-bar bg-success-lt"
                                                                 style="width: {{ $percentage }}%" role="progressbar"
                                                                 aria-valuenow="{{ $percentage }}" aria-valuemin="0"
                                                                 aria-valuemax="100"
@@ -133,25 +134,74 @@
                                                                     Complete</span>
                                                             </div>
                                                         </div>
-                                                        <div class="progressbg-text">
-                                                            {{ $item->tahun_terbit == '2021' ? '2021' : '2022' }}
-                                                        </div>
+                                                        <div class="progressbg-text">{{ $genre->nama_genre }}</div>
                                                     </div>
                                                 </td>
-                                                <td class="w-1 fw-bold text-end">{{ $item->jumlah }}</td>
+                                                <td class="w-1 fw-bold text-end">{{ $genre->jumlah }}</td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="2" class="text-center">Data tracker tidak tersedia
-                                                </td>
+                                                <td colspan="2" class="text-center">Data genre tidak tersedia</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <br />
+                        {{-- tahun tracker --}}
+                        <div class="card accordion" id="dashboardAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingYear">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                                        <h3 class="card-title m-0">Tahun</h3>
+                                    </button>
+                                </h2>
+                                <div id="collapseYear" class="accordion-collapse collapse show" aria-labelledby="headingYear" data-bs-parent="#dashboardAccordion">
+                                    <div class="accordion-body">
+                                        <table class="table table-sm table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tahun</th>
+                                                    <th class="text-end">Jumlah</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($tahunTracker as $item)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="progressbg">
+                                                                <div class="progress progressbg-progress">
+                                                                    @php
+                                                                        $percentage = $totalBooks > 0 ? ($item->jumlah / $totalBooks) * 100 : 0;
+                                                                    @endphp
+                                                                    <div class="progress-bar bg-primary-lt" 
+                                                                        style="width: {{ $percentage }}%" 
+                                                                        role="progressbar"
+                                                                        aria-valuenow="{{ $percentage }}" 
+                                                                        aria-valuemin="0"
+                                                                        aria-valuemax="100"
+                                                                        aria-label="{{ $percentage }}% Complete">
+                                                                        <span class="visually-hidden">{{ $percentage }}% Complete</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="progressbg-text">{{ $item->tahun }}</div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="w-1 fw-bold text-end">{{ $item->jumlah }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="2" class="text-center">Data tracker tidak tersedia</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
