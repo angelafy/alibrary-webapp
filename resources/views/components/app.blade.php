@@ -105,11 +105,9 @@
 <script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
 
 
-<script src="{{ asset('assets/libs/nouislider/dist/nouislider.min.js?1667333929') }}" defer></script>
-<script src="{{ asset('assets/libs/litepicker/dist/litepicker.js?1667333929') }}" defer></script>
+
 <script src="{{ asset('assets/libs/tom-select/dist/js/tom-select.base.min.js?1667333929') }}" defer></script>
-<script src="{{ asset('assets/js/tabler.min.js?1667333929') }}"></script>
-<script src="{{ asset('assets/js/demo.min.js?1667333929') }}"></script>
+
 
 <script>
     $(document).ready(function() {

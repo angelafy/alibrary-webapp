@@ -12,7 +12,7 @@
                                 Overview
                             </div>
                             <h2 class="page-title">
-                                Horizontal layout
+                                {{ $main }}
                             </h2>
                         </div>
                         <!-- Page title actions -->
@@ -340,7 +340,7 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="card-title">Traffic summary</h3>
+                                    <h3 class="card-title">Traffic Peminjaman</h3>
                                     <div id="chart-mentions" class="chart-lg"></div>
                                 </div>
                             </div>
@@ -2037,4 +2037,75 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.ApexCharts && new ApexCharts(document.getElementById("chart-mentions"), {
+                chart: {
+                    type: "bar",
+                    fontFamily: "inherit",
+                    height: 240,
+                    parentHeightOffset: 0,
+                    toolbar: {
+                        show: false
+                    },
+                    animations: {
+                        enabled: false
+                    },
+                    stacked: false
+                },
+                plotOptions: {
+                    bar: {
+                        columnWidth: "50%"
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                fill: {
+                    opacity: 1
+                },
+                series: @json($chartSeries),
+                tooltip: {
+                    theme: "dark"
+                },
+                grid: {
+                    padding: {
+                        top: -20,
+                        right: 0,
+                        left: -4,
+                        bottom: -4
+                    },
+                    strokeDashArray: 4,
+                    xaxis: {
+                        lines: {
+                            show: true
+                        }
+                    }
+                },
+                xaxis: {
+                    labels: {
+                        padding: 0
+                    },
+                    tooltip: {
+                        enabled: false
+                    },
+                    axisBorder: {
+                        show: false
+                    },
+                    type: "datetime"
+                },
+                yaxis: {
+                    labels: {
+                        padding: 4
+                    }
+                },
+                labels: @json($chartLabels),
+                colors: [tabler.getColor("primary")],
+                legend: {
+                    show: false
+                }
+            }).render();
+        });
+    </script>
 </x-app>

@@ -55,11 +55,41 @@
                     <div class="datagrid">
                         <div class="datagrid-item">
                             <div class="datagrid-title">Kode Buku</div>
-                            <div class="datagrid-content">{{ $buku->kode_buku }}</div>
+                            <div class="input-icon">
+                                <input type="text" value="{{ $buku->kode_buku }}"
+                                    class="form-control" placeholder="Search…" readonly />
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/files -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M15 3v4a1 1 0 0 0 1 1h4" />
+                                        <path
+                                            d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
+                                        <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
                         <div class="datagrid-item">
                             <div class="datagrid-title">ISBN</div>
-                            <div class="datagrid-content">{{ $buku->isbn }}</div>
+                            <div class="input-icon">
+                                <input type="text" value="{{ $buku->isbn }}"
+                                    class="form-control" placeholder="Search…" readonly />
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/files -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M15 3v4a1 1 0 0 0 1 1h4" />
+                                        <path
+                                            d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
+                                        <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
                         <div class="datagrid-item">
                             <div class="datagrid-title">Judul</div>
