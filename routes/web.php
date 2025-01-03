@@ -84,7 +84,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     /* Penerbit */
     Route::get('/admin/penerbit', [App\Http\Controllers\Admin\PenerbitController::class, 'index'])->name('penerbit.index');
     Route::delete('/admin/penerbit/{id}', [App\Http\Controllers\Admin\PenerbitController::class, 'destroy'])->name('penerbit.destroy');
-
+    Route::get('admin/penerbit/create', [App\Http\Controllers\Admin\PenerbitController::class, 'create'])->name('penerbit.create');
+    Route::post('admin/penerbit', [App\Http\Controllers\Admin\PenerbitController::class, 'store'])->name('penerbit.store');
+    
     /* Genre */
     Route::get('/admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'index'])->name('genre.index');
     Route::delete('/admin/genre/{id}', [App\Http\Controllers\Admin\GenreController::class, 'destroy'])->name('genre.destroy');
