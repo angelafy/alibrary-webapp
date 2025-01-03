@@ -43,4 +43,35 @@ class PenerbitController extends Controller
             ], 500);
         }
     }
+
+    /* store penerbit */
+    public function store(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'kode_penerbit' => 'required|string|max:255',
+            'nama_penerbit' => 'required|string|max:255',
+            'alamat' => 'required|string|max:100',
+            'email' => 'required|string|max:255',
+        ]);
+        /* Gawe store create */
+        Penerbit::create([
+            'kode_penerbit' => $request->kode_penerbit,
+            'nama_penerbit' => $request->nama_penerbit,
+            'alamat' => $request->alamat,
+            'email' => $request->email,
+
+        ]);
+
+        // Redirect to the supplier list with a success message
+        return redirect()->route('penulis.index')
+            ->with('success', 'Penerbit berhasil ditambahkan.');
+    }
+    public function create()
+    {
+        $data['main'] = 'Penerbt';
+        $data['judul'] = 'Manajemen Data Penerbit';
+        $data['sub_judul'] = 'Data Penerbit';
+        return view('admin.penerbit.create', $data);
+    }
 }
