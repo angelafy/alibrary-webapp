@@ -1,14 +1,15 @@
 <div class="btn-group">
-    <button type="button" class="btn btn-sm btn-primary" data-id="{{ $id }}"
+    <a type="button" class="btn btn-sm btn-primary" data-id="{{ $id }}" href="{{ route('peminjaman.show', $id) }}"
         style="padding: 4px 8px; font-size: 12px;">
         <i class="fa-solid fa-eye"></i>
-    </button>
-    <button type="button" class="btn btn-sm btn-warning" data-id="{{ $id }}"
+    </a>
+    <a type="button" class="btn btn-sm btn-warning" data-id="{{ $id }}"  href="{{ route('bukus.edit', $id) }}"
         style="padding: 4px 8px; font-size: 12px;">
         <i class="fa-solid fa-pen-to-square"></i>
-    </button>
+    </a>
     <button type="button" class="btn btn-sm btn-danger delete-peminjaman" data-id="{{ $id }}"
         style="padding: 4px 8px; font-size: 12px;">
         <i class="fa-solid fa-trash"></i>
     </button>
 </div>
+

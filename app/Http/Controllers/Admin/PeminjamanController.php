@@ -232,4 +232,20 @@ class PeminjamanController extends Controller
         return Excel::download(new PeminjamanExport, 'peminjaman.xlsx');
     }
 
+    public function show($id)
+    {
+        try {
+            $data['main'] = 'Peminjaman';
+            $data['judul'] = 'Detail Peminjaman';
+            $data['sub_judul'] = 'Informasi Peminjaman';
+    
+            $peminjaman = Peminjaman::with(['user', 'detailPeminjaman.buku.penulis', 'detailPeminjaman.buku.penerbit'])
+                ->findOrFail($id);
+    
+            return view('admin.peminjaman.show', compact('peminjaman', 'data'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan: ' . $e->getMessage());
+        }
+    }
+
 }

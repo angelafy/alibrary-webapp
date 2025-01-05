@@ -9,4 +9,5 @@ import './datatable/permintaan';
 import './datatable/penerbit';
 import './datatable/penulis';
 import './datatable/genre';
+// import './datatable/detailpeminjaman';
 import './kode';

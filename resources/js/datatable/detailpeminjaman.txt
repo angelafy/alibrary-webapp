@@ -1,0 +1,153 @@
+// peminjaman-detail.js
+$(document).ready(function() {
+    // Setup CSRF token for all AJAX requests
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // Initialize DataTable
+    let table = $('#detailBukuTable').DataTable({
+        processing: true,
+        serverSide: false, // Ubah ke false karena data sudah di-load di view
+        autoWidth: false,
+        responsive: true,
+        pageLength: 10,
+        dom: 't',
+        language: {
+            processing: "Loading...",
+            emptyTable: "Tidak ada data",
+            zeroRecords: "Data tidak ditemukan",
+            infoEmpty: "Menampilkan 0 data",
+            infoFiltered: "(disaring dari total _MAX_ data)"
+        },
+        data: detailPeminjamanData, // Data dari view yang di-pass sebagai variable JavaScript
+        columns: [
+            {
+                data: null,
+                render: function(data, type, row, meta) {
+                    return meta.row + 1;
+                }
+            },
+            { data: 'buku.kode_buku' },
+            { data: 'buku.title' },
+            { data: 'buku.penulis.nama_author' },
+            { data: 'buku.penerbit.nama_penerbit' }
+        ],
+        drawCallback: function(settings) {
+            // Update table info
+            let info = this.api().page.info();
+            $('#tableInfo').html(
+                `Menampilkan ${info.start + 1} sampai ${info.end} dari ${info.recordsTotal} entri`
+            );
+
+            // Generate pagination
+            let $pagination = $('#tablePagination');
+            $pagination.empty();
+
+            // Previous button
+            $pagination.append(`
+                <li class="page-item ${info.page === 0 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${info.page - 1}">‹</a>
+                </li>
+            `);
+
+            // Page numbers
+            for (let i = 0; i < info.pages; i++) {
+                $pagination.append(`
+                    <li class="page-item ${i === info.page ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i + 1}</a>
+                    </li>
+                `);
+            }
+
+            // Next button
+            $pagination.append(`
+                <li class="page-item ${info.page >= info.pages - 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${info.page + 1}">›</a>
+                </li>
+            `);
+        }
+    });
+
+    // Handle page length change
+    $('#pageLength').on('change', function() {
+        table.page.len($(this).val()).draw();
+    });
+
+    // Handle search
+    $('#searchInput').on('keyup', function() {
+        table.search(this.value).draw();
+    });
+
+    // Handle pagination clicks
+    $('#tablePagination').on('click', 'a.page-link', function(e) {
+        e.preventDefault();
+        if (!$(this).closest('li').hasClass('disabled')) {
+            table.page($(this).data('page')).draw('page');
+        }
+    });
+
+    // Handle loan actions
+    function handleAction(url, method, successMessage) {
+        $.ajax({
+            url: url,
+            type: method,
+            success: function(response) {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: successMessage,
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                }).then(() => {
+                    location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire(
+                    'Error!',
+                    'Terjadi kesalahan saat memproses permintaan.',
+                    'error'
+                );
+            }
+        });
+    }
+
+    // Approve loan
+    $('.approve-loan').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        Swal.fire({
+            title: 'Setujui Peminjaman',
+            text: 'Anda yakin ingin menyetujui peminjaman ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleAction(`/admin/peminjaman/${id}/approve`, 'POST', 'Peminjaman berhasil disetujui');
+            }
+        });
+    });
+
+    // Reject loan
+    $('.reject-loan').click(function(e) {
+        e.preventDefault();
+        const id = $(this).data('id');
+        Swal.fire({
+            title: 'Tolak Peminjaman',
+            text: 'Anda yakin ingin menolak peminjaman ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleAction(`/admin/peminjaman/${id}/reject`, 'POST', 'Peminjaman berhasil ditolak');
+            }
+        });
+    });
+});
