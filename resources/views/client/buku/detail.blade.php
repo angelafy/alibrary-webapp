@@ -25,14 +25,14 @@
                                 <form id="keranjangForm" method="POST">
                                     @csrf
                                     <input type="hidden" name="buku_id" value="{{ $buku->id }}">
-                                    <div class="flex items-center justify-center gap-2 cursor-pointer rounded-lg bg-primary-500 text-white px-6 py-2 mx-4 hover:bg-primary-700"
-                                        onclick="submitKeranjang(event)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                    <div class="flex items-center justify-center gap-2 rounded-lg px-6 py-2 mx-4 select-none {{ $buku->stock > 0 ? 'bg-primary-500 hover:bg-primary-700 cursor-pointer' : 'bg-gray-400 cursor-not-allowed' }} text-white"
+                                        @if($buku->stock > 0) onclick="submitKeranjang(event)" @endif>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 pointer-events-none" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
-                                        <span>Pinjam buku ini</span>
+                                        <span class="pointer-events-none">{{ $buku->stock > 0 ? 'Pinjam buku ini' : 'Stok Habis' }}</span>
                                     </div>
                                 </form>
 
@@ -192,7 +192,7 @@
                                         <span> {{ $buku->deskripsi ?? 'Gada Desk' }}</span>
                                     </div>
 
-                                 
+
                                     <div class="grid grid-cols-2 p-2">
                                         <span class="font-medium">Stock</span>
                                         <span>{{ $buku->stock ?? 'Gada Stock' }}</span>
