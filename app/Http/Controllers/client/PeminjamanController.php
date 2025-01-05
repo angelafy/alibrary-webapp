@@ -32,7 +32,7 @@ class PeminjamanController extends Controller
     {
         $query = Peminjaman::with(['detailPeminjaman.buku'])
             ->where('user_id', auth()->id());
-        
+
         if ($request->status && $request->status !== 'all') {
             $query->where('status', $request->status);
         }
@@ -40,13 +40,13 @@ class PeminjamanController extends Controller
         if ($request->search) {
             $query->where('kode_peminjaman', 'like', '%' . $request->search . '%');
         }
-    
+
         $peminjamans = $query->latest()
             ->paginate(10)
             ->through(function ($peminjaman) {
                 if (
-                    ($peminjaman->status == 0 || $peminjaman->status == 1 || 
-                     $peminjaman->status == 2 || $peminjaman->status == 6)
+                    ($peminjaman->status == 0 || $peminjaman->status == 1 ||
+                        $peminjaman->status == 2 || $peminjaman->status == 6)
                     && $peminjaman->tgl_kembali < now()
                 ) {
                     $peminjaman->status = 4;
@@ -55,12 +55,12 @@ class PeminjamanController extends Controller
                 }
                 return $peminjaman;
             });
-    
+
         $peminjamans->appends([
             'status' => $request->status,
             'search' => $request->search
         ]);
-    
+
         return view('client.buku.pinjam.peminjaman', compact('peminjamans'));
     }
 
@@ -167,23 +167,40 @@ class PeminjamanController extends Controller
 
     public function updateStatusToPendingPengembalian($id)
     {
-        $peminjaman = Peminjaman::findOrFail($id);
-
-        if ($peminjaman->status == 2) {
-            // Check afakah terlambat atau gak wakoawokwa
-            if ($peminjaman->tgl_kembali < now()) {
-                $peminjaman->status = 4; // Set status terlambat
-                $this->calculateAndStoreDenda($peminjaman);
-            } else {
-                $peminjaman->status = 6;
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+    
+            if ($peminjaman->status == 2) {
+                // Check apakah terlambat atau tidak
+                if ($peminjaman->tgl_kembali < now()) {
+                    $peminjaman->status = 4; // Set status terlambat
+                    $this->calculateAndStoreDenda($peminjaman);
+                    $message = 'Buku terlambat dikembalikan. Silahkan bayar denda terlebih dahulu.';
+                } else {
+                    $peminjaman->status = 6;
+                    $message = 'Buku berhasil diajukan untuk pengembalian';
+                }
+    
+                $peminjaman->save();
+    
+                return response()->json([
+                    'success' => true,
+                    'message' => $message
+                ]);
             }
-
-            $peminjaman->save();
-
-            return redirect()->back()->with('success', 'Status peminjaman telah diperbarui');
+    
+            return response()->json([
+                'success' => false,
+                'message' => 'Peminjaman tidak dapat diperbarui'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan sistem'
+            ]);
         }
-        return redirect()->back()->with('error', 'Peminjaman tidak dapat diperbarui');
     }
+
     public function initiatePayment($id)
     {
         try {

@@ -118,13 +118,16 @@
 
                 <div class="my-4">
                     <div class="flex items-center flex-wrap gap-2 lg:gap-3 text-sm">
+                        <a href="{{ route('bukuClient.index') }}"
+                            class="rounded-lg py-1.5 px-3 {{ !request()->segment(3) ? 'bg-orange-50 text-orange-500 border-orange-500' : 'bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500' }} border">
+                            Semua
+                        </a>
                         @foreach ($genres as $genre)
                             <a href="{{ route('bukuClient.filterByGenre', $genre->id) }}"
-                                class="rounded-lg py-1.5 px-3 bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 border hover:border-orange-500">
+                                class="rounded-lg py-1.5 px-3 {{ request()->segment(3) == $genre->id ? 'bg-orange-50 text-orange-500 border-orange-500' : 'bg-gray-50 text-gray-500 hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500' }} border">
                                 {{ $genre->nama_genre }}
                             </a>
                         @endforeach
-
                     </div>
                 </div>
 
@@ -258,42 +261,7 @@
         </div>
     </main>
     </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/jquery.toast.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/datepicker.js"></script>
-    <script src="js/qrcode.js"></script>
-    <script src="js/barcode.js"></script>
-    <script src="js/compressor.js"></script>
-    <script src="js/countdown.js"></script>
-    <script src="js/lazysizes.min.js"></script>
-    <script src="js/swiper.js"></script>
-    <script src="js/social-share.js"></script>
-    <script src="js/party.js"></script>
-    <script src="js/heic2any.js"></script>
-    <script src="js/custom.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const profilePhoto = '';
-            if (profilePhoto) {
-                displayHeicImage(profilePhoto, "facePhoto");
-            }
-        });
-    </script>
-    <script>
-        function mobileAppDownloadInfo() {
-            return {
-                openMobileAppDownloadLink: false,
-                mobileAppDownloadInfo: !getLocalStorageWithExpiration("mobileAppDownloadInfo")?.isUserHasClosedIt,
-                closeMobileAppDownloadInfo() {
-                    setLocalStorageWithExpiration("mobileAppDownloadInfo", {
-                        isUserHasClosedIt: true
-                    }, 1);
-                    this.mobileAppDownloadInfo = false;
-                }
-            };
-        }
-    </script>
+
     </body>
 </x-client-app>

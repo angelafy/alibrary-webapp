@@ -26,13 +26,14 @@
                                     @csrf
                                     <input type="hidden" name="buku_id" value="{{ $buku->id }}">
                                     <div class="flex items-center justify-center gap-2 rounded-lg px-6 py-2 mx-4 select-none {{ $buku->stock > 0 ? 'bg-primary-500 hover:bg-primary-700 cursor-pointer' : 'bg-gray-400 cursor-not-allowed' }} text-white"
-                                        @if($buku->stock > 0) onclick="submitKeranjang(event)" @endif>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 pointer-events-none" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
+                                        @if ($buku->stock > 0) onclick="submitKeranjang(event)" @endif>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 pointer-events-none"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
-                                        <span class="pointer-events-none">{{ $buku->stock > 0 ? 'Pinjam buku ini' : 'Stok Habis' }}</span>
+                                        <span
+                                            class="pointer-events-none">{{ $buku->stock > 0 ? 'Pinjam buku ini' : 'Stok Habis' }}</span>
                                     </div>
                                 </form>
 
@@ -232,75 +233,76 @@
 </x-client-app>
 <script>
     function submitKeranjang(event, isReject = false) {
-        event.preventDefault();
+    event.preventDefault();
 
-        const title = isReject ? 'Apakah Anda yakin ingin menolak?' : 'Apakah Anda yakin?';
-        const text = isReject ? 'Data yang dimasukkan akan ditolak.' :
-            'Data yang dimasukkan akan disimpan ke keranjang.';
-        const icon = isReject ? 'warning' : 'question';
-        const confirmButtonText = isReject ? 'Ya, Tolak' : 'Ya, Setuju';
-        const confirmButtonColor = isReject ? '#dc3545' : '#198754';
-        const cancelButtonText = 'Batal';
-        const cancelButtonColor = isReject ? '#dc3545' :
-            '#6c757d';
-        Swal.fire({
-            title: title,
-            text: text,
-            icon: icon,
-            showCancelButton: true,
-            confirmButtonText: confirmButtonText,
-            cancelButtonText: cancelButtonText,
-            confirmButtonColor: confirmButtonColor,
-            cancelButtonColor: cancelButtonColor,
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                const form = document.getElementById('keranjangForm');
-                const formData = new FormData(form);
-                fetch("{{ route('keranjang.store') }}", {
-                        method: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Berhasil!',
-                                text: data.message,
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Gagal!',
-                                text: data.message,
-                            });
-                        }
-                    })
-                    .catch(error => {
+    const title = isReject ? 'Apakah Anda yakin ingin menolak?' : 'Apakah Anda yakin?';
+    const text = isReject ? 'Data yang dimasukkan akan ditolak.' :
+        'Data yang dimasukkan akan disimpan ke keranjang.';
+    const icon = isReject ? 'warning' : 'question';
+    const confirmButtonText = isReject ? 'Ya, Tolak' : 'Ya, Setuju';
+    const confirmButtonColor = isReject ? '#dc3545' : '#337ab7';
+    const cancelButtonText = 'Batal';
+    const cancelButtonColor = isReject ? '#dc3545' : '#6c757d';
+    
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: icon,
+        showCancelButton: true,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        confirmButtonColor: confirmButtonColor,
+        cancelButtonColor: cancelButtonColor,
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const form = document.getElementById('keranjangForm');
+            const formData = new FormData(form);
+            fetch("{{ route('keranjang.store') }}", {
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: data.message,
+                            confirmButtonColor: '#90EE90' 
+                        });
+                    } else {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Terjadi kesalahan!',
-                            text: 'Silakan coba lagi nanti.',
+                            title: 'Gagal!',
+                            text: data.message,
+                            confirmButtonColor: '#337ab7' 
                         });
-                        console.error('Error:', error);
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan!',
+                        text: 'Silakan coba lagi nanti.',
+                        confirmButtonColor: '#6c757d'
                     });
-            } else {
-                // If canceled, show a cancel message
-                Swal.fire({
-
-                    icon: 'info',
-                    title: 'Batal!',
-                    text: 'Data tidak disimpan.',
+                    console.error('Error:', error);
                 });
-            }
-        });
-    }
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Batal!',
+                text: 'Data tidak disimpan.',
+                confirmButtonColor: '#6c757d' 
+            });
+        }
+    });
+}
 </script>

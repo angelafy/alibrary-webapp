@@ -221,11 +221,6 @@
                                                 Lihat Detail
                                             </a>
                                         </div>
-
-
-
-
-
                                     </div>
                                 </div>
                                 @empty
@@ -241,8 +236,6 @@
                                 @endforelse
                             </div>
                         </div>
-
-
                         <div class="mt-4">
                             <nav role="navigation" aria-label="Pagination Navigation"
                                 class="flex items-center justify-between">
@@ -344,28 +337,72 @@
                 </div>
             </main>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const buttons = document.querySelectorAll('form.kembalikanForm button[type="button"]');
-                buttons.forEach((button) => {
-                    button.addEventListener('click', function() {
-                        const form = button.closest('form'); // Ambil form terkait
-                        Swal.fire({
-                            title: 'Konfirmasi',
-                            text: 'Apakah Anda yakin ingin mengembalikan buku ini?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#dc3545',
-                            confirmButtonText: 'Ya, kembalikan!',
-                            cancelButtonText: 'Tidak, batalkan!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // Kirim form jika dikonfirmasi
-                            }
-                        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menangani submit form kembalikan
+            const kembalikanForms = document.querySelectorAll('.kembalikanForm');
+            
+            kembalikanForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    Swal.fire({
+                        title: 'Konfirmasi Pengembalian',
+                        text: "Apakah anda yakin ingin mengembalikan buku ini?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#337ab7',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, kembalikan!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Ambil action URL dari form
+                            const url = form.getAttribute('action');
+                            
+                            // Kirim request menggunakan fetch
+                            fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: 'Berhasil!',
+                                        text: data.message,
+                                        icon: 'success',
+                                        confirmButtonColor: '#90EE90'
+                                    }).then(() => {
+                                        // Refresh halaman setelah success
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Gagal!',
+                                        text: data.message,
+                                        icon: 'error',
+                                        confirmButtonColor: '#6c757d'
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'Terjadi kesalahan sistem',
+                                    icon: 'error',
+                                    confirmButtonColor: '#6c757d'
+                                });
+                            });
+                        }
                     });
                 });
             });
+        });
         </script>
     </x-client-app>
