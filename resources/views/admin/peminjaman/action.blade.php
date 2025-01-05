@@ -3,7 +3,7 @@
         style="padding: 4px 8px; font-size: 12px;">
         <i class="fa-solid fa-eye"></i>
     </a>
-    <a type="button" class="btn btn-sm btn-warning" data-id="{{ $id }}"  href="{{ route('bukus.edit', $id) }}"
+    <a type="button" class="btn btn-sm btn-warning" data-id="{{ $id }}"  href="{{ route('peminjaman.edit', $id) }}"
         style="padding: 4px 8px; font-size: 12px;">
         <i class="fa-solid fa-pen-to-square"></i>
     </a>

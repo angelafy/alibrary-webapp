@@ -26,14 +26,20 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Peminjam</label>
-                                        <select type="text" class="form-select" id="select-users" name="user_id">
+                                        <select type="text" class="form-select" id="select-labels-user" name="user_id">
                                             @foreach ($users as $user)
+                                         
+
                                                 <option value="{{ $user->id }}"
-                                                    {{ $peminjaman->user_id == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->user_id == $user->id ? 'selected' : '' }}
+                                                    data-custom-properties='&lt;span class="badge bg-primary-lt"&gt;{{ $user->id }}&lt;/span&gt;'>
                                                     {{ $user->nama }}
                                                 </option>
                                             @endforeach
                                         </select>
+
+
+                                   
                                         @error('user_id')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror

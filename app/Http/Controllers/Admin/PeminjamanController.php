@@ -6,6 +6,7 @@ use App\Exports\PeminjamanExport;
 use App\Exports\PermintaanExport;
 use App\Http\Controllers\Controller;
 use App\Models\Peminjaman;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +90,57 @@ class PeminjamanController extends Controller
         }
     }
 
+
+    public function edit($id)
+    {
+        try {
+            $data['main'] = 'Peminjaman';
+            $data['judul'] = 'Edit Peminjaman';
+            $data['sub_judul'] = 'Form Edit Peminjaman';
+
+            $peminjaman = Peminjaman::with(['user', 'detailPeminjaman.buku'])->findOrFail($id);
+            $users = User::all();
+
+            return view('admin.peminjaman.edit', compact('peminjaman', 'users', 'data'));
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Data tidak ditemukan: ' . $e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $peminjaman = Peminjaman::findOrFail($id);
+
+            $request->validate([
+                'kode_peminjaman' => 'required|unique:peminjaman,kode_peminjaman,' . $id,
+                'user_id' => 'required|exists:users,id',
+                'tgl_pinjam' => 'required|date',
+                'tgl_kembali' => 'required|date|after:tgl_pinjam',
+                'status' => 'required|integer|between:0,7'
+            ]);
+
+            $peminjaman->update([
+                'kode_peminjaman' => $request->kode_peminjaman,
+                'user_id' => $request->user_id,
+                'tgl_pinjam' => $request->tgl_pinjam,
+                'tgl_kembali' => $request->tgl_kembali,
+                'status' => $request->status,
+                'keterangan' => $request->keterangan
+            ]);
+
+            return redirect()
+                ->route('peminjaman.index')
+                ->with('success', 'Data peminjaman berhasil diperbarui');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
     public function approve($id)
     {
         try {
@@ -238,10 +290,10 @@ class PeminjamanController extends Controller
             $data['main'] = 'Peminjaman';
             $data['judul'] = 'Detail Peminjaman';
             $data['sub_judul'] = 'Informasi Peminjaman';
-    
+
             $peminjaman = Peminjaman::with(['user', 'detailPeminjaman.buku.penulis', 'detailPeminjaman.buku.penerbit'])
                 ->findOrFail($id);
-    
+
             return view('admin.peminjaman.show', compact('peminjaman', 'data'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Data tidak ditemukan: ' . $e->getMessage());
