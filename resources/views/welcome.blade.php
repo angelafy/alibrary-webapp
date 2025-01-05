@@ -1415,8 +1415,8 @@
                             <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4">
                                     <div class="rounded-lg border relative">
                                         <img src="{{ asset('static/amanda.jpg') }}"
-                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            class="lazyload w-full h-64 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src="
                                             alt="">
                                         <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
                                             <div>
@@ -1436,8 +1436,8 @@
 
                                     <div class="rounded-lg border relative">
                                         <img src="{{ asset('static/ilmon.jpg') }}"
-                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            class="lazyload w-full h-64 rounded-lg object-center object-cover brightness-50"
+                                            onerror="this.onerror=null; this.src="
                                             alt="">
 
                                         <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
@@ -1457,7 +1457,7 @@
 
                                     <div class="rounded-lg border relative">
                                         <img src="{{ asset('static/angela.jpg') }}" class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                            onerror="this.onerror=null; this.src="
                                             alt="">
                                         <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
                                             <div>
@@ -1476,7 +1476,7 @@
 
                                     <div class="rounded-lg border relative">
                                         <img src="{{ asset('static/sihub.jpg') }}"
-                                            class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
+                                            class="lazyload w-full h-64 rounded-lg object-center object-cover brightness-50"
                                             onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
                                             alt="">
                                         <div class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">

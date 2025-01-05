@@ -194,7 +194,7 @@
 
                                     <div class="grid grid-cols-2 p-2">
                                         <span class="font-medium">Subjek</span>
-                                        <span>Bacaan kanak/kanak</span>
+                                        <span>Buku Pelajaran</span>
                                     </div>
 
                                     {{-- <div class="grid grid-cols-2 p-2">
@@ -227,7 +227,7 @@
     </div>
     </main>
     </div>
- 
+
 </x-client-app>
 <script>
     function submitKeranjang(event, isReject = false) {
