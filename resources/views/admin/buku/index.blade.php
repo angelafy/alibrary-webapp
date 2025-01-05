@@ -89,7 +89,7 @@
                                             {{-- <th>Deskripsi</th>
                                             <th>Sinopsis</th> --}}
                                             <th style="width: 20%;">Genre</th>
-                                            {{-- <th>Stock</th> --}}
+                                            <th>Stock</th>
                                             <th class="w-1" style="width: 30%;">Aksi</th>
                                         </tr>
                                     </thead>

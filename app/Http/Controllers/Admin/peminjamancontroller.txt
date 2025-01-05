@@ -5,14 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Exports\PeminjamanExport;
 use App\Exports\PermintaanExport;
 use App\Http\Controllers\Controller;
-use App\Models\Buku;
-use App\Models\DetailPeminjaman;
 use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PeminjamanController extends Controller
@@ -146,119 +143,48 @@ class PeminjamanController extends Controller
     }
     public function approve($id)
     {
-        DB::beginTransaction();
         try {
-            $peminjaman = Peminjaman::with(['detailPeminjaman.buku'])
-                ->findOrFail($id);
+            date_default_timezone_set('Asia/Jakarta');
+            $peminjaman = Peminjaman::findOrFail($id);
 
-            Log::info('Processing peminjaman:', [
-                'id' => $id,
-                'status' => $peminjaman->status,
-                'details' => $peminjaman->detailPeminjaman
-            ]);
             if ($peminjaman->status == 0) {
-                $borrowedBooks = DetailPeminjaman::where('peminjaman_id', $peminjaman->id)
-                    ->with('buku')
-                    ->get();
-
-                if ($borrowedBooks->isEmpty()) {
-                    throw new \Exception('Tidak ada buku yang akan dipinjam');
-                }
-
-                foreach ($borrowedBooks as $detail) {
-                    $buku = Buku::find($detail->buku_id);
-
-                    if (!$buku) {
-                        throw new \Exception("Buku tidak ditemukan untuk detail peminjaman ID: {$detail->id}");
-                    }
-
-                    if ($buku->stock < $detail->jumlah) {
-                        throw new \Exception("Stok buku '{$buku->judul}' tidak mencukupi (Tersedia: {$buku->stok}, Diminta: {$detail->jumlah})");
-                    }
-
-                    $buku->stock -= $detail->jumlah;
-                    $buku->save();
-                }
-
                 $peminjaman->status = 2;
                 $peminjaman->tgl_pinjam = now();
+                $peminjaman->save();
 
-                $message = 'Peminjaman berhasil disetujui dan stok buku telah diperbarui';
-
+                return redirect()->back()->with('success', 'Peminjaman telah disetujui');
             } else if ($peminjaman->status == 6) {
-                foreach ($peminjaman->detailPeminjaman as $detail) {
-                    $buku = Buku::find($detail->buku_id);
-
-                    if (!$buku) {
-                        throw new \Exception("Buku tidak ditemukan untuk detail peminjaman ID: {$detail->id}");
-                    }
-                    $buku->stock += $detail->jumlah;
-                    $buku->save();
-                }
-
                 $peminjaman->status = 3;
-                $peminjaman->tgl_kembali = now();
+                $peminjaman->tgl_dikembalikan = now();
+                $peminjaman->save();
 
-                $message = 'Pengembalian berhasil disetujui dan stok buku telah diperbarui';
-
-            } else {
-                throw new \Exception('Status peminjaman tidak valid');
+                return redirect()->back()->with('success', 'Pengembalian telah disetujui');
             }
 
-            $peminjaman->save();
-            DB::commit();
-
-            return response()->json([
-                'success' => true,
-                'message' => $message
-            ]);
+            return redirect()->back()->with('error', 'Status peminjaman tidak valid');
 
         } catch (\Exception $e) {
-            DB::rollback();
-            Log::error('Approval error:', [
-                'peminjaman_id' => $id,
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal menyetujui peminjaman: ' . $e->getMessage()
-            ], 400);
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
+
     public function return($id)
     {
-        DB::beginTransaction();
         try {
-            $peminjaman = Peminjaman::with('detailPeminjaman.buku')->findOrFail($id);
-            if ($peminjaman->status !== 2) {
-                throw new \Exception('Status peminjaman tidak valid untuk pengembalian');
+            $peminjaman = Peminjaman::findOrFail($id);
+
+            if ($peminjaman->status == 6) {
+                $peminjaman->status = 3;
+                $peminjaman->tgl_dikembalikan = now();
+                $peminjaman->save();
+
+                return redirect()->back()->with('success', 'Pengembalian telah dikonfirmasi dan tanggal pengembalian telah diperbarui.');
             }
-            foreach ($peminjaman->detailPeminjaman as $detail) {
-                $buku = $detail->buku;
 
-                $buku->stock += $detail->jumlah;
-                $buku->save();
-            }
-
-            $peminjaman->status = 3;
-            $peminjaman->tgl_kembali = now();
-            $peminjaman->save();
-
-            DB::commit();
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Pengembalian berhasil diproses dan stok buku telah diperbarui'
-            ]);
-
+            return redirect()->back()->with('error', 'Status peminjaman tidak valid untuk pengembalian.');
         } catch (\Exception $e) {
-            DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal memproses pengembalian: ' . $e->getMessage()
-            ], 400);
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 

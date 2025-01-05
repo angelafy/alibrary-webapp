@@ -23,4 +23,5 @@ class DetailPeminjaman extends Model
     {
         return $this->belongsTo(Buku::class);
     }
+    
 }

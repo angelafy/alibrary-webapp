@@ -476,7 +476,6 @@
                                                             </div>
                                                             </section>
                                                             </div>
-
                                                         </main>
                                                         <script>
                                                             function deleteCartItem(id) {
@@ -493,40 +492,40 @@
                                                                     if (result.isConfirmed) {
                                                                         // Get CSRF token
                                                                         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                                                                        
+
                                                                         // Send delete request
                                                                         fetch(`/pinjam/keranjang/${id}`, {
-                                                                            method: 'DELETE',
-                                                                            headers: {
-                                                                                'Content-Type': 'application/json',
-                                                                                'X-CSRF-TOKEN': csrfToken,
-                                                                                'Accept': 'application/json'
-                                                                            },
-                                                                        })
-                                                                        .then(response => response.json())
-                                                                        .then(data => {
-                                                                            if (data.success) {
+                                                                                method: 'DELETE',
+                                                                                headers: {
+                                                                                    'Content-Type': 'application/json',
+                                                                                    'X-CSRF-TOKEN': csrfToken,
+                                                                                    'Accept': 'application/json'
+                                                                                },
+                                                                            })
+                                                                            .then(response => response.json())
+                                                                            .then(data => {
+                                                                                if (data.success) {
+                                                                                    Swal.fire(
+                                                                                        'Terhapus!',
+                                                                                        'Buku berhasil dihapus dari keranjang.',
+                                                                                        'success'
+                                                                                    ).then(() => {
+                                                                                        window.location.reload();
+                                                                                    });
+                                                                                } else {
+                                                                                    throw new Error(data.message || 'Gagal menghapus buku');
+                                                                                }
+                                                                            })
+                                                                            .catch(error => {
                                                                                 Swal.fire(
-                                                                                    'Terhapus!',
-                                                                                    'Buku berhasil dihapus dari keranjang.',
-                                                                                    'success'
-                                                                                ).then(() => {
-                                                                                    window.location.reload();
-                                                                                });
-                                                                            } else {
-                                                                                throw new Error(data.message || 'Gagal menghapus buku');
-                                                                            }
-                                                                        })
-                                                                        .catch(error => {
-                                                                            Swal.fire(
-                                                                                'Error!',
-                                                                                error.message || 'Terjadi kesalahan saat menghapus buku.',
-                                                                                'error'
-                                                                            );
-                                                                        });
+                                                                                    'Error!',
+                                                                                    error.message || 'Terjadi kesalahan saat menghapus buku.',
+                                                                                    'error'
+                                                                                );
+                                                                            });
                                                                     }
                                                                 });
                                                             }
-                                                            </script>
+                                                        </script>
 
                                                     </x-client-app>

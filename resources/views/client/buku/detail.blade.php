@@ -177,6 +177,11 @@
                                             {{ $buku->kode_buku ?? 'Unknown Data' }}</span>
                                     </div>
                                     <div class="grid grid-cols-2 p-2">
+                                        <span class="font-medium">ISBN</span>
+                                        <span>{{ $buku->isbn ?? 'Unknown Data' }}</span>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 p-2">
                                         <span class="font-medium">Penerbit</span>
                                         <span> {{ $buku->penerbit->nama_penerbit ?? 'Unknown Author' }} :
                                             {{ $buku->terbit ?? 'Unknown Author' }}</span>
@@ -184,17 +189,13 @@
 
                                     <div class="grid grid-cols-2 p-2">
                                         <span class="font-medium">Deskripsi Fisik</span>
-                                        <span>66 halaman : ilustrasi berwarna ; 21 cm</span>
+                                        <span> {{ $buku->deskripsi ?? 'Gada Desk' }}</span>
                                     </div>
 
+                                 
                                     <div class="grid grid-cols-2 p-2">
-                                        <span class="font-medium">Kode Buku</span>
-                                        <span>{{ $buku->isbn ?? 'Unknown Data' }}</span>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 p-2">
-                                        <span class="font-medium">Subjek</span>
-                                        <span>Buku Pelajaran</span>
+                                        <span class="font-medium">Stock</span>
+                                        <span>{{ $buku->stock ?? 'Gada Stock' }}</span>
                                     </div>
 
                                     {{-- <div class="grid grid-cols-2 p-2">

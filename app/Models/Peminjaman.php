@@ -62,4 +62,10 @@ class Peminjaman extends Model
     {
         return $this->hasMany(DetailPeminjaman::class, 'peminjaman_id');
     }
+
+    public function keranjang()
+    {
+        return $this->belongsTo(Keranjang::class, 'keranjang_id');
+    }
+    
 }

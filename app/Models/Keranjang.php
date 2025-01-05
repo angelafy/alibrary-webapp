@@ -18,6 +18,8 @@ class keranjang extends Model
         return $this->hasMany(DetailKeranjang::class, 'keranjang_id');
     }
 
+    
+
     // Relasi dengan User
     public function user()
     {

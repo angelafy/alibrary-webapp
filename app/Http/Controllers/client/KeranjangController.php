@@ -39,33 +39,33 @@ class KeranjangController extends Controller
         $request->validate([
             'buku_id' => 'required|exists:buku,id',
         ]);
-    
+
         $buku = Buku::find($request->buku_id);
-    
+
         // Cek apakah user sudah memiliki keranjang
         $keranjang = Keranjang::firstOrCreate(
             ['user_id' => Auth::id()],
             ['created_at' => now(), 'updated_at' => now()]
         );
-    
+
         // Cek apakah buku sudah ada di keranjang
         $existingKeranjang = DetailKeranjang::where('keranjang_id', $keranjang->id)
             ->where('buku_id', $buku->id)
             ->first();
-    
+
         if ($existingKeranjang) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Buku sudah ada di keranjang.',
             ], 400);
         }
-    
+
         DetailKeranjang::create([
             'keranjang_id' => $keranjang->id,
             'buku_id' => $buku->id,
             'jumlah' => 1,
         ]);
-    
+
         return response()->json([
             'status' => 'success',
             'message' => 'Buku berhasil ditambahkan ke keranjang.',
@@ -82,15 +82,15 @@ class KeranjangController extends Controller
             if ($remainingItems === 0) {
                 Keranjang::destroy($keranjangId);
             }
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Item berhasil dihapus dari keranjang'
             ]);
-            
+
         } catch (\Exception $e) {
             \Log::error('Error deleting cart item: ' . $e->getMessage());
-            
+
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal menghapus item: ' . $e->getMessage()
