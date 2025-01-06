@@ -22,11 +22,11 @@ class PeminjamanController extends Controller
         $data['main'] = 'Peminjaman';
         $data['judul'] = 'Manajemen Peminjaman User';
         $data['sub_judul'] = 'Data Peminjaman';
-
+    
         if ($request->ajax()) {
             $query = Peminjaman::with(['user', 'detailPeminjaman.buku']);
-            $recordsTotal = $query->count();
-
+    
+            // Handle search
             if ($request->has('search') && !empty($request->search['value'])) {
                 $searchValue = $request->search['value'];
                 $query->where(function ($q) use ($searchValue) {
@@ -36,45 +36,51 @@ class PeminjamanController extends Controller
                         });
                 });
             }
-
+    
+            $recordsTotal = Peminjaman::count();
             $recordsFiltered = $query->count();
-
+    
+            // Handle ordering
             if ($request->has('order')) {
                 $columnIndex = $request->order[0]['column'];
-                $columnName = $request->columns[$columnIndex]['name'];
+                $columnName = $request->columns[$columnIndex]['data'];
                 $columnDirection = $request->order[0]['dir'];
-
-                if ($columnName === 'user.name') {
+                
+                if ($columnName === 'user.nama') {
                     $query->join('users', 'peminjaman.user_id', '=', 'users.id')
-                        ->orderBy('users.name', $columnDirection)
+                        ->orderBy('users.nama', $columnDirection)
                         ->select('peminjaman.*');
-                } else {
+                } else if ($columnName !== 'action' && $columnName !== null) {
                     $query->orderBy($columnName, $columnDirection);
                 }
-            } else {
-                $query->latest();
             }
-
-            $limit = $request->length ?? 10;
-            $start = $request->start ?? 0;
-            $data = $query->take($limit)->skip($start)->get();
-
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return view('admin.peminjaman.action', ['id' => $row->id])->render();
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+    
+            // Handle pagination
+            $start = $request->start;
+            $length = $request->length;
+            $data = $query->skip($start)->take($length)->get();
+    
+            // Tambahkan action button untuk setiap row
+            $data = $data->map(function ($item) {
+                $item->action = view('admin.peminjaman.action', ['id' => $item->id])->render();
+                return $item;
+            });
+    
+            return response()->json([
+                'draw' => intval($request->draw),
+                'recordsTotal' => $recordsTotal,
+                'recordsFiltered' => $recordsFiltered,
+                'data' => $data
+            ]);
         }
-
+    
         $tracker = DB::table('peminjaman')
             ->select('status', DB::raw('count(*) as jumlah'))
             ->groupBy('status')
             ->get();
-
+    
         $total = $tracker->sum('jumlah');
-
+    
         return view('admin.peminjaman.index', $data, compact('tracker', 'total'));
     }
     public function destroy($id)
