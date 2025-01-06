@@ -223,23 +223,15 @@
                                                 <div class="col-auto">
                                                     <span
                                                         class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
-                                                            <path d="M12 3v3m0 12v3" />
-                                                        </svg>
+                                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        132 Sales
+                                                        {{ number_format($totalBuku) }} Buku
                                                     </div>
                                                     <div class="text-muted">
-                                                        12 waiting payments
+                                                        {{ number_format($totalPending) }} Menunggu Persetujuan 
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,24 +245,15 @@
                                                 <div class="col-auto">
                                                     <span
                                                         class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <circle cx="6" cy="19" r="2" />
-                                                            <circle cx="17" cy="19" r="2" />
-                                                            <path d="M17 17h-11v-14h-2" />
-                                                            <path d="M6 5l14 1l-1 7h-13" />
-                                                        </svg>
+                                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-hand-stop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 13v-7.5a1.5 1.5 0 0 1 3 0v6.5" /><path d="M11 5.5v-2a1.5 1.5 0 1 1 3 0v8.5" /><path d="M14 5.5a1.5 1.5 0 0 1 3 0v6.5" /><path d="M17 7.5a1.5 1.5 0 0 1 3 0v8.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" /></svg>
                                                     </span>
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        78 Orders
+                                                        {{ number_format($totalPeminjaman) }} Peminjaman
                                                     </div>
                                                     <div class="text-muted">
-                                                        32 shipped
+                                                        {{ number_format($totalDipinjam) }} Buku Dipinjam
                                                     </div>
                                                 </div>
                                             </div>
@@ -296,10 +279,10 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        623 Shares
+                                                        {{ number_format($totalUsers) }} Users
                                                     </div>
                                                     <div class="text-muted">
-                                                        16 today
+                                                        {{ number_format($totalAdmin) }} Admin
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,11 +324,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">Traffic Peminjaman</h3>
-                                    <div id="chart-mentions" class="chart-lg"></div>
+                                    <div id="chart-peminjaman" class="chart-lg"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">Locations</h3>
@@ -354,6 +337,46 @@
                                             <div id="map-world" class="w-100 h-100"></div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="card-title">User Terbaru</div>
+                                </div>
+                                <div class="card-table table-responsive">
+                                    <table class="table table-vcenter">
+                                        <thead>
+                                            <tr>
+                                                <th>Avatar</th>
+                                                <th>Username</th>
+                                                <th>Tanggal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($userAnyar as $user)
+                                            <tr>
+                                                <td class="w-1">
+                                                    <span class="avatar avatar-sm"
+                                                        style="background-image: url({{ asset('static/avatars/AVATAR_SAPI.png') }})"></span>
+                                                </td>
+                                                <td class="td-truncate">
+                                                    <div class="text-truncate">
+                                                        {{ $user->username }}
+                                                    </div>
+                                                </td>
+                                                <td class="text-nowrap text-muted">
+                                                    {{ \Carbon\Carbon::parse($user->created_at)->format('d M Y') }}
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada user terbaru.</td>
+                                            </tr>
+                                        @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -2038,74 +2061,80 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            window.ApexCharts && new ApexCharts(document.getElementById("chart-mentions"), {
-                chart: {
-                    type: "bar",
-                    fontFamily: "inherit",
-                    height: 240,
-                    parentHeightOffset: 0,
-                    toolbar: {
-                        show: false
-                    },
-                    animations: {
-                        enabled: false
-                    },
-                    stacked: false
-                },
-                plotOptions: {
-                    bar: {
-                        columnWidth: "50%"
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                fill: {
-                    opacity: 1
-                },
-                series: @json($chartSeries),
-                tooltip: {
-                    theme: "dark"
-                },
-                grid: {
-                    padding: {
-                        top: -20,
-                        right: 0,
-                        left: -4,
-                        bottom: -4
-                    },
-                    strokeDashArray: 4,
-                    xaxis: {
-                        lines: {
-                            show: true
-                        }
-                    }
-                },
-                xaxis: {
-                    labels: {
-                        padding: 0
-                    },
-                    tooltip: {
-                        enabled: false
-                    },
-                    axisBorder: {
-                        show: false
-                    },
-                    type: "datetime"
-                },
-                yaxis: {
-                    labels: {
-                        padding: 4
-                    }
-                },
-                labels: @json($chartLabels),
-                colors: [tabler.getColor("primary")],
-                legend: {
-                    show: false
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    window.ApexCharts && new ApexCharts(document.getElementById("chart-peminjaman"), {
+        chart: {
+            type: "bar",
+            fontFamily: "inherit",
+            height: 240,
+            parentHeightOffset: 0,
+            toolbar: {
+                show: false
+            },
+            animations: {
+                enabled: true
+            }
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "50%",
+                borderRadius: 2
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            opacity: 1
+        },
+        series: [{
+            name: 'Peminjaman',
+            data: @json($chartData)
+        }],
+        tooltip: {
+            theme: "dark",
+            x: {
+                format: 'dd MMM yyyy'
+            }
+        },
+        grid: {
+            padding: {
+                top: -20,
+                right: 0,
+                left: -4,
+                bottom: -4
+            },
+            strokeDashArray: 4,
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                format: 'dd MMM',
+                rotate: 0,
+                style: {
+                    fontSize: '12px'
                 }
-            }).render();
-        });
-    </script>
+            },
+            axisBorder: {
+                show: false
+            },
+            tickAmount: 7,
+            tickPlacement: 'on'
+        },
+        yaxis: {
+            labels: {
+                padding: 4
+            },
+            min: 0,
+            tickAmount: 5,
+            forceNiceScale: true
+        },
+        colors: [tabler.getColor("primary")],
+        legend: {
+            show: false
+        }
+    }).render();
+});
+</script>
 </x-app>

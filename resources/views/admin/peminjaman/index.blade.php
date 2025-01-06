@@ -71,7 +71,7 @@
                                         {{-- Search: --}}
                                         <div class="ms-2 d-inline-block">
                                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                                placeholder="Cari Buku" aria-label="Search supplier">
+                                                placeholder="Cari Peminjaman" aria-label="Search supplier">
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                             <th style="width: 15%;">Kode</th>
                                             <th style="width: 15%;">Nama</th>
                                             <th>Tgl Pinjam</th>
-                                            <th>Tgl Kembali</th>
+                                            <th>Status</th>
                                             <th>Permintaan</th>
                                             <th class="w-1" style="width: 20%;">Aksi</th>
                                         </tr>

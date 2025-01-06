@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Peminjaman;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Carbon\Carbon;
@@ -39,48 +40,77 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function adminHome(): View
-    {
-        $data['main'] = 'Dashboard';
+{
+    $data['main'] = 'Dashboard';
 
-        // Get peminjaman data for the last 37 days
-        $chartData = $this->getPeminjamanChartData();
+    $userAnyar = \DB::table('users')
+    ->where('type', 0) // Filter hanya user dengan type = 0
+    ->orderBy('id', 'desc') // Urutkan berdasarkan ID dari yang terbaru
+    ->limit(5) // Batasi hasil maksimal 5 user
+    ->get();
 
-        $data['chartLabels'] = $chartData['labels'];
-        $data['chartSeries'] = $chartData['series'];
 
-        return view('admin.index', $data);
+    $totalBuku = Buku::count();
+    
+    // Hitung total peminjaman pending (status 2 atau 6)
+    $totalPending = Peminjaman::whereIn('status', [0, 6])->count();
+    
+    // Hitung total semua peminjaman
+    $totalPeminjaman = Peminjaman::count();
+    
+    // Hitung total peminjaman yang sedang dipinjam (status 2)
+    $totalDipinjam = Peminjaman::where('status', 2)->count();
+    
+    // Hitung total users dan admin
+    $totalUsers = User::count();
+    $totalAdmin = User::where('type', '>', 0)->count();
+    
+    // Tambahkan ke data array
+    $data['totalBuku'] = $totalBuku;
+    $data['totalPending'] = $totalPending;
+    $data['totalPeminjaman'] = $totalPeminjaman;
+    $data['totalDipinjam'] = $totalDipinjam;
+    $data['totalUsers'] = $totalUsers;
+    $data['totalAdmin'] = $totalAdmin;
+    $data['userAnyar'] = $userAnyar;
+
+    $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+    $data['chartData'] = $this->getPeminjamanChartData();
+    
+    return view('admin.index', $data);
+}
+    private function getPeminjamanChartData(): array
+{
+    $endDate = Carbon::now();
+    $startDate = Carbon::now()->subDays(7); // Kurangi jadi 7 hari untuk tampilan yang lebih rapi
+    
+    $dateRange = [];
+    for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+        $dateRange[$date->format('Y-m-d')] = 0;
     }
 
-    private function getPeminjamanChartData(): array
-    {
-        $endDate = Carbon::now();
-        $startDate = Carbon::now()->subDays(36);
-
-        $peminjaman = Peminjaman::whereBetween('tgl_pinjam', [$startDate, $endDate])
-            ->get()
-            ->groupBy(function ($item) {
-                return $item->tgl_pinjam->format('Y-m-d');
-            });
-
-        $labels = [];
-        $data = [];
-
-        for ($date = clone $startDate; $date <= $endDate; $date->addDay()) {
-            $dateStr = $date->format('Y-m-d');
-            $labels[] = $dateStr;
-            $data[] = $peminjaman->get($dateStr)?->count() ?? 0;
-        }
-
-        return [
-            'labels' => $labels,
-            'series' => [
-                [
-                    'name' => 'Peminjaman',
-                    'data' => $data
-                ]
-            ]
+    $peminjaman = Peminjaman::whereBetween('tgl_pinjam', [$startDate, $endDate])
+        ->get()
+        ->groupBy(function ($item) {
+            return $item->tgl_pinjam->format('Y-m-d');
+        });
+    
+    // Gabungkan data peminjaman dengan range tanggal
+    foreach ($peminjaman as $date => $records) {
+        $dateRange[$date] = $records->count();
+    }
+    
+    // Format data untuk chart
+    $chartData = [];
+    foreach ($dateRange as $date => $count) {
+        $chartData[] = [
+            'x' => $date,
+            'y' => $count
         ];
     }
+    
+    return $chartData;
+}
 
 
 
