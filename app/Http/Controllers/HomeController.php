@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminActivity;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\User;
@@ -40,77 +41,127 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function adminHome(): View
-{
-    $data['main'] = 'Dashboard';
+    {
+       $data['main'] = 'Dashboard';
+    
+       $userAnyar = \DB::table('users')
+           ->where('type', 0)
+           ->orderBy('id', 'desc')
+           ->limit(5)
+           ->get();
+    
+       $totalBuku = Buku::count();
+       $totalPending = Peminjaman::whereIn('status', [0, 6])->count();
+       $totalPeminjaman = Peminjaman::count();
+       $totalDipinjam = Peminjaman::where('status', 2)->count();
+       $totalUsers = User::count();
+       $totalAdmin = User::where('type', '>', 0)->count();
+    
+       $totalUserPeminjam = Peminjaman::select('user_id')
+           ->distinct()
+           ->count('user_id');
+    
+       $totalUserPelanggaran = Peminjaman::select('user_id')
+           ->where('status', 4)
+           ->distinct()
+           ->count('user_id');
+    
+       $data['totalBuku'] = $totalBuku;
+       $data['totalPending'] = $totalPending;
+       $data['totalPeminjaman'] = $totalPeminjaman;
+       $data['totalDipinjam'] = $totalDipinjam;
+       $data['totalUsers'] = $totalUsers;
+       $data['totalAdmin'] = $totalAdmin;
+       $data['userAnyar'] = $userAnyar;
+       $data['totalUserPeminjam'] = $totalUserPeminjam;
+       $data['totalUserPelanggaran'] = $totalUserPelanggaran;
+    
+       $data['activities'] = Peminjaman::with(['user', 'detailPeminjaman.buku'])
+           ->orderBy('created_at', 'desc')
+           ->limit(15)
+           ->get()
+           ->map(function ($peminjaman) {
+               return [
+                   'user_name' => $peminjaman->user->name,
+                   'user' => $peminjaman->user,
+                   'book_titles' => $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '),
+                   'status' => $peminjaman->status,
+                   'created_at' => $peminjaman->created_at->diffForHumans(),
+                   'message' => $this->getActivityMessage($peminjaman->status, $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '))
+               ];
+           });
+    
+       $data['adminActivities'] = AdminActivity::with(['admin' => function($query) {
+               $query->where('type', '>', 0);
+           }])
+           ->orderBy('created_at', 'desc')
+           ->limit(5)
+           ->get()
+           ->map(function ($activity) {
+               return [
+                   'user' => [
+                       'name' => $activity->admin->nama,
+                       'type' => $activity->admin->type,
+                       'avatar' => substr($activity->admin->nama, 0, 2)
+                   ],
+                   'action' => $activity->action,
+                   'description' => $activity->description,
+                   'created_at' => $activity->created_at->diffForHumans()
+               ];
+           });
+    
+       $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+       $data['chartData'] = $this->getPeminjamanChartData();
+    
+       return view('admin.index', $data);
+    }
 
-    $userAnyar = \DB::table('users')
-    ->where('type', 0) // Filter hanya user dengan type = 0
-    ->orderBy('id', 'desc') // Urutkan berdasarkan ID dari yang terbaru
-    ->limit(5) // Batasi hasil maksimal 5 user
-    ->get();
-
-
-    $totalBuku = Buku::count();
-    
-    // Hitung total peminjaman pending (status 2 atau 6)
-    $totalPending = Peminjaman::whereIn('status', [0, 6])->count();
-    
-    // Hitung total semua peminjaman
-    $totalPeminjaman = Peminjaman::count();
-    
-    // Hitung total peminjaman yang sedang dipinjam (status 2)
-    $totalDipinjam = Peminjaman::where('status', 2)->count();
-    
-    // Hitung total users dan admin
-    $totalUsers = User::count();
-    $totalAdmin = User::where('type', '>', 0)->count();
-    
-    // Tambahkan ke data array
-    $data['totalBuku'] = $totalBuku;
-    $data['totalPending'] = $totalPending;
-    $data['totalPeminjaman'] = $totalPeminjaman;
-    $data['totalDipinjam'] = $totalDipinjam;
-    $data['totalUsers'] = $totalUsers;
-    $data['totalAdmin'] = $totalAdmin;
-    $data['userAnyar'] = $userAnyar;
-
-    $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
-    $data['chartData'] = $this->getPeminjamanChartData();
-    
-    return view('admin.index', $data);
-}
+    private function getActivityMessage($status, $bookTitles): string
+    {
+        return match ($status) {
+            0 => "meminta pinjam \"$bookTitles\"",
+            1 => "disetujui untuk pinjam \"$bookTitles\"",
+            2 => "meminjam \"$bookTitles\"",
+            3 => "mengembalikan \"$bookTitles\"",
+            4 => "telat pengembalian \"$bookTitles\"",
+            5 => "menghilangkan \"$bookTitles\"",
+            6 => "meminta pengembalian \"$bookTitles\"",
+            7 => "ditolak untuk pinjam \"$bookTitles\"",
+            default => "unknown activity"
+        };
+    }
     private function getPeminjamanChartData(): array
-{
-    $endDate = Carbon::now();
-    $startDate = Carbon::now()->subDays(7); // Kurangi jadi 7 hari untuk tampilan yang lebih rapi
-    
-    $dateRange = [];
-    for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
-        $dateRange[$date->format('Y-m-d')] = 0;
-    }
+    {
+        $endDate = Carbon::now();
+        $startDate = Carbon::now()->subDays(7); // Kurangi jadi 7 hari untuk tampilan yang lebih rapi
 
-    $peminjaman = Peminjaman::whereBetween('tgl_pinjam', [$startDate, $endDate])
-        ->get()
-        ->groupBy(function ($item) {
-            return $item->tgl_pinjam->format('Y-m-d');
-        });
-    
-    // Gabungkan data peminjaman dengan range tanggal
-    foreach ($peminjaman as $date => $records) {
-        $dateRange[$date] = $records->count();
+        $dateRange = [];
+        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+            $dateRange[$date->format('Y-m-d')] = 0;
+        }
+
+        $peminjaman = Peminjaman::whereBetween('tgl_pinjam', [$startDate, $endDate])
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->tgl_pinjam->format('Y-m-d');
+            });
+
+        // Gabungkan data peminjaman dengan range tanggal
+        foreach ($peminjaman as $date => $records) {
+            $dateRange[$date] = $records->count();
+        }
+
+        // Format data untuk chart
+        $chartData = [];
+        foreach ($dateRange as $date => $count) {
+            $chartData[] = [
+                'x' => $date,
+                'y' => $count
+            ];
+        }
+
+        return $chartData;
     }
-    
-    // Format data untuk chart
-    $chartData = [];
-    foreach ($dateRange as $date => $count) {
-        $chartData[] = [
-            'x' => $date,
-            'y' => $count
-        ];
-    }
-    
-    return $chartData;
-}
 
 
 

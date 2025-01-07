@@ -29,6 +29,7 @@ return new class extends Migration {
             /* Users: 0=>User, 1=>Admin, 2=>petugas */
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('gambar_profile')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
