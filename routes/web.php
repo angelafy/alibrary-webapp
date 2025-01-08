@@ -89,18 +89,28 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::delete('/admin/penerbit/{id}', [App\Http\Controllers\Admin\PenerbitController::class, 'destroy'])->name('penerbit.destroy');
     Route::get('admin/penerbit/create', [App\Http\Controllers\Admin\PenerbitController::class, 'create'])->name('penerbit.create');
     Route::post('admin/penerbit', [App\Http\Controllers\Admin\PenerbitController::class, 'store'])->name('penerbit.store');
+    Route::get('/admin/penerbit/{id}/edit', [App\Http\Controllers\Admin\PenerbitController::class, 'edit'])->name('penerbit.edit');
+    Route::put('/admin/penerbit/{id}', [App\Http\Controllers\Admin\PenerbitController::class, 'update'])->name('penerbit.update');
+    Route::get('/penerbit/{id}', [App\Http\Controllers\Admin\PenerbitController::class, 'show'])->name('penerbit.show');
 
     /* Genre */
     Route::get('/admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'index'])->name('genre.index');
     Route::delete('/admin/genre/{id}', [App\Http\Controllers\Admin\GenreController::class, 'destroy'])->name('genre.destroy');
     Route::get('admin/genre/create', [App\Http\Controllers\Admin\GenreController::class, 'create'])->name('genre.create');
     Route::post('admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'store'])->name('genre.store');
+    Route::get('/admin/genre/{id}/edit', [App\Http\Controllers\Admin\GenreController::class, 'edit'])->name('genre.edit');
+    Route::put('/admin/genre/{id}', [App\Http\Controllers\Admin\GenreController::class, 'update'])->name('genre.update');
+    Route::get('/genre/{id}', [App\Http\Controllers\Admin\GenreController::class, 'show'])->name('genre.show');
+
 
     /* Penulis */
     Route::get('/admin/penulis', [App\Http\Controllers\Admin\PenulisController::class, 'index'])->name('penulis.index');
     Route::delete('/admin/penulis/{id}', [App\Http\Controllers\Admin\PenulisController::class, 'destroy'])->name('penulis.destroy');
     Route::get('/admin/penulis/create', [App\Http\Controllers\Admin\PenulisController::class, 'create'])->name('penulis.create');
     Route::post('/admin/penulis/add', [App\Http\Controllers\Admin\PenulisController::class, 'store'])->name('penulis.store');
+    Route::get('/admin/penulis/{id}/edit', [App\Http\Controllers\Admin\PenulisController::class, 'edit'])->name('penulis.edit');
+    Route::put('/admin/penulis/{id}', [App\Http\Controllers\Admin\PenulisController::class, 'update'])->name('penulis.update');
+    Route::get('/penulis/{id}', [App\Http\Controllers\Admin\PenulisController::class, 'show'])->name('penulis.show');
 
     /*  Users List */
     Route::get('admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');

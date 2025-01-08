@@ -4,11 +4,13 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penulis;
+use App\Traits\LogsAdminActivity;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class PenulisController extends Controller
 {
+    use LogsAdminActivity;
     public function index(Request $request)
     {
         $data['main'] = 'Penulis';
@@ -79,4 +81,45 @@ class PenulisController extends Controller
         $data['sub_judul'] = 'Data Penulis';
         return view('admin.penulis.create', $data);
     }
+
+    public function edit($id)
+    {
+        $data['main'] = 'Penulis';
+        $data['judul'] = 'Manajemen Data Penulis';
+        $data['sub_judul'] = 'Data Penulis';
+        $data['penulis'] = Penulis::findOrFail($id);
+        return view('admin.penulis.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the form data
+        $request->validate([
+            'kode_author' => 'required|string|max:255',
+            'nama_author' => 'required|string|max:255',
+            'bio' => 'required|string',
+        ]);
+
+        $penulis = Penulis::findOrFail($id);
+        $penulis->update([
+            'kode_author' => $request->kode_author,
+            'nama_author' => $request->nama_author,
+            'bio' => $request->bio,
+        ]);
+        $this->logAdminActivity(
+            'update_penulis',
+            '[' . $penulis->kode_author . ']' . ' ' . $penulis->nama_author
+        );
+        return redirect()->route('penulis.index')
+            ->with('success', 'Penulis berhasil diperbarui.');
+    }
+    public function show($id)
+    {
+        $data['main'] = 'Penulis';
+        $data['judul'] = 'Detail Penulis';
+        $data['sub_judul'] = 'Informasi Penulis';
+        $data['penulis'] = Penulis::findOrFail($id);
+        return view('admin.penulis.show', $data);
+    }
+
 }

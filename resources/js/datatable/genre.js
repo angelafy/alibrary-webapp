@@ -82,13 +82,13 @@ $(document).ready(function () {
                         success: function (result) {
                             Swal.fire(
                                 "Dihapus!",
-                                "Data pengguna telah dihapus.",
+                                "Data genre telah dihapus.",
                                 "success"
                             );
 
                             setTimeout(function () {
                                 location.reload();
-                            }, 3000);
+                            }, 1000);
                         },
                         error: function (err) {
                             Swal.fire(
