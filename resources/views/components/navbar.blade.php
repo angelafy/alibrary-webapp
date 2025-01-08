@@ -330,7 +330,22 @@
 
                        {{-- peminjaman --}}
                        <li
-                           class="nav-item dropdown {{ Route::is('penerbit.index', 'penulis.index', 'genre.index') ? 'active' : '' }}">
+                           class="nav-item dropdown {{ Route::is(
+                               'penerbit.index',
+                               'penerbit.create',
+                               'penerbit.edit',
+                               'penerbit.show',
+                               'penulis.index',
+                               'penulis.create',
+                               'penulis.edit',
+                                     'penulis.show',
+                               'genre.index',
+                               'genre.create',
+                               'genre.edit',
+                                   'genre.show',
+                           )
+                               ? 'active'
+                               : '' }}">
                            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                                data-bs-auto-close="outside" role="button" aria-expanded="false">
                                <span
