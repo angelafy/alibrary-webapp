@@ -116,7 +116,6 @@ class HomeController extends Controller
         $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
         $data['chartData'] = $this->getPeminjamanChartData();
 
-        // Di adminHome() controller, tambahkan:
         $statusCounts = [
             'pending' => Peminjaman::where('status', 0)->count(),
             'disetujui' => Peminjaman::where('status', 1)->count(),
@@ -162,7 +161,6 @@ class HomeController extends Controller
                 return $item->tgl_pinjam->format('Y-m-d');
             });
 
-        // Gabungkan data peminjaman dengan range tanggal
         foreach ($peminjaman as $date => $records) {
             $dateRange[$date] = $records->count();
         }

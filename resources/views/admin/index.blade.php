@@ -597,80 +597,88 @@
             </div>
 
             <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    window.ApexCharts && new ApexCharts(document.getElementById("chart-peminjaman"), {
-                        chart: {
-                            type: "bar",
-                            fontFamily: "inherit",
-                            height: 240,
-                            parentHeightOffset: 0,
-                            toolbar: {
-                                show: false
-                            },
-                            animations: {
-                                enabled: true
-                            }
-                        },
-                        plotOptions: {
-                            bar: {
-                                columnWidth: "50%",
-                                borderRadius: 2
-                            }
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        fill: {
-                            opacity: 1
-                        },
-                        series: [{
-                            name: 'Peminjaman',
-                            data: @json($chartData)
-                        }],
-                        tooltip: {
-                            theme: "dark",
-                            x: {
-                                format: 'dd MMM yyyy'
-                            }
-                        },
-                        grid: {
-                            padding: {
-                                top: -20,
-                                right: 0,
-                                left: -4,
-                                bottom: -4
-                            },
-                            strokeDashArray: 4,
-                        },
-                        xaxis: {
-                            type: 'datetime',
-                            labels: {
-                                format: 'dd MMM',
-                                rotate: 0,
-                                style: {
-                                    fontSize: '12px'
-                                }
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            tickAmount: 7,
-                            tickPlacement: 'on'
-                        },
-                        yaxis: {
-                            labels: {
-                                padding: 4
-                            },
-                            min: 0,
-                            tickAmount: 5,
-                            forceNiceScale: true
-                        },
-                        colors: [tabler.getColor("primary")],
-                        legend: {
-                            show: false
-                        }
-                    }).render();
-                });
+               document.addEventListener("DOMContentLoaded", function() {
+    window.ApexCharts && new ApexCharts(document.getElementById("chart-peminjaman"), {
+        chart: {
+            type: "bar",
+            fontFamily: "inherit",
+            height: 240,
+            parentHeightOffset: 0,
+            toolbar: {
+                show: false
+            },
+            animations: {
+                enabled: true
+            }
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "50%",
+                borderRadius: 2
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            opacity: 1
+        },
+        series: [{
+            name: 'Peminjaman',
+            data: @json($chartData)
+        }],
+        tooltip: {
+            theme: "dark",
+            x: {
+                format: 'dd MMM yyyy'
+            },
+            y: {
+                formatter: function(value) {
+                    return Math.floor(value);
+                }
+            }
+        },
+        grid: {
+            padding: {
+                top: -20,
+                right: 0,
+                left: -4,
+                bottom: -4
+            },
+            strokeDashArray: 4,
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                format: 'dd MMM',
+                rotate: 0,
+                style: {
+                    fontSize: '12px'
+                }
+            },
+            axisBorder: {
+                show: false
+            },
+            tickAmount: 7,
+            tickPlacement: 'on'
+        },
+        yaxis: {
+            labels: {
+                padding: 4,
+                formatter: function(value) {
+                    return Math.floor(value);
+                }
+            },
+            min: 0,
+            tickAmount: 5,
+            forceNiceScale: true
+        },
+        colors: [tabler.getColor("primary")],
+        legend: {
+            show: false
+        }
+    }).render();
+});
             </script>
 
 </x-app>
