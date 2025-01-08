@@ -21,7 +21,7 @@
                                         placeholder="Cari user…" value="{{ request()->query('search') }}" />
                                 </form>
                                 <!-- Tombol tambah data -->
-                                <a href="#" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary d-sm-inline-block" disabled>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -30,7 +30,7 @@
                                         <line x1="5" y1="12" x2="19" y2="12" />
                                     </svg>
                                     Tambah Data
-                                </a>
+                                </button>
                             </div>
                         </div>
 
@@ -45,8 +45,14 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="card">
                                     <div class="card-body p-4 text-center">
-                                        <span class="avatar avatar-xl mb-3 avatar-rounded"
-                                        style="background-image: url('{{ $user->gambar_profile_mas }}')"></span>
+                                        @if ($user->gambar_profile_mas)
+                                            <span class="avatar avatar-xl mb-3 avatar-rounded"
+                                                style="background-image: url('{{ $user->gambar_profile_mas }}')"></span>
+                                        @else
+                                            <span class="avatar avatar-xl mb-3 avatar-rounded">
+                                                {{ strtoupper(substr($user->username, 0, 2)) }}
+                                            </span>
+                                        @endif
                                         {{-- <span class="avatar avatar-xl mb-3 avatar-rounded">
                                         {{ strtoupper(substr($user->username, 0, 2)) }}
 

@@ -25,7 +25,7 @@ class UserController extends Controller
 
         if ($search) {
             $tiangBiasa = $tiangBiasa->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
+                $query->where('nama', 'like', '%' . $search . '%')
                     ->orWhere('email', 'like', '%' . $search . '%');
             });
         }
@@ -37,7 +37,7 @@ class UserController extends Controller
 
             if ($search) {
                 $query = $query->where(function ($query) use ($search) {
-                    $query->where('name', 'like', '%' . $search . '%')
+                    $query->where('nama', 'like', '%' . $search . '%')
                         ->orWhere('email', 'like', '%' . $search . '%');
                 });
             }
@@ -70,7 +70,7 @@ class UserController extends Controller
 
         if ($search) {
             $tiangPusat = $tiangPusat->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%') // Ngawe 'name' 
+                $query->where('nama', 'like', '%' . $search . '%') // Ngawe 'nama' 
                     ->orWhere('email', 'like', '%' . $search . '%');
             });
         }
@@ -82,7 +82,7 @@ class UserController extends Controller
 
             if ($search) {
                 $query = $query->where(function ($query) use ($search) {
-                    $query->where('name', 'like', '%' . $search . '%')
+                    $query->where('nama', 'like', '%' . $search . '%')
                         ->orWhere('email', 'like', '%' . $search . '%');
                 });
             }
@@ -113,7 +113,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|string|min:8|confirmed',
@@ -121,7 +121,7 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $validatedData['name'],
+            'nama' => $validatedData['nama'],
             'username' => $validatedData['username'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
@@ -146,7 +146,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'username' => 'required|string|unique:users,username,' . $user->id . '|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id . '|max:255',
             'password' => 'nullable|string|min:8|confirmed',
@@ -155,7 +155,7 @@ class UserController extends Controller
 
         // Prepare update data
         $updateData = [
-            'name' => $validatedData['name'],
+            'nama' => $validatedData['nama'],
             'username' => $validatedData['username'],
             'email' => $validatedData['email'],
             'type' => $validatedData['type']

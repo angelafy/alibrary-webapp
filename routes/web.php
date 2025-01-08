@@ -93,12 +93,22 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     /* Genre */
     Route::get('/admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'index'])->name('genre.index');
     Route::delete('/admin/genre/{id}', [App\Http\Controllers\Admin\GenreController::class, 'destroy'])->name('genre.destroy');
+    Route::get('admin/genre/create', [App\Http\Controllers\Admin\GenreController::class, 'create'])->name('genre.create');
+    Route::post('admin/genre', [App\Http\Controllers\Admin\GenreController::class, 'store'])->name('genre.store');
 
     /* Penulis */
     Route::get('/admin/penulis', [App\Http\Controllers\Admin\PenulisController::class, 'index'])->name('penulis.index');
     Route::delete('/admin/penulis/{id}', [App\Http\Controllers\Admin\PenulisController::class, 'destroy'])->name('penulis.destroy');
     Route::get('/admin/penulis/create', [App\Http\Controllers\Admin\PenulisController::class, 'create'])->name('penulis.create');
     Route::post('/admin/penulis/add', [App\Http\Controllers\Admin\PenulisController::class, 'store'])->name('penulis.store');
+
+    /*  Users List */
+    Route::get('admin/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::delete('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy']);
+
+    Route::get('admin/users/users-admin', [App\Http\Controllers\Admin\UserController::class, 'adalahAdmin'])->name('users.adalahAdmin');
+    Route::delete('/users/users-admin/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy']);
+
 });
 
 /*------------------------------------------
