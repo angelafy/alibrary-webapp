@@ -144,7 +144,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Deskripsi
-                                            <span class="form-label-description" id="ketikan_sakkarepmu">0/100</span>
+                                            <span class="form-label-description" id="deskripsi_sakkarepmu">0/100</span>
                                         </label>
                                         <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3" maxlength="100">{{ old('deskripsi') }}</textarea>
                                     </div>
@@ -152,7 +152,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Sinopsis
-                                            <span class="form-label-description" id="ketikan_sakkarepmu">0/100</span>
+                                            <span class="form-label-description" id="sinopsis_sakkarepmu">0/100</span>
                                         </label>
                                         <textarea class="form-control" name="sinopsis" id="sinopsis" rows="3" maxlength="100">{{ old('sinopsis') }}</textarea>
                                     </div>
@@ -175,16 +175,30 @@
         </div>
     </div>
     <script>
-        // Gawe Count Text
-        const textarea = document.getElementById('deskripsi');
-        const textarea = document.getElementById('sinopsis');
-        const ketikan_sakkarepmu = document.getElementById('ketikan_sakkarepmu');
+             // Gawe Count Text
 
-        textarea.addEventListener('input', function() {
-            const currentLength = textarea.value.length;
-            const maxLength = textarea.getAttribute('maxlength');
-            ketikan_sakkarepmu.textContent = `${currentLength}/${maxLength}`;
+        // Get text area elements
+        const sinopsisTextarea = document.getElementById('sinopsis');
+        const deskripsiTextarea = document.getElementById('deskripsi');
+
+        // Get counter elements
+        const sinopsisCounter = document.getElementById('sinopsis_sakkarepmu');
+        const deskripsiCounter = document.getElementById('deskripsi_sakkarepmu');
+
+        // Update character count for sinopsis
+        sinopsisTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            const maxLength = this.getAttribute('maxlength');
+            sinopsisCounter.textContent = `${currentLength}/${maxLength}`;
         });
+
+        // Update character count for deskripsi
+        deskripsiTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            const maxLength = this.getAttribute('maxlength');
+            deskripsiCounter.textContent = `${currentLength}/${maxLength}`;
+        });
+
 
         // Hapus readonly dan disabled sebelum submit
         document.getElementById('bukuForm').addEventListener('submit', function() {

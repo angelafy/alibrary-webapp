@@ -42,78 +42,94 @@ class HomeController extends Controller
      */
     public function adminHome(): View
     {
-       $data['main'] = 'Dashboard';
-    
-       $userAnyar = \DB::table('users')
-           ->where('type', 0)
-           ->orderBy('id', 'desc')
-           ->limit(5)
-           ->get();
-    
-       $totalBuku = Buku::count();
-       $totalPending = Peminjaman::whereIn('status', [0, 6])->count();
-       $totalPeminjaman = Peminjaman::count();
-       $totalDipinjam = Peminjaman::where('status', 2)->count();
-       $totalUsers = User::count();
-       $totalAdmin = User::where('type', '>', 0)->count();
-    
-       $totalUserPeminjam = Peminjaman::select('user_id')
-           ->distinct()
-           ->count('user_id');
-    
-       $totalUserPelanggaran = Peminjaman::select('user_id')
-           ->where('status', 4)
-           ->distinct()
-           ->count('user_id');
-    
-       $data['totalBuku'] = $totalBuku;
-       $data['totalPending'] = $totalPending;
-       $data['totalPeminjaman'] = $totalPeminjaman;
-       $data['totalDipinjam'] = $totalDipinjam;
-       $data['totalUsers'] = $totalUsers;
-       $data['totalAdmin'] = $totalAdmin;
-       $data['userAnyar'] = $userAnyar;
-       $data['totalUserPeminjam'] = $totalUserPeminjam;
-       $data['totalUserPelanggaran'] = $totalUserPelanggaran;
-    
-       $data['activities'] = Peminjaman::with(['user', 'detailPeminjaman.buku'])
-           ->orderBy('created_at', 'desc')
-           ->limit(15)
-           ->get()
-           ->map(function ($peminjaman) {
-               return [
-                   'user_name' => $peminjaman->user->name,
-                   'user' => $peminjaman->user,
-                   'book_titles' => $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '),
-                   'status' => $peminjaman->status,
-                   'created_at' => $peminjaman->created_at->diffForHumans(),
-                   'message' => $this->getActivityMessage($peminjaman->status, $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '))
-               ];
-           });
-    
-       $data['adminActivities'] = AdminActivity::with(['admin' => function($query) {
-               $query->where('type', '>', 0);
-           }])
-           ->orderBy('created_at', 'desc')
-           ->limit(5)
-           ->get()
-           ->map(function ($activity) {
-               return [
-                   'user' => [
-                       'name' => $activity->admin->nama,
-                       'type' => $activity->admin->type,
-                       'avatar' => substr($activity->admin->nama, 0, 2)
-                   ],
-                   'action' => $activity->action,
-                   'description' => $activity->description,
-                   'created_at' => $activity->created_at->diffForHumans()
-               ];
-           });
-    
-       $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
-       $data['chartData'] = $this->getPeminjamanChartData();
-    
-       return view('admin.index', $data);
+        $data['main'] = 'Dashboard';
+
+        $userAnyar = \DB::table('users')
+            ->where('type', 0)
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
+
+        $totalBuku = Buku::count();
+        $totalPending = Peminjaman::whereIn('status', [0, 6])->count();
+        $totalPeminjaman = Peminjaman::count();
+        $totalDipinjam = Peminjaman::where('status', 2)->count();
+        $totalUsers = User::count();
+        $totalAdmin = User::where('type', '>', 0)->count();
+
+        $totalUserPeminjam = Peminjaman::select('user_id')
+            ->distinct()
+            ->count('user_id');
+
+        $totalUserPelanggaran = Peminjaman::select('user_id')
+            ->where('status', 4)
+            ->distinct()
+            ->count('user_id');
+
+        $data['totalBuku'] = $totalBuku;
+        $data['totalPending'] = $totalPending;
+        $data['totalPeminjaman'] = $totalPeminjaman;
+        $data['totalDipinjam'] = $totalDipinjam;
+        $data['totalUsers'] = $totalUsers;
+        $data['totalAdmin'] = $totalAdmin;
+        $data['userAnyar'] = $userAnyar;
+        $data['totalUserPeminjam'] = $totalUserPeminjam;
+        $data['totalUserPelanggaran'] = $totalUserPelanggaran;
+
+        $data['activities'] = Peminjaman::with(['user', 'detailPeminjaman.buku'])
+            ->orderBy('created_at', 'desc')
+            ->limit(15)
+            ->get()
+            ->map(function ($peminjaman) {
+                return [
+                    'user_name' => $peminjaman->user->name,
+                    'user' => $peminjaman->user,
+                    'book_titles' => $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '),
+                    'status' => $peminjaman->status,
+                    'created_at' => $peminjaman->created_at->diffForHumans(),
+                    'message' => $this->getActivityMessage($peminjaman->status, $peminjaman->detailPeminjaman->pluck('buku.title')->join(', '))
+                ];
+            });
+
+        $data['adminActivities'] = AdminActivity::with([
+            'admin' => function ($query) {
+                $query->where('type', '>', 0);
+            }
+        ])
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get()
+            ->map(function ($activity) {
+                return [
+                    'user' => [
+                        'name' => $activity->admin->nama,
+                        'type' => $activity->admin->type,
+                        'gambar_profile' => $activity->admin->gambar_profile,
+                        'avatar' => substr($activity->admin->nama, 0, 2)
+                    ],
+                    'action' => $activity->action,
+                    'description' => $activity->description,
+                    'created_at' => $activity->created_at->diffForHumans()
+                ];
+            });
+
+        $data['buku'] = Buku::with(['penulis', 'penerbit', 'genre'])->get();
+        $data['chartData'] = $this->getPeminjamanChartData();
+
+        // Di adminHome() controller, tambahkan:
+        $statusCounts = [
+            'pending' => Peminjaman::where('status', 0)->count(),
+            'disetujui' => Peminjaman::where('status', 1)->count(),
+            'dipinjam' => Peminjaman::where('status', 2)->count(),
+            'dikembalikan' => Peminjaman::where('status', 3)->count(),
+            'terlambat' => Peminjaman::where('status', 4)->count(),
+            'hilang' => Peminjaman::where('status', 5)->count(),
+            'pengembalian' => Peminjaman::where('status', 6)->count(),
+            'ditolak' => Peminjaman::where('status', 7)->count(),
+        ];
+
+        $data['statusCounts'] = $statusCounts;
+        return view('admin.index', $data);
     }
 
     private function getActivityMessage($status, $bookTitles): string

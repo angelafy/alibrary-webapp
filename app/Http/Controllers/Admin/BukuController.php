@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\BukuExport;
 use App\Models\Buku;
+use App\Traits\LogsAdminActivity;
 use App\Models\Genre;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Penerbit;
@@ -15,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class BukuController extends Controller
 {
-    // Method to display the book list
+    use LogsAdminActivity;
     public function index(Request $request)
     {
         $data['main'] = 'Buku';
@@ -100,7 +101,7 @@ class BukuController extends Controller
         }
 
         // Create a new book record
-        Buku::create([
+        $buku = Buku::create([
             'kode_buku' => $request->kode_buku,
             'isbn' => $request->isbn,
             'title' => $request->title,
@@ -113,6 +114,15 @@ class BukuController extends Controller
             'stock' => $request->stock ?? '0',
             'gambar_buku' => $gambarName,
         ]);
+
+        $this->logAdminActivity(
+            'create_book',
+            // 'Menambahkan buku baru: ' . $buku->title . ' (Kode: ' . $buku->kode_buku . ')'
+            
+            '[' . $buku->kode_buku . ']' . ' ' . $buku->title
+        );
+
+        
         return redirect()->route('bukus.index')
             ->with('success', 'Buku berhasil ditambahkan.');
     }
@@ -203,7 +213,7 @@ class BukuController extends Controller
             ->addColumn('genre_id', function ($buku) {
                 return $buku->genre ? $buku->genre->nama_genre : '-';
             })
-            
+
             ->addColumn('action', function ($buku) {
                 return '<button class="btn btn-info">View</button>';
             })
@@ -231,8 +241,18 @@ class BukuController extends Controller
     public function destroy($id)
     {
         try {
-            $peminjaman = Buku::findOrFail($id);
-            $peminjaman->delete();
+            $buku = Buku::findOrFail($id);
+            $judulBuku = $buku->title;
+
+            $buku->delete();
+
+            // Log aktivitas penghapusan
+            $this->logAdminActivity(
+                'delete_book',
+                // 'Menghapus buku: ' . $judulBuku . ' (Kode: ' . $buku->kode_buku . ')'
+
+                '[' . $buku->kode_buku . ']' . ' ' . $judulBuku
+            );
 
             return response()->json([
                 'success' => 'Buku berhasil dihapus'
