@@ -89,7 +89,7 @@
                                 </label>
                             </div>
 
-                            <a href="https://perpustakaan.jakarta.go.id/forgot-password"
+                            <a href="/forgot-password"
                                 class="text-sm text-primary-600 align">
                                 Lupa Kata Sandi?
                             </a>

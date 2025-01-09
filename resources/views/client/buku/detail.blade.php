@@ -97,7 +97,7 @@
                                 <div class="relative">
                                     <img data-src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
                                         src="images/no-images.png"
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                         class="lazyload rounded object-center object-cover flex justify-center min-w-full  h-[30rem] rounded-lg shadow-lg object-cover object-center"
                                         alt="{{ $buku->title }}">
 
@@ -126,7 +126,7 @@
                                                     <div class="bg-white p-4">
                                                         <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/288536.jpeg"
                                                             src="images/no-images.png"
-                                                            onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                                            onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                                             class="lazyload rounded object-center object-cover w-full h-[30rem]"
                                                             alt="{{ $buku->title }}">
                                                     </div>
@@ -149,7 +149,7 @@
                                     {{ $buku->penulis->nama_author ?? 'Unknown Author' }} (Pengarang)</h4>
 
                                 <div class="flex flex-wrap items-center gap-2 mt-4">
-                                    <a href="https://perpustakaan.jakarta.go.id/book?keyword=Bacaan%20kanak%2Fkanak"
+                                    <a href="/book?keyword=Bacaan%20kanak%2Fkanak"
                                         class="cursor-pointer">
                                         <div class="rounded-lg bg-orange-50 text-orange-500 px-2 py-1">
                                             <div class="flex items-center gap-2">

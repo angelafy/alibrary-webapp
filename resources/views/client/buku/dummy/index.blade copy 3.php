@@ -2,7 +2,7 @@
     <main class="w-full lg:w-4/6 mx-auto p-4 mb-16 lg:mb-0">
         <div class="min-h-screen">
             <section>
-                <form id="searchBooksForm" action="https://perpustakaan.jakarta.go.id/book" method="GET">
+                <form id="searchBooksForm" action="/book" method="GET">
                     <input type="hidden" name="locations" value="">
                     <input type="hidden" name="subjects" value="">
                     <input type="hidden" name="categories" value="">
@@ -358,7 +358,7 @@
                                 <a href="#">
                                     <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                                         <img data-src="{{ asset('storage/buku/' . $buku->gambar_buku) }}"
-                                             onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                             onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                              class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                              alt="{{ $buku->title }}">
                                         <div class="absolute top-0 h-full w-full bg-gradient-to-t from-black/70 p-3 flex flex-col justify-between">

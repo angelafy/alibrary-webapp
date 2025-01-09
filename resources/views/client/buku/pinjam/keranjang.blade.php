@@ -16,7 +16,7 @@
                 <div class="relative">
                     <div class="fixed w-full lg:w-4/6 z-10 mx-auto justify-center bottom-0 left-0 right-0">
                         <form class="needs-validation" id="checkout-form"
-                            action="https://perpustakaan.jakarta.go.id/transaction/store" method="POST">
+                            action="/transaction/store" method="POST">
                             <input type="hidden" name="_token" value="hXMOprJNZnt2XEeoLcjwRMbiXcjWRcOW6LoWeVGp">
                             <input type="hidden" name="cart_id[]" value="9dbccfe9-14da-4a3f-8426-e235f25a666c">
                             <input type="hidden" name="collection_location_id[]" value="12">
@@ -280,7 +280,7 @@
                                                                     ini
                                                                     saya
                                                                     menyetujui
-                                                                    <a href="https://perpustakaan.jakarta.go.id/supports/borrowing-and-returning-rules"
+                                                                    <a href="/supports/borrowing-and-returning-rules"
                                                                         class="font-medium underline text-primary-500">
                                                                         Syarat
                                                                         &

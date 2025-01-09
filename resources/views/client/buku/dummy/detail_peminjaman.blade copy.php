@@ -59,12 +59,12 @@
                                 <div class="flex items-center gap-2">
                                     <a href="https://play.google.com/store/apps/details?id=id.dispusipjakarta.jaklitera"
                                         target="_blank">
-                                        <img src="https://perpustakaan.jakarta.go.id/assets/img/GetItOnGooglePlay_Badge_Web_color_Indonesian.png"
+                                        <img src="/assets/img/GetItOnGooglePlay_Badge_Web_color_Indonesian.png"
                                             class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
                                             alt="">
                                     </a>
                                     <a href="https://apps.apple.com/id/app/jaklitera/id6504686405" target="_blank">
-                                        <img src="https://perpustakaan.jakarta.go.id/assets/img/Download_on_the_App_Store_Badge_ID_RGB_blk_100317.svg"
+                                        <img src="/assets/img/Download_on_the_App_Store_Badge_ID_RGB_blk_100317.svg"
                                             class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
                                             alt="">
                                     </a>
@@ -133,17 +133,17 @@
             <footer
                 class="text-sm hidden lg:block mt-12 mb-2 rounded-lg bg-gray-50 self-center p-4 border border-gray-300">
                 <div class="flex items-center gap-4 justify-center">
-                    <a href="https://perpustakaan.jakarta.go.id/supports#faqs" class="underline font-medium">
+                    <a href="/supports#faqs" class="underline font-medium">
                         FAQ
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/supports/privacy-policy"
+                    <a href="/supports/privacy-policy"
                         class="underline font-medium">
                         Kebijakan Privasi
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/supports" class="underline font-medium">
+                    <a href="/supports" class="underline font-medium">
                         Bantuan
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/supports/about-us" class="underline font-medium">
+                    <a href="/supports/about-us" class="underline font-medium">
                         Tentang Kami
                     </a>
                 </div>

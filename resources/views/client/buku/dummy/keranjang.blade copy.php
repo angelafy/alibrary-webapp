@@ -49,12 +49,12 @@
                             <div class="flex items-center gap-2">
                                 <a href="https://play.google.com/store/apps/details?id=id.dispusipjakarta.jaklitera"
                                     target="_blank">
-                                    <img src="https://perpustakaan.jakarta.go.id/assets/img/GetItOnGooglePlay_Badge_Web_color_Indonesian.png"
+                                    <img src="/assets/img/GetItOnGooglePlay_Badge_Web_color_Indonesian.png"
                                         class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
                                         alt="">
                                 </a>
                                 <a href="https://apps.apple.com/id/app/jaklitera/id6504686405" target="_blank">
-                                    <img src="https://perpustakaan.jakarta.go.id/assets/img/Download_on_the_App_Store_Badge_ID_RGB_blk_100317.svg"
+                                    <img src="/assets/img/Download_on_the_App_Store_Badge_ID_RGB_blk_100317.svg"
                                         class="h-10 transition ease-in-out hover:-translate-y-1 hover:scale-110"
                                         alt="">
                                 </a>
@@ -85,13 +85,13 @@
                 <div class="relative">
                     <div class="fixed w-full lg:w-4/6 z-10 mx-auto justify-center bottom-0 left-0 right-0">
                         <form class="needs-validation" id="checkout-form"
-                            action="https://perpustakaan.jakarta.go.id/transaction/store" method="POST">
+                            action="/transaction/store" method="POST">
                             <input type="hidden" name="_token" value="hXMOprJNZnt2XEeoLcjwRMbiXcjWRcOW6LoWeVGp">
                             <input type="hidden" name="cart_id[]" value="9dbccfe9-14da-4a3f-8426-e235f25a666c">
                             <input type="hidden" name="collection_location_id[]" value="12">
                             <div
                                 class="grid grid-cols-2 items-center border-t border-t-primary-500 p-3 gap-2 lg:gap-3 bg-gray-50 text-center divide-x-0 lg:divide-x">
-                                <a href="https://perpustakaan.jakarta.go.id/book"
+                                <a href="/book"
                                     class="w-full border border-primary-500 text-primary-500 flex items-center justify-center gap-2 cursor-pointer text-sm hover:bg-gray-100 px-6 py-2 rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -240,7 +240,7 @@
                                                                 <label for="disclaimer"
                                                                     class="block text-xs lg:text-sm text-gray-900">
                                                                     Dengan ini saya menyetujui
-                                                                    <a href="https://perpustakaan.jakarta.go.id/supports/borrowing-and-returning-rules"
+                                                                    <a href="/supports/borrowing-and-returning-rules"
                                                                         class="font-medium underline text-primary-500">
                                                                         Syarat & Ketentuan
                                                                     </a>
@@ -333,7 +333,7 @@
                                                         <div @click.outside="deleteCartItem = false"
                                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg">
                                                             <form class="needs-validation"
-                                                                action="https://perpustakaan.jakarta.go.id/cart/9dbccfe9-14da-4a3f-8426-e235f25a666c"
+                                                                action="/cart/9dbccfe9-14da-4a3f-8426-e235f25a666c"
                                                                 method="POST">
                                                                 <input type="hidden" name="_token"
                                                                     value="hXMOprJNZnt2XEeoLcjwRMbiXcjWRcOW6LoWeVGp" />
@@ -405,11 +405,11 @@
 
             <div class="mt-4">
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-07100000000012">
+                    <a href="/book/detail?cn=JAKPU-07100000000012">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Dasar-dasar perencanaan beton bertulang">
                             <div
@@ -432,11 +432,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-07110000000058">
+                    <a href="/book/detail?cn=JAKPU-07110000000058">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Pendidikan jasmani olah raga dan kesehatan 4 : Penjaskes untuk kelas IV SD">
                             <div
@@ -463,11 +463,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-03100000017700">
+                    <a href="/book/detail?cn=JAKPU-03100000017700">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Tanya Jawab Kredit Dokumenter">
                             <div
@@ -494,11 +494,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12120000000498">
+                    <a href="/book/detail?cn=JAKPU-12120000000498">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/65801.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="INDONESIAN heritage 7 : visual art">
                             <div
@@ -525,11 +525,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12120000000541">
+                    <a href="/book/detail?cn=JAKPU-12120000000541">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Lembaran negara Republik Indonesia tahun 1974 no. 1-67">
                             <div
@@ -556,11 +556,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=JAKPU-12139000000607">
+                    <a href="/book/detail?cn=JAKPU-12139000000607">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Double vision 2C : reptil-reptil keren">
                             <div
@@ -587,11 +587,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000774555">
+                    <a href="/book/detail?cn=INLIS000000000774555">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/98289.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Understand-Inc People :  Strategi Taktis Komunikasi Berdasarkan Kepribadian">
                             <div
@@ -619,11 +619,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000787777">
+                    <a href="/book/detail?cn=INLIS000000000787777">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/111569.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Tips Job&#039;s Hunting">
                             <div
@@ -646,11 +646,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000797852">
+                    <a href="/book/detail?cn=INLIS000000000797852">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/121730.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Pangan Bagi Kehidupan">
                             <div
@@ -676,11 +676,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000799225">
+                    <a href="/book/detail?cn=INLIS000000000799225">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/123117.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Ensiklopedia junior : hutan">
                             <div
@@ -707,11 +707,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000806262">
+                    <a href="/book/detail?cn=INLIS000000000806262">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/130265.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Resep komplit olahan tempe">
                             <div
@@ -738,11 +738,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000831224">
+                    <a href="/book/detail?cn=INLIS000000000831224">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/176066.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Longuseiku :  Kumpulan Puisi">
                             <div
@@ -769,11 +769,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000855529">
+                    <a href="/book/detail?cn=INLIS000000000855529">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/257341.jpeg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Ombak Losari : Sajak - Sajak dari Makassar">
                             <div
@@ -800,11 +800,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000862069">
+                    <a href="/book/detail?cn=INLIS000000000862069">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/278384.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Perjalanan :  kumpulan puisi">
                             <div
@@ -831,11 +831,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="https://perpustakaan.jakarta.go.id/book/detail?cn=INLIS000000000863653">
+                    <a href="/book/detail?cn=INLIS000000000863653">
                         <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                             <img data-src="https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/283619.jpg"
-                                src="https://perpustakaan.jakarta.go.id/assets/img/no-images.png"
-                                onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                src="/assets/img/no-images.png"
+                                onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                 class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full h-72 sm:h-80 -z-10"
                                 alt="Kugapai sakinah bersamamu">
                             <div

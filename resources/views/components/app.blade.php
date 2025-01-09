@@ -88,6 +88,7 @@
         {{-- gawe nyeluk component navbar --}}
         @if (!in_array(Route::currentRouteName(), ['login', 'register', 'not-found']) && Route::has(Route::currentRouteName()))
             <x-navbar />
+            {{-- <x-client-footer /> --}}
         @endif
         <main class="py-4">
             {{ $slot }}

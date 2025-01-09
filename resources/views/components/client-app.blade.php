@@ -89,9 +89,10 @@
     {{-- gawe nyeluk component navbar --}}
     @if (!in_array(Route::currentRouteName(), ['login', 'register', 'not-found']))
     <x-client-sidebar />
+    <x-client-footer />
     @endif
     {{-- <x-client-sidebar /> --}}
-    <x-client-footer />
+
 
 
     <script src="{{ asset('client/js/jquery-3.6.0.min.js') }}"></script>

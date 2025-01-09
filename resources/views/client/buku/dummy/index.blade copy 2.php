@@ -2,7 +2,7 @@
     <main class="w-full lg:w-4/6 mx-auto p-4 mb-16 lg:mb-0">
         <div class="min-h-screen">
             <section>
-                <form id="searchBooksForm" action="https://perpustakaan.jakarta.go.id/book" method="GET">
+                <form id="searchBooksForm" action="/book" method="GET">
                     <input type="hidden" name="locations" value="">
                     <input type="hidden" name="subjects" value="">
                     <input type="hidden" name="categories" value="">
@@ -357,7 +357,7 @@
                             <a href="#">
                                 <div class="relative rounded-xl overflow-hidden cursor-pointer w-full">
                                     <img data-src="#" src=""
-                                        onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                        onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                         class="lazyload rounded object-center object-cover brightness-110 rounded-lg w-full min-h-48 lg:min-h-64 max-h-full -z-10"
                                         alt="Masih :  karena cinta selalu berkisah">
                                     <div
@@ -394,7 +394,7 @@
                                     « Sebelumnya
                                 </span>
 
-                                <a href="https://perpustakaan.jakarta.go.id/book?page=2"
+                                <a href="/book?page=2"
                                     class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                                     Selanjutnya »
                                 </a>
@@ -431,37 +431,37 @@
                                             <span
                                                 class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-bold text-orange-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
                                         </span>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=2"
+                                        <a href="/book?page=2"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 2">
                                             2
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=3"
+                                        <a href="/book?page=3"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 3">
                                             3
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4"
+                                        <a href="/book?page=4"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 4">
                                             4
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=5"
+                                        <a href="/book?page=5"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 5">
                                             5
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=6"
+                                        <a href="/book?page=6"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 6">
                                             6
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=7"
+                                        <a href="/book?page=7"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 7">
                                             7
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=8"
+                                        <a href="/book?page=8"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 8">
                                             8
@@ -471,17 +471,17 @@
                                             <span
                                                 class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">...</span>
                                         </span>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4327"
+                                        <a href="/book?page=4327"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 4327">
                                             4327
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=4328"
+                                        <a href="/book?page=4328"
                                             class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
                                             aria-label="Go to page 4328">
                                             4328
                                         </a>
-                                        <a href="https://perpustakaan.jakarta.go.id/book?page=2" rel="next"
+                                        <a href="/book?page=2" rel="next"
                                             class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
                                             aria-label="Selanjutnya &amp;raquo;">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

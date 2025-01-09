@@ -74,7 +74,7 @@
                             <div class="rounded-lg border relative">
                                 <img src="{{ asset('static/amanda.jpg') }}"
                                     class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                    onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                    onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                     alt="">
                                 <div
                                     class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
@@ -96,7 +96,7 @@
                             <div class="rounded-lg border relative">
                                 <img src="{{ asset('static/ilmon.jpg') }}"
                                     class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                    onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                    onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                     alt="">
 
                                 <div
@@ -118,7 +118,7 @@
                             <div class="rounded-lg border relative">
                                 <img src="{{ asset('static/angela.jpg') }}"
                                     class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                    onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                    onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                     alt="">
                                 <div
                                     class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
@@ -139,7 +139,7 @@
                             <div class="rounded-lg border relative">
                                 <img src="{{ asset('static/sihub.jpg') }}"
                                     class="lazyload w-full h-48 rounded-lg object-center object-cover brightness-50"
-                                    onerror="this.onerror=null; this.src='https://perpustakaan.jakarta.go.id/assets/img/no-images.png'"
+                                    onerror="this.onerror=null; this.src='/assets/img/no-images.png'"
                                     alt="">
                                 <div
                                     class="rounded-lg absolute top-0 h-full w-full bg-gradient-to-t from-primary-600/80 p-4 flex flex-col justify-between text-white">
@@ -162,7 +162,7 @@
 
         <aside
             class="scroll-container hidden lg:flex w-1/6 border-l fixed right-0 top-0 h-screen p-4 overflow-y-auto flex-col space-y-4">
-            <form class="mx-auto w-full" action="https://perpustakaan.jakarta.go.id/book" method="GET">
+            <form class="mx-auto w-full" action="/book" method="GET">
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only"></label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -179,7 +179,7 @@
             </form>
 
             {{-- <div class=""> --}}
-            {{-- <a target="_blank" href="https://perpustakaan.jakarta.go.id/catalog-requests/create"
+            {{-- <a target="_blank" href="/catalog-requests/create"
                             class="flex items-center justify-center space-x-2 text-white bg-primary-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-200 font-medium rounded-lg text-xs px-3 py-1.5 cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-110">
                             {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="h-4 w-4"> --}}
@@ -195,7 +195,7 @@
             {{-- <div class="mt-2 justify-center">
                     <h3 class="text-sm mb-2">Ganti Bahasa</h3>
                     <div class="grid grid-cols-2 gap-2 text-sm">
-                        <a href="https://perpustakaan.jakarta.go.id/language/id"
+                        <a href="/language/id"
                             class="border text-orange-500 border border-orange-500 bg-orange-50 rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
                             <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
                                 <img src="images/Flag_of_Indonesia.svg" class="w-6 h-4 rounded border"
@@ -203,7 +203,7 @@
                                 <span>ID</span>
                             </div> --
                         </a>
-                        <a href="https://perpustakaan.jakarta.go.id/language/en"
+                        <a href="/language/en"
                             class="relative border  rounded-lg hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500">
                             <div class="rounded-lg flex items-center justify-center space-x-2 text-center p-3">
                                 <img src="images/Flag_of_the_United_Kingdom.svg" class="w-6 h-4 rounded"

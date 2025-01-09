@@ -194,8 +194,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
                                 <div class="">
                                     <div class="flex items-center gap-1">
                                         <label for="password" class="font-normal text-xs lg:text-sm">
@@ -295,7 +293,7 @@
                                     id="disclaimer" name="disclaimer" required="" type="checkbox" />
                                 <label for="disclaimer" class="block text-xs lg:text-sm text-gray-900">
                                     Saya menyatakan telah membaca dan menyetujui terkait
-                                    <a href="https://perpustakaan.jakarta.go.id/supports/privacy-policy"
+                                    <a href="/supports/privacy-policy"
                                         class="font-bold underline text-primary-500">Kebijakan Privasi</a>
                                 </label>
                             </div>

@@ -13,7 +13,7 @@
                                 <h4 class="text-gray-500 text-sm lg:text-base mt-1"></h4>
                             </div>
                             <div class="relative flex flex-wrap items-center gap-2 mt-4 lg:mt-0">
-                                <a href="https://perpustakaan.jakarta.go.id/book?keyword=Bacaan%20kanak%2Fkanak"
+                                <a href="/book?keyword=Bacaan%20kanak%2Fkanak"
                                     class="cursor-pointer">
                                     <div class="absolute top-0 right-0 mt-2 mr-2 text-sm capitalize text-right">
                                         <div class="rounded-lg bg-orange-50 text-orange-500 px-2 py-1">
