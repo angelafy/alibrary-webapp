@@ -23,10 +23,18 @@
                                         name="nisn" value="{{ old('nisn') }}" maxlength="10" pattern="\d*"
                                         required autofocus>
 
-                                    @error('nisn')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        @error('nisn')
+                                        <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                    stroke-width="2" />
+                                                <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" />
+                                                <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                            </svg>
+                                            <span>{{ $message }}</span>
+                                        </div>
                                     @enderror
                                 </div>
                                 <div>
@@ -36,10 +44,18 @@
                                     <input id="nama" type="text"
                                         class="latin-only-input w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('nama') is-invalid @enderror"
                                         name="nama" value="{{ old('nama') }}" required>
-                                    @error('nama')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        @error('nama')
+                                        <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                    stroke-width="2" />
+                                                <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" />
+                                                <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                            </svg>
+                                            <span>{{ $message }}</span>
+                                        </div>
                                     @enderror
                                 </div>
                                 <div>
@@ -58,10 +74,18 @@
                                         </option>
                                     </select>
                                     @error('jenis_kelamin')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                stroke-width="2" />
+                                            <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" />
+                                            <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                        </svg>
+                                        <span>{{ $message }}</span>
+                                    </div>
+                                @enderror
                                 </div>
 
                                 <div class="">
@@ -79,12 +103,19 @@
                                             class="w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('email') is-invalid @enderror"
                                             name="email" value="{{ old('email') }}" required>
 
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            @error('email')
+                                            <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                        stroke-width="2" />
+                                                    <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" />
+                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                </svg>
+                                                <span>{{ $message }}</span>
+                                            </div>
                                         @enderror
-
                                     </div>
                                 </div>
 
@@ -102,10 +133,18 @@
                                         <input id="username" type="text"
                                             class="latin-only-input w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('username') is-invalid @enderror"
                                             name="username" value="{{ old('username') }}" required>
-                                        @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            @error('username')
+                                            <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                        stroke-width="2" />
+                                                    <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" />
+                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                </svg>
+                                                <span>{{ $message }}</span>
+                                            </div>
                                         @enderror
                                     </div>
                                 </div>
@@ -117,10 +156,18 @@
                                         class="w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('telepon') is-invalid @enderror"
                                         name="telepon" value="{{ old('telepon') }}" required>
 
-                                    @error('telepon')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        @error('telepon')
+                                        <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                    stroke-width="2" />
+                                                <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" />
+                                                <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                            </svg>
+                                            <span>{{ $message }}</span>
+                                        </div>
                                     @enderror
                                 </div>
                                 <div>
@@ -132,13 +179,23 @@
                                             class="w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('alamat') is-invalid @enderror"
                                             name="alamat" value="{{ old('alamat') }}" required>
 
-                                        @error('alamat')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            @error('alamat')
+                                            <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                        stroke-width="2" />
+                                                    <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" />
+                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                </svg>
+                                                <span>{{ $message }}</span>
+                                            </div>
                                         @enderror
                                     </div>
                                 </div>
+
+
                                 <div class="">
                                     <div class="flex items-center gap-1">
                                         <label for="password" class="font-normal text-xs lg:text-sm">
@@ -150,17 +207,26 @@
                                     </div>
 
                                     <div class="relative" x-data="{ isPasswordVisible: false }">
-                                        <input id="password" type="password"
+                                        <input id="password" :type="isPasswordVisible ? 'text' : 'password'"
                                             class="w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm @error('password') is-invalid @enderror"
                                             name="password" required>
 
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="mt-1 flex items-center gap-1 text-red-500 text-xs animate-shake">
+                                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="12" cy="12" r="9" stroke="currentColor"
+                                                        stroke-width="2" />
+                                                    <path d="M12 7V13" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" />
+                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                </svg>
+                                                <span>{{ $message }}</span>
+                                            </div>
                                         @enderror
 
-                                        <div @click="isPasswordVisible = !isPasswordVisible" class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
+                                        <div @click="isPasswordVisible = !isPasswordVisible"
+                                            class="absolute top-1/2 transform -translate-y-1/2 right-4 text-gray-500 cursor-pointer">
                                             <svg x-show="!isPasswordVisible" class="w-4 h-4" fill="none"
                                                 stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -181,8 +247,7 @@
                                     </div>
 
                                     <span class="mt-1 block text-gray-400 text-xs">*Minimal 6 karakter dan memerlukan
-                                        setidaknya satu huruf,
-                                        angka, serta simbol</span>
+                                        setidaknya satu huruf, angka, serta simbol</span>
                                 </div>
 
                                 <div class="">
@@ -196,7 +261,7 @@
                                     </div>
 
                                     <div class="relative" x-data="{ isPasswordVisible: false }">
-                                        <input id="password-confirm" type="password"
+                                        <input id="password-confirm" :type="isPasswordVisible ? 'text' : 'password'"
                                             class="w-full bg-gray-50 mt-1 block p-2 lg:p-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs lg:text-sm"
                                             name="password_confirmation" required>
 
@@ -248,7 +313,7 @@
                         <div class="text-center">
                             <div class="text-sm">
                                 Sudah memiliki akun?
-                                <a href="{{ route('login')}}"
+                                <a href="{{ route('login') }}"
                                     class="font-bold text-primary-600 hover:text-primary-500">Masuk</a>
                             </div>
                         </div>

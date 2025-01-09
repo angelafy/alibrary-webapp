@@ -54,7 +54,7 @@
         @endif
     </a>
     
-        <a href="https://perpustakaan.jakarta.go.id/mobile-library"
+        {{-- <a href=""
             class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -64,9 +64,9 @@
                 </path>
             </svg>
             <span>Jadwal Pengembalian</span>
-        </a>
+        </a> --}}
 
-        <a href="https://perpustakaan.jakarta.go.id/account"
+        {{-- <a href=""
             class="flex items-center space-x-2 p-2 hover:bg-gray-50 hover:text-primary-500 pl-4 lg:pl-6 ">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -74,12 +74,12 @@
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
             </svg>
             <span>Tentang Akun</span>
-        </a>
+        </a> --}}
     </div>
 </aside>
 <aside
     class="scroll-container hidden lg:flex w-1/6 border-l fixed right-0 top-0 h-screen p-4 overflow-y-auto flex-col space-y-4">
-    <form class="mx-auto w-full" action="https://perpustakaan.jakarta.go.id/book" method="GET">
+    <form class="mx-auto w-full" action="" method="GET">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only"></label>
         <div class="relative">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
