@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Peminjaman;
+use Carbon\Carbon;
 
 class PeminjamanSeeder extends Seeder
 {
@@ -49,10 +50,10 @@ class PeminjamanSeeder extends Seeder
         Peminjaman::create([
             'kode_peminjaman' => 'YT4RSTP8JWNH',
             'user_id' => 3,
-            'tgl_pinjam' => now()->subDays(30),
-            'tgl_kembali' => now()->subDays(23),
-            'tgl_dikembalikan' => now()->subDays(20),
-            'status' => 4, 
+            'tgl_pinjam' => Carbon::create(2025, 1, 1), 
+            'tgl_kembali' => Carbon::create(2025, 1, 7), 
+            'tgl_dikembalikan' => null,
+            'status' => 2, 
         ]);
 
         // 4. Pending approval
@@ -72,7 +73,7 @@ class PeminjamanSeeder extends Seeder
             'tgl_pinjam' => now()->subDays(5),
             'tgl_kembali' => now()->addDays(2),
             'tgl_dikembalikan' => null,
-            'status' => 1,
+            'status' => 6,
         ]);
     }
     

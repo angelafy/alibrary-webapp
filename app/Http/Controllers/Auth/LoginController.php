@@ -45,30 +45,32 @@ class LoginController extends Controller
      * @return RedirectResponse
      */
     public function login(Request $request): RedirectResponse
-    {
-        $input = $request->all();
+{
+    $input = $request->all();
 
-        // Validate the email or username and password
-        $this->validate($request, [
-            'username_or_email' => 'required',
-            'password' => 'required',
-        ]);
+    // Validate the login credentials
+    $this->validate($request, [
+        'username_or_email' => 'required',
+        'password' => 'required',
+    ]);
 
-        // Check if the input is an email or username
-        $field = filter_var($input['username_or_email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    // Check if the input is an email, NISN, or username
+    $field = filter_var($input['username_or_email'], FILTER_VALIDATE_EMAIL) 
+        ? 'email' 
+        : (strlen($input['username_or_email']) === 10 ? 'nisn' : 'username');
 
-        // Attempt login
-        if (auth()->attempt([$field => $input['username_or_email'], 'password' => $input['password']])) {
-            if (auth()->user()->type == 'admin') {
-                return redirect()->route('admin.home');
-            } else if (auth()->user()->type == 'manager') {
-                return redirect()->route('manager.home');
-            } else {
-                return redirect()->route('home');
-            }
+    // Attempt login
+    if (auth()->attempt([$field => $input['username_or_email'], 'password' => $input['password']])) {
+        if (auth()->user()->type == 'admin') {
+            return redirect()->route('admin.home');
+        } else if (auth()->user()->type == 'manager') {
+            return redirect()->route('manager.home');
         } else {
-            return redirect()->route('login')
-                ->with('error', 'Email/Username and Password Are Wrong.');
+            return redirect()->route('home');
         }
+    } else {
+        return redirect()->route('login')
+            ->with('error', 'NISN/Username/Email atau Password salah.');
     }
+}
 }

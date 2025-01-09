@@ -276,6 +276,8 @@
                             title: 'Berhasil!',
                             text: data.message,
                             confirmButtonColor: '#90EE90' 
+                        }).then(() => {
+                            window.location.reload(); 
                         });
                     } else {
                         Swal.fire({

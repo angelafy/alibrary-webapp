@@ -22,7 +22,7 @@
                             <input type="hidden" name="collection_location_id[]" value="12">
                             <div
                                 class="grid grid-cols-2 items-center border-t border-t-primary-500 p-3 gap-2 lg:gap-3 bg-gray-50 text-center divide-x-0 lg:divide-x">
-                                <a href="https://perpustakaan.jakarta.go.id/book"
+                                <a href="{{ route('bukus.index')}}"
                                     class="w-full border border-primary-500 text-primary-500 flex items-center justify-center gap-2 cursor-pointer text-sm hover:bg-gray-100 px-6 py-2 rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -57,6 +57,10 @@
                                             text: response.data.message,
                                             icon: 'success',
                                             confirmButtonColor: '#90EE90' // Mengubah warna confirm button pada notifikasi sukses
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
                                         });
                                     })
                                     .catch(error => {

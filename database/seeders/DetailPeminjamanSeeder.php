@@ -34,6 +34,41 @@ class DetailPeminjamanSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'peminjaman_id' => 3,
+                'buku_id' => 5,
+                'jumlah' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'peminjaman_id' => 4,
+                'buku_id' => 8,
+                'jumlah' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'peminjaman_id' => 5,
+                'buku_id' => 9,
+                'jumlah' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'peminjaman_id' => 6,
+                'buku_id' => 11,
+                'jumlah' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'peminjaman_id' => 7,
+                'buku_id' => 3,
+                'jumlah' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

@@ -339,70 +339,69 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menangani submit form kembalikan
-            const kembalikanForms = document.querySelectorAll('.kembalikanForm');
-            
-            kembalikanForms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    Swal.fire({
-                        title: 'Konfirmasi Pengembalian',
-                        text: "Apakah anda yakin ingin mengembalikan buku ini?",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#337ab7',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Ya, kembalikan!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Ambil action URL dari form
-                            const url = form.getAttribute('action');
-                            
-                            // Kirim request menggunakan fetch
-                            fetch(url, {
-                                method: 'POST',
-                                headers: {
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    'Accept': 'application/json',
-                                    'Content-Type': 'application/json',
-                                },
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    Swal.fire({
-                                        title: 'Berhasil!',
-                                        text: data.message,
-                                        icon: 'success',
-                                        confirmButtonColor: '#90EE90'
-                                    }).then(() => {
-                                        // Refresh halaman setelah success
-                                        window.location.reload();
+            document.addEventListener('DOMContentLoaded', function() {
+                // Menangani submit form kembalikan
+                const kembalikanForms = document.querySelectorAll('.kembalikanForm');
+
+                kembalikanForms.forEach(form => {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+                        Swal.fire({
+                            title: 'Konfirmasi Pengembalian',
+                            text: "Apakah anda yakin ingin mengembalikan buku ini?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#337ab7',
+                            cancelButtonColor: '#6c757d',
+                            confirmButtonText: 'Ya, kembalikan!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Ambil action URL dari form
+                                const url = form.getAttribute('action');
+
+                                // Kirim request menggunakan fetch
+                                fetch(url, {
+                                        method: 'POST',
+                                        headers: {
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json',
+                                        },
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            Swal.fire({
+                                                title: 'Berhasil!',
+                                                text: data.message,
+                                                icon: 'success',
+                                                confirmButtonColor: '#90EE90'
+                                            }).then(() => {
+                                                window.location.reload();
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                title: 'Gagal!',
+                                                text: data.message,
+                                                icon: 'error',
+                                                confirmButtonColor: '#6c757d'
+                                            });
+                                        }
+                                    })
+                                    .catch(error => {
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            text: 'Terjadi kesalahan sistem',
+                                            icon: 'error',
+                                            confirmButtonColor: '#6c757d'
+                                        });
                                     });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Gagal!',
-                                        text: data.message,
-                                        icon: 'error',
-                                        confirmButtonColor: '#6c757d'
-                                    });
-                                }
-                            })
-                            .catch(error => {
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: 'Terjadi kesalahan sistem',
-                                    icon: 'error',
-                                    confirmButtonColor: '#6c757d'
-                                });
-                            });
-                        }
+                            }
+                        });
                     });
                 });
             });
-        });
         </script>
     </x-client-app>
