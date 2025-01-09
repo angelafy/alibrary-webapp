@@ -7,7 +7,7 @@
            </button>
            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                <a href=".">
-                   <img src="{{ asset('static/logo.png') }}" width="110" height="32" alt="Tabler"
+                   <img src="{{ asset('static/logo.svg') }}" width="110" height="32" alt="Alibrary"
                        class="navbar-brand-image" />
                </a>
            </h1>
@@ -175,11 +175,11 @@
                        </div>
                    </a>
                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                       <a href="#" class="dropdown-item">Status</a>
+                       {{-- <a href="#" class="dropdown-item">Status</a>
                        <a href="#" class="dropdown-item">Profile</a>
                        <a href="#" class="dropdown-item">Feedback</a>
                        <div class="dropdown-divider"></div>
-                       <a href="./settings.html" class="dropdown-item">Settings</a>
+                       <a href="./settings.html" class="dropdown-item">Settings</a> --}}
                        <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();"
@@ -338,11 +338,11 @@
                                'penulis.index',
                                'penulis.create',
                                'penulis.edit',
-                                     'penulis.show',
+                               'penulis.show',
                                'genre.index',
                                'genre.create',
                                'genre.edit',
-                                   'genre.show',
+                               'genre.show',
                            )
                                ? 'active'
                                : '' }}">
