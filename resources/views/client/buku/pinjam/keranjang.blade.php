@@ -22,7 +22,7 @@
                             <input type="hidden" name="collection_location_id[]" value="12">
                             <div
                                 class="grid grid-cols-2 items-center border-t border-t-primary-500 p-3 gap-2 lg:gap-3 bg-gray-50 text-center divide-x-0 lg:divide-x">
-                                <a href="{{ route('bukus.index')}}"
+                                <a href="{{ route('bukuClient.index')}}"
                                     class="w-full border border-primary-500 text-primary-500 flex items-center justify-center gap-2 cursor-pointer text-sm hover:bg-gray-100 px-6 py-2 rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -388,7 +388,7 @@
                             <div class="text-center py-8">
                                 <p class="text-gray-500">Keranjang
                                     Anda kosong.</p>
-                                <a href="{{ route('bukus.index') }}"
+                                <a href="{{ route('bukuClient.index') }}"
                                     class="mt-4 inline-block text-primary-600 hover:text-primary-700">
                                     Cari buku untuk dipinjam
                                 </a>
